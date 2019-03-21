@@ -1,0 +1,51 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Read the /ReadMeFirst/ReadMeFirst.tex for an introduction. Check out the accompanying book "Better Books with LaTeX" for a discussion of the template and step-by-step instructions. The template was originally created by Clemens Lode, LODE Publishing (www.lode.de), mail@lode.de, 8/17/2018. Feel free to use this template for your book project!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Replace Replace with Third Chapter Name
+% Replace c3_thirdchapter:cha with your chapter title label (no spaces, only lower case letters)
+% Replace the text below \end{chapterpage} and insert your own text.
+
+\begin{chapterpage}{Replace with Third Chapter Name}{c3_thirdchapter:cha}
+
+\begin{myquotation} The perfect place for an introducing quotation.\par\vspace*{15mm}
+\mbox{}\hfill \emdash{}Famous Person\index{Person, Famous}
+% Add the source.
+%, \citetitle{bibitem}\index{@\citetitle{bibitem}} \ifxetex\label{famousperson-bibitem-quote}\else\citep[p.~123]{bibitem}\fi
+\par\end{myquotation}
+
+\end{chapterpage}
+
+% -------------------- replace or remove text below and paste your own text ------
+
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\node[fill=yellow!80,ellipse] (origin) {Origin};
+\node[fill=blue!30,ellipse] (destination) at (15em,0) {Destination};
+\path (origin) edge[->] node[above,font=\footnotesize] {the journey} (destination);
+\end{tikzpicture}
+\caption{TikZ drawings will be output as SVG, which should be rendered by most modern browsers.}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\input{tex-images/buildchain}
+\caption{Build chain of \textit{Overleaf} as a TikZ picture.}
+\end{figure}
+
+\begin{figure}
+\centering
+\input{tex-images/latexeffortcomplexity}
+\caption{Comparing complexity of \textit{Word} and \textit{LaTeX} depending on the application.}
+\end{figure}
+
+\begin{figure}
+\centering
+\input{tex-images/leaves-golden-cut}
+\caption{Example of a drawing made in TikZ.}
+\end{figure}
+
