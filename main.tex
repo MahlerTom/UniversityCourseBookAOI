@@ -1,0 +1,70 @@
+\documentclass[ebook,12pt,oneside,openany]{memoir}
+\usepackage[utf8x]{inputenc}
+\usepackage[english]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{url}
+
+% Add support to force LaTeX to put figures at a certain place.
+\usepackage{float}
+
+% Tikz configuration. For details, see the main manual at  http://www.texample.net/media/pgf/builds/pgfmanualCVS2012-11-04.pdf
+\usepackage{tikz}
+
+% Load various tikz libraries, you might need only some of them (or additional ones).
+\usetikzlibrary{positioning,shapes}
+
+% For code listing
+\usepackage{listings}
+\usepackage{xcolor}
+
+% For LaTeX code listing
+\lstset{%
+    basicstyle=\small\ttfamily,
+    language={[LaTeX]TeX},
+    numbersep=5mm,
+    numbers=left,
+    numberstyle=\tiny, % number style
+    breaklines=true,
+    frame=single,
+    framexleftmargin=8mm,
+    xleftmargin=8mm,
+    prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    backgroundcolor=\color{green!5},
+    frameround=fttt,
+    escapeinside=??,
+    rulecolor=\color{red},
+    morekeywords={begin,maketitle}, % Give key words here                                         % keywords
+    keywordstyle=\color{cyan},                    % keywords
+    commentstyle=\color{blue},    % comments
+    stringstyle=\color[rgb]{0.627,0.126,0.941}  % strings
+    % columns=fullflexible   
+    tabsize=2,
+}
+
+\title{Attacks on Implementations of Secure Systems}
+\author{}
+
+\begin{document}
+\maketitle
+
+\pagenumbering{roman}
+
+\input{chapters/01_Introduction.tex}
+
+\clearpage
+\tableofcontents
+\clearpage
+
+\pagenumbering{arabic}
+
+\input{chapters/02_chapter_1.tex}
+
+\input{chapters/03_chapter_2.tex}
+
+\input{chapters/04_chapter_3.tex}
+
+\clearpage
+\bibliographystyle{unsrt}
+\bibliography{bibliography/english}
+
+\end{document}

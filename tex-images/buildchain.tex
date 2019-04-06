@@ -1,20 +1,25 @@
 \begin{tikzpicture}
-\node (latex) [block] {\LaTeX{}\\document};
-\node (overleaf) [block, left=of latex] {Overleaf};
-\node (pdf) [block, above left=of overleaf] {PDF}; % xelatex
-\node (html) [block, above right=of overleaf] {HTML}; % pdfLaTeX + tex4ht
+    % Define styles of various tikz elements.
+    \tikzstyle{textbox} = [rounded corners, text width=60pt, minimum height=50pt,text centered,draw=black]
+    \tikzstyle{arrow} = [thick,->,>=latex]
+    \tikzstyle{block} = [rectangle,textbox]
+    \tikzstyle{textarr} = [rectangle,align=center,fill=white]
 
-\node (print) [block, above= of pdf] {Printed\\book};
-\node (mobi) [block, above left=of html] {MOBI\\(Amazon)}; % Kindle Previewer
-\node (epub) [block, above= of html] {EPUB\\(GooglePlay)}; % Calibri
-
-\draw[out=90,in=270] [arrow] (overleaf) to node[textarr] {XeLaTeX} (pdf);
-\draw[out=90,in=270] [arrow] (overleaf) to node[textarr] {pdfLaTeX\\tex4ht} (html);
-
-\draw [arrow] (latex) -- (overleaf);
-\draw [arrow] (pdf) -- (print);
-
-\draw[out=90,in=270] [arrow] (html) to node[textarr] {Kindle\\Previewer} (mobi);
-\draw [arrow] (html) -- node[textarr] {Calibri} (epub);
-
+    \node (latex) [block] {\LaTeX{}\\document};
+    \node (overleaf) [block, left=of latex] {Overleaf};
+    \node (pdf) [block, above left=of overleaf] {PDF}; % xelatex
+    \node (html) [block, above right=of overleaf] {HTML}; % pdfLaTeX + tex4ht
+    
+    \node (print) [block, above= of pdf] {Printed\\book};
+    \node (mobi) [block, above left=of html] {MOBI\\(Amazon)}; % Kindle Previewer
+    \node (epub) [block, above= of html] {EPUB\\(GooglePlay)}; % Calibri
+    
+    \draw[out=90,in=270] [arrow] (overleaf) to node[textarr] {XeLaTeX} (pdf);
+    \draw[out=90,in=270] [arrow] (overleaf) to node[textarr] {pdfLaTeX\\tex4ht} (html);
+    
+    \draw [arrow] (latex) -- (overleaf);
+    \draw [arrow] (pdf) -- (print);
+    
+    \draw[out=90,in=270] [arrow] (html) to node[textarr] {Kindle\\Previewer} (mobi);
+    \draw [arrow] (html) -- node[textarr] {Calibri} (epub);
 \end{tikzpicture}
