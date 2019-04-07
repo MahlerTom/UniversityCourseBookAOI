@@ -5,15 +5,10 @@
     \begin{tikzpicture}
         \node[fill=yellow!80,ellipse] (origin) {Origin};
         \node[fill=blue!30,ellipse] (destination) at (15em,0) {Destination};
-        \path (origin) edge[->] node[above,font=\footnotesize] {the journey} (destination);
+        \path (origin) edge[->] node[above,font=\footnotesize] {the journey}
+        (destination);
     \end{tikzpicture}
     \caption{TikZ drawings will be output as SVG, which should be rendered by most modern browsers.}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \input{tex-images/buildchain}
-    \caption{Build chain of \textit{Overleaf} as a TikZ picture.}
 \end{figure}
 
 \begin{figure}

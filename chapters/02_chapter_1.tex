@@ -2,36 +2,66 @@
 
 \section{Basic Formatting}\label{c1_basicformatting:sec}
 
-\paragraph{Comments.} If you want to just add a comment to a file without it being printed, add a \lstinline[language=Tex]!%!
-(percentage) sign in front of it. The text in the affected line will be displayed in blue in \textit{Overleaf}. In the template files, you will find a number of such comments as well as deactivated commands.
+\paragraph{Comments.} If you want to just add a comment to a file without it
+being printed, add a \lstinline[language=Tex]!%! (percentage) sign in front of
+it. In the template files, you will find a number of such
+comments as well as deactivated commands.
 
-\paragraph{Bold formatting.} You can make your text bold by either marking it and pressing \lstinline!CTRL + B! (in \textit{Overleaf}), or by surrounding it with the command \lstinline[language=Tex]!\textbf{}!.
+\paragraph{Bold formatting.} You can make your text bold by surrounding it
+with the command \lstinline[language=Tex]!\textbf{}!.
 
-\paragraph{Italics formatting.} You can make your text italic by either marking it and pressing \lstinline!CTRL + I! (in \textit{Overleaf}), or by surrounding it with the command \lstinline[language=Tex]!\textit{}!.
+\paragraph{Italics formatting.} You can make your text italic by surrounding
+it with the command \lstinline[language=Tex]!\textit{}!.
 
-\paragraph{Small caps.} You can change your text into small capitals by surrounding it with the command \lstinline[language=Tex]!\textsc{}!.
+\paragraph{Small caps.} You can change your text into small capitals by
+surrounding it with the command \lstinline[language=Tex]!\textsc{}!.
     
-\paragraph{Text em dashes.} Em dashes are used to connect two related sentences. There is no space before or after the em dash. Within the template, use the command \lstinline[language=Tex]!\textemdash{}! instead of using the dash you copied over from your text file. This will also take care of issues relating to line breaks.
+\paragraph{Text em dashes.} Em dashes are used to connect two related sentences.
+There is no space before or after the em dash. Within the template, use the
+command \lstinline[language=Tex]!\textemdash{}! instead of using the dash you
+copied over from your text file. This will also take care of issues relating to
+line breaks.
 
-\paragraph{Paragraphs.} Paragraphs are handled automatically by leaving an empty line between each paragraph. Adding more than one empty line will not change anything\textemdash{}remember it is not a ``what you see is what you get'' editor.
+\paragraph{Paragraphs.} Paragraphs are handled automatically by leaving an empty
+line between each paragraph. Adding more than one empty line will not change
+anything\textemdash{}remember it is not a ``what you see is what you get''
+editor.
 
-\paragraph{Empty line.} If you want to force an empty line (recommended only in special cases), you can use \lstinline[language=Tex]!~\\! (tilde followed by two backslashes).
+\paragraph{Empty line.} If you want to force an empty line (recommended only in
+special cases), you can use \lstinline[language=Tex]!~\\! (tilde followed by two
+backslashes).
 
-\paragraph{New page.} Pages are handled automatically by \LaTeX{}. It tries to be smart in terms of positioning paragraphs and pictures. Sometimes it is necessary to add a page break, though (ideally, at the very end when polishing the final text). For that, simply add a \lstinline[language=Tex]!\newpage!.
+\paragraph{New page.} Pages are handled automatically by \LaTeX{}. It tries to
+be smart in terms of positioning paragraphs and pictures. Sometimes it is
+necessary to add a page break, though (ideally, at the very end when polishing
+the final text). For that, simply add a \lstinline[language=Tex]!\newpage!.
 
-\paragraph{Quotation marks.} In the normal computer character set, there are more than one type of quotation marks. It is required to change all quotation marks into \lstinline[language=Tex]!``...''! (two back ticks at the beginning and two single ticks at the end) and refrain from using "\dots" (or “\dots”) altogether. This is because Word's “\dots” uses special characters, and "\dots" do not mark the beginning and end of the quotation.
+\paragraph{Quotation marks.} In the normal computer character set, there are
+more than one type of quotation marks. It is required to change all quotation
+marks into \lstinline[language=Tex]!``...''! (two back ticks at the beginning
+and two single ticks at the end) and refrain from using "\dots" (or “\dots”)
+altogether. This is because Word's “\dots” uses special characters, and "\dots"
+do not mark the beginning and end of the quotation.
 
-\paragraph{Horizontal line.} For a horizontal line, simply write \lstinline[language=Tex]!\hline!.
+\paragraph{Horizontal line.} For a horizontal line, simply write
+\lstinline[language=Tex]!\hline!.
 
-\paragraph{Underlined text.} It is generally not recommended to use underlined text.
+\paragraph{Underlined text.} It is generally not recommended to use underlined
+text.
 
-\paragraph{URLs.} For URLs you need a special monospaced font. Also, for URLs in e-books, you want to make them clickable. Both can be accomplished by putting the URL in the \lstinline[language=Tex]!\url{}! environment, for example \lstinline[language=Tex]!\url{https://www.lode.de}!.
+\paragraph{URLs.} For URLs you need a special monospaced font. Also, for URLs in
+e-books, you want to make them clickable. Both can be accomplished by putting
+the URL in the \lstinline[language=Tex]!\url{}! environment, for example
+\lstinline[language=Tex]!\url{https://www.lode.de}!.
 
-\paragraph{Special characters.} If you need special characters or mathematical formulas, there is a whole body of work on that subject. It is not in the scope of this book to provide you a comprehensive list.
+\paragraph{Special characters.} If you need special characters or mathematical
+formulas, there is a whole body of work on that subject. It is not in the scope
+of this book to provide you a comprehensive list.
 
 \section{Lists}\label{c1_lists:sec}
 
-\paragraph{Itemized list.} To create a bullet point list (like the list in this section), use the following construct:%
+\paragraph{Itemized list.} To create a bullet point list (like the list in this
+section), use the following construct:%
 \begin{lstlisting}[language=Tex]
 \begin{itemize}
     \item Your first item.
@@ -49,7 +79,8 @@ The result will look like this:%
 % 	\item Your commented item.
 \end{itemize}
 
-\paragraph{Numbered list.} To create a numbered list, replace itemize with enumerate:%
+\paragraph{Numbered list.} To create a numbered list, replace itemize with
+enumerate:%
 \begin{lstlisting}[language=Tex]
 \begin{enumerate}
     \item Your first item.
@@ -68,29 +99,52 @@ The result will look like this:%
 
 \section{Verbatim text}\label{c1_verbatim:sec}
 
-Sometimes, you do want to simply use text in a verbatim way (including special characters and \LaTeX{} commands). For this, simply use the \lstinline[language=Tex]!\lstlisting! environment: \lstinline[language=Tex]!\begin{lstlisting}...\end{lstlisting}!. For example, I put the itemize and enumerate listings above into a \lstinline[language=Tex]!\lstlisting! block. If I did not, \LaTeX{} would have displayed the list as a list, instead of displaying the code.
+Sometimes, you do want to simply use text in a verbatim way (including special
+characters and \LaTeX{} commands). For this, simply use the
+\lstinline[language=Tex]!\lstlisting! environment:
+\lstinline[language=Tex]!\begin{lstlisting}...\end{lstlisting}!. For example, I
+put the itemize and enumerate listings above into a
+\lstinline[language=Tex]!\lstlisting! block. If I did not, \LaTeX{} would have
+displayed the list as a list, instead of displaying the code.
 
 
 
 \section{Chapters and Sections}\label{c1_chaptersandsections:sec}
 
-\LaTeX{} uses a hierarchy of chapters, sections, and subsections. There are also sub-subsections, but for the sake of the reader, it is best to not go that deep. If you come across a situation where it looks like you need it anyway, I recommend thinking over the structure of your book rather than using sub-subsections. 
+\LaTeX{} uses a hierarchy of chapters, sections, and subsections. There are also
+sub-subsections, but for the sake of the reader, it is best to not go that deep.
+If you come across a situation where it looks like you need it anyway, I
+recommend thinking over the structure of your book rather than using
+sub-subsections. 
 
 In terms of their use in the code, they are all similar:
 
 \begin{itemize}
-    \item \lstinline[language=Tex]!\chapter{Title of the Chapter} \label{c1_chaptername:cha}!
-    \item \lstinline[language=Tex]!\section{Title of the Section} \label{c1_sectionname:sec}!
-    \item \lstinline[language=Tex]!\subsection{Title of the Subsection} \label{c1_subsectionname:sec}!
-    \item \lstinline[language=Tex]!\paragraph{Title of the Paragraph} \label{c1_paragraph:sec}!
+    \item \lstinline[language=Tex]!\chapter{Title of the Chapter}\label{c1_chaptername:cha}!
+    \item \lstinline[language=Tex]!\section{Title of the Section}\label{c1_sectionname:sec}!
+    \item \lstinline[language=Tex]!\subsection{Title of the Subsection}\label{c1_subsectionname:sec}!
+    \item \lstinline[language=Tex]!\paragraph{Title of the Paragraph}\label{c1_paragraph:sec}!
 \end{itemize}
 
-When using these commands, obviously replace the title, but also the label. For the label, I recommend to have it start with c, followed with the current chapter number, an underscore, and the chapter, section, or subsection in one word and lowercase, followed by either ``:cha'' or ``:sec'' to specify what kind of label it is. These labels can then be used for references like we used previously for the images. For example, if you have defined a section \lstinline[language=Tex]!\section{Chapters and Sections} \label{c1_chaptersandsections:sec}!, you could write ``We will discuss chapters and sections in section \lstinline[language=Tex]!\ref{c1_chaptersandsections:sec}! which results in the document in ``We will discuss chapters and sections in section \ref{c1_chaptersandsections:sec}''.
+When using these commands, obviously replace the title, but also the label. For
+the label, I recommend to have it start with c, followed with the current
+chapter number, an underscore, and the chapter, section, or subsection in one
+word and lowercase, followed by either ``:cha'' or ``:sec'' to specify what kind
+of label it is. These labels can then be used for references like we used
+previously for the images. For example, if you have defined a section
+\lstinline[language=Tex]!\section{Chapters and Sections}\label{c1_chaptersandsections:sec}!, 
+you could write ``We will discuss chapters
+and sections in section
+\lstinline[language=Tex]!\ref{c1_chaptersandsections:sec}! which results in the
+document in ``We will discuss chapters and sections in section
+\ref{c1_chaptersandsections:sec}''.
 
 
 \section{Tables}\label{c1_tables:sec}
 
-In \LaTeX{}, tables are like images and put into the figure environment. As such, they have a caption, label, and a positioning like we discussed above with the images. Drawing a table requires a bit of coding:
+In \LaTeX{}, tables are like images and put into the figure environment. As
+such, they have a caption, label, and a positioning like we discussed above with
+the images. Drawing a table requires a bit of coding:
 \begin{lstlisting}[language=Tex]
 \begin{table}[!ht]
     \centering
@@ -128,7 +182,18 @@ In \LaTeX{}, tables are like images and put into the figure environment. As such
 \end{table}
 \end{lstlisting}
 
-This table from the beginning of the book has the familiar figure, label, caption, and centering commands. The actual table is configured with the \lstinline[language=Tex]!\tabular{}! environment. Following the tabular command, you configure the columns in curly braces. Each column is separated with a vertical line and the \lstinline[language=Tex]!p{...}! entry specifies the width of the column. With \lstinline[language=Tex]!{p{2.5cm}|p{3.5cm}|p{3.5cm}}!, you would have three columns with 2.5cm width for the first column and 3.5cm width for the two others. Alternatively, you can use \lstinline[language=Tex]!c! instead of \lstinline[language=Tex]!p! and leave out the curly braces with the width. Then, \LaTeX{} simply calculates the required widths automatically. Then, for each line of the table, simply write: \lstinline[language=Tex]!content of the first cell & content of the second cell & content of the third cell \\\hline!.
+This table from the beginning of the book has the familiar figure, label,
+caption, and centering commands. The actual table is configured with the
+\lstinline[language=Tex]!\tabular{}! environment. Following the tabular command,
+you configure the columns in curly braces. Each column is separated with a
+vertical line and the \lstinline[language=Tex]!p{...}! entry specifies the width
+of the column. With \lstinline[language=Tex]!{p{2.5cm}|p{3.5cm}|p{3.5cm}}!, you
+would have three columns with 2.5cm width for the first column and 3.5cm width
+for the two others. Alternatively, you can use \lstinline[language=Tex]!c!
+instead of \lstinline[language=Tex]!p! and leave out the curly braces with the
+width. Then, \LaTeX{} simply calculates the required widths automatically. Then,
+for each line of the table, simply write: 
+\lstinline[language=Tex]!content of the first cell & content of the second cell & content of the third cell\\\hline!.
 
 \begin{table}[!ht]
     \centering
@@ -155,7 +220,8 @@ This table from the beginning of the book has the familiar figure, label, captio
     Multi-platform & only via export & possible with scripting \\
     \hline
     
-    Refresh & some elements need, manual refresh & everything is refreshed with each compile \\
+    Refresh & some elements need, manual refresh & everything is refreshed with
+    each compile \\
     \hline
     
     Formulas & basic support needs external tools & complete support \\
@@ -168,4 +234,11 @@ This table from the beginning of the book has the familiar figure, label, captio
 
 \section{Footnotes}\label{c1_footnotes:sec}
 
-Finally, for footnotes, there is the command \lstinline[language=Tex]!\footnote{}!. You can place it anywhere you like, \LaTeX{} will then automatically add the number of the footnote at that place, and put the footnote text into the footer area. It looks like this.\footnote{This is a footnote.} The challenge here relates to grammar: footnotes start with capital letters, parentheses with lower case, and the footnote comes after the period, the parentheses have to start before the period.
+Finally, for footnotes, there is the command
+\lstinline[language=Tex]!\footnote{}!. You can place it anywhere you like,
+\LaTeX{} will then automatically add the number of the footnote at that place,
+and put the footnote text into the footer area. It looks like
+this.\footnote{This is a footnote.} The challenge here relates to grammar:
+footnotes start with capital letters, parentheses with lower case, and the
+footnote comes after the period, the parentheses have to start before the
+period.
