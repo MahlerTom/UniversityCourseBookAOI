@@ -17,6 +17,8 @@ The electrical resistance of the load is a measure of its opposition to the flow
 of electric current through it. It is measured in Ohms (and denoted by \textbf{\textit{R}}).
 
 % Ohm's law: V=I*R - we should add it inside a box
+$V=I*R$
+\newline
 Ohm's law defines the relationship between the Voltage, Current and Resistance in a circuit:
 The voltage is equal to the current multiplied by the resistance of the load.
 Since in most of the circuits we are using, the voltage is fixed 
@@ -24,16 +26,20 @@ Since in most of the circuits we are using, the voltage is fixed
 of the circuit will cause a change in the current in the opposite direction.
 This means we can measure the current over time in order to calculate the resistance.
 
-% A useful analogy for the relations between V, I and R is to imagine a fountain on a high mountain,
-% where the water flow down through a river to the sea. The difference in height between the fountain
-% and the sea is the Voltage, the width of the river can be thought of as the resistance,
-% and the flow of the water is the current.
+A useful analogy for the relations between V, I and R is to imagine a fountain on a high mountain,
+where the water flow down through a river to the sea. The difference in height between the fountain
+and the sea is the Voltage, the width of the river can be thought of as the resistance,
+and the flow of the water is the current.
 
-% Power = Work / Time
+$Power = Work / Time$
+\newline
 % Power consumption: P=I*V - we should add it inside a box
+Power consumption: $P=I*V$
+\newline
 Electricity can be used to do various kinds of work:
 \begin{itemize}
     \item Electromagnetic work (light a bulb, transmit a WiFi signal)
+    \item Thermal work (heating)
     \item Mechanical work (spin a motor, vibrate a speaker)
     \item Chemical work (charging a battery)
     \item Computational work (store or load from memory, compute a value)
@@ -52,13 +58,60 @@ A \textbf{short circuit} is a piece of wire with almost no resistance at all.
 An \textbf{open circuit} is a circuit which doesn't allow any
 current to pass through it.
 
+\subsubsection{Connecting in serial}
 % diagrams of connecting a short circuit and an open circuit in serial to the load.
 If we connect a short circuit after the load, it will have no influence on it.
 If we connect an open circuit after the load, it will increase the resistance
 to a very high value, causing the current to become zero effectively.
 
+\subsubsection{Connecting in parallel}
 % diagrams of connecting a short circuit and an open circuit in parallel to the load.
+If we connect an open circuit in parallel to the load, the current will flow only thru the load path,
+so the current on the open circuit will be 0.
+However, the voltage drop between both points of the open circuit will be the same as the drop between
+the load sides.
+
+If we connect a short circuit in parallel to the load, the current will "prefer" flowing thru it rather
+than thru the load, so the current thru the load will be equal 0, while the current thru the short
+circuit will be very high - by Ohm's law.
+Since the cable is not a perfect conductor, some of the energy will be consumes in the form of
+thermal work, so the cable will heat, and possibly melt and start a fire\dots
+
+\section{Measuring Power Consumption}
+\subsection{Ammeter}
+% an icon of Ammeter symbol ("A" inside a circle) - like here: https://thenounproject.com/term/ammeter/96074/
+% maybe also a good photo of such device
+An Ammeter (from \textbf{Am}pere \textbf{Meter}) is a device capable of measuring the amount of
+electric current going through it. It has very low resistance, so it doesn't interrupt the system
+connected to it.
+
+\subsubsection{Using Ammeter to measure power consumption}
+We need to "cut" the wire connected to the load and connect both sides to the Ammeter.
+Doing so will cause all current flowing through the load to pass through the Ammeter as well,
+so we will be able to read the current at any given time.
+In case we know the voltage (i.e. a 5V battery, a 220V power socket), we can compute the power
+consumption: $P=I*V$
+
+The problem: sometimes, we don't want (or simply can't) cut the circuit after the load in order
+to connect an Ammeter.
+% Yossi started talking about what to do if we don't want to cut, but the conclusion
+% (after talking about connecting a Voltmeter in parallel) was we can't do it without cut...
+
+\subsection{Voltmeter}
+% an icon of Voltmeter symbol ("V" inside a circle) - like here: https://commons.wikimedia.org/wiki/File:Voltmeter_symbol.png
+% maybe also a good photo of such device
+A Voltmeter is a device capable of measuring the electrical potential (also called "Voltage drop")
+between two points in an electric circuit.
+
+By connecting a Voltmeter in parallel with a very small and accurate resistor, we can measure the
+electric current by Ohm's law: $I=V/R$
+
+Summary: we learnt what is Power Consumption and how we can measure it.
+A very important fact is that \textbf{Power Consumption varies with time!}.
+If we can find a relationship between the secret information we want to extract and
+the power consumption, we can recover this information by measuring the power consumption over time.
+
 % TO BE CONTINUED: 
-% https://www.temi.com/editor/t/Dtf0wlEHuw3Lfil5a2T-VDsx3NsfMMflSTsKVphDszwJeIz2L8LJBqkjwkWk3NmT3hw2neoFb_i7K8M8U85Cz6vfQTk?loadFrom=DeliveryEmail
-% 26:38 minutes
+% https://www.temi.com/editor/t/iT2GGbpWLF-dheqB2Wljm3PU5R9Yqyu1ynigOlYve96G2opOgaLbI27Ilw944MYylUBuF6U_xc5uZKfvlG3VhCKYswg?loadFrom=DeliveryEmail
+% 2nd lecture
 
