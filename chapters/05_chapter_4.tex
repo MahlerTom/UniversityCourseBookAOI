@@ -113,5 +113,97 @@ the power consumption, we can recover this information by measuring the power co
 
 % TO BE CONTINUED: 
 % https://www.temi.com/editor/t/iT2GGbpWLF-dheqB2Wljm3PU5R9Yqyu1ynigOlYve96G2opOgaLbI27Ilw944MYylUBuF6U_xc5uZKfvlG3VhCKYswg?loadFrom=DeliveryEmail
+
 % 2nd lecture
+\subsection{Types of electronic components}
+In general there are two types of elements in the circuit, the first one are Passive devices like a resistors (a passive two-terminal electrical component that implements electrical resistance as a circuit element), inductors (is a passive two-terminal electrical component that stores energy in a magnetic field when electric current flows through it), capacitors and diodes. And there are Active devices like transistors (a semiconductor device used to amplify or switch electronic signals and electrical power), amplifiers (an electronic device that can increase the power of a signal (a time-varying voltage or current)) and ICs. From our perspective, the Active devices are much more interesting for us (attackers) as they are using electricity in order to control electricity. One example can be an amplifier that has audio signal and power supply as inputs and it generates a greater audio signal as an output using the power supply. 
+Another interesting active element for this course is a transistor. In an integrated circuits, there are a lot of active devices such as transistors  that if we can analyze their behavior we can learn about the data that they are processing. So when we look at the final consumption of these active elements, we can figure out some kind of secrets.
+There are many kind of transistors and we will concentrate on understanding a certain type called Field-Effect Transistor.
+% TODO: add a scheme of Field-Effect Transistor
+
+\subsection{ Field-Effect Transistor }
+The field-effect transistor (FET) is an electronic device which uses an electric field to control the flow of current. FETs are 3-terminalled devices, having a source, gate, and drain terminal. FETs control the flow of current by the application of a voltage to the gate terminal, which in turn alters the conductivity between the drain and source terminals.
+In order to understand FET first we need to dive into the basics of semiconductors.
+\subsection{ Semiconductors }
+A semiconductor is a substance, usually a solid chemical element or compound, that can conduct electricity under some conditions but not others, making it a good medium for the control of electrical current. Its conductance varies depending on the current or voltage applied to a control electrode, or on the intensity of irradiation by infrared (IR), visible light, ultraviolet (UV), or X rays.
+In general, transistors are made of semiconducting materials such as silicon. There are a conductor like copper or gold and there are insulators like plastic or glass. 
+Silicon atom has three parts: neutrons (not relevant for our use), protons with the positive charge (heavy) and electrons that have the negative charge and they are small and dynamic. Silicon atom has four electrons in its outer orbital and when we have a crystal silicon those 4 electrons are set in place very nicely. It means that pure silicon is a very bad conductor as  conducting means that the electrons can move around and in this case they are very comfortable where they are.
+% TODO: add silicon atom diagram
+Metals can be good conductors of electricity as they have "free electrons" that can move easily from atom to atom, the electricity involves the flow of electrons. As all of the outer electrons in Silicon crystal are involved in perfect covalent bonds, they cannot move around. So, silicon crystal is nearly insulator and very little electricity will flow through it.
+We can change the behavior of  the silicon and turn it into a conductor by doping it. In doping, we mix a small amount of an impurity into the silicon crystal.
+There are two types of impurities:
+•	N-type – where phosphorus or arsenic is added to the silicon in small quantities. They both have  five outer electrons, so one of them is out of place when they get into the silicon lattice. While having nothing to bond to, the fifth electron is free to move around. As electrons have a negative charge, this kind of impurity called N-type.
+•	P-type - where boron or gallium is added to the silicon. They both have only three outer electrons. So, when we mixed them into the silicon lattice, there will be "holes" in the lattice where a silicon electron has nothing to bond to. The hole is looking for an electron from a neighbor atom and when that’s happens the hole is "moving". As the absence of an electron creates the effect of a positive charge, this kind of impurity called P-type.
+\subsection{ How does Field-Effect Transistor work? }
+In the Field-Effect Transistor there are (as shown in figure ..) n+ areas (N-type) and P area (P-type). The n+ area contains a lot of free electrons and the P area contains a lot of 'holes'. When no electricity is connected to the gate, the free electrons from the N+ are moving to the holes so there are no free electrons within the semiconductor itself. That means electrons can't move from the source to the drain i.e. open circuit. When electricity is connected to the gate it charge a lot of free electrons to it. The free electrons in the gate can't move to the silicon itself as there is an oxide layer between them, but is pushes the electrons in the silicon down to the body in a way there are holes between the source and the drain. That way electrons can move from the source to the drain freely and we have close circuit. 
+\subsection{ NOT Gate CMOS}
+% TODO: Add Not gate diagram
+
+How does CMOS work? When the voltage of input A is low A = 0, the upper transistor's channel is closed and we have a connection between Vdd(1) and Q, so Q = 1, this is a Pull Up Network. And when the voltage of input A is high, then the lower transistor's channel is closed and we have a connection between Vss(0) and Q, so Q = 0, this is a Pull Down Network.
+A question is raised – when does this circuit consume power? There is almost no power consume as there is no connection between Vdd and Vss at any time. Although when CMOS is switching between states, there is a minor power usage and we will see how we can use it for our purpose.
+Following is the NOT table:
+\begin{itemize}
+\item Input (A, 0, 1)
+    	\item Output (NOT A, 1, 0)
+\end{itemize}
+
+\subsection{ AND Gate CMOS}
+Next we will see how to build a bit more complicated gate using 4 transistors. Following is the AND gate diagram:
+% TODO: add AND diagram
+
+We will implement the gate using 4 transistors to support the following AND table:
+\begin{itemize}
+\item Input A (0, 0, 1, 1)
+\item Input B (0, 1, 0, 1)
+    	\item Output Q (0, 0, 0, 1)
+\end{itemize}
+
+First we want to build the Pull Up Network, so for input A and B, for A=B=1 then the output Q is 1.
+% TODO: add the half first diagram for the pull up network.
+Then we will build the Pull Down Network to support the other combination from the table to deliver 0 as the output Q.
+% TODO: add the second half of the diagram to add the pull down network.
+Sometimes we don’t want to have combination using the circuits, but we want to store information in it, next we will talk about another type of circuits called storage circuit or Sequential Circuit.
+\subsection{ Storage/Sequential Circuit }
+A latch or flip-flop is a circuit that has two stable states and can be used to store state information. 
+% TODO: add flip-flop diagram
+
+The circuit can be made to change state by signals applied to one or more control inputs and will have one or two outputs. It is the basic storage element in sequential logic. Flip-flops and latches are fundamental building blocks of digital electronics systems used in computers, communications, and many other types of systems.
+A flip-flop is a device which stores a single bit (binary digit) of data; one of its two states represents a "one" and the other represents a "zero". Such data storage can be used for storage of state, and such a circuit is described as sequential logic in electronics. When used in a finite-state machine, the output and next state depend not only on its current input, but also on its current state (and hence, previous inputs). It can also be used for counting of pulses, and for synchronizing variably-timed input signals to some reference timing signal.
+Flip-flops can be either level-triggered (asynchronous, transparent or opaque) or edge-triggered (synchronous, or clocked). The term flip-flop has historically referred generically to both level-triggered and edge-triggered circuits that store a single bit of data using gates. We will refer Flip-Flop as edge-triggered i.e. clocked synchronized.
+% TODO: add flip-flop diagram
+Flip-flop has to legs – data and clock, for each storage element in the circuit the data changes at the clock signal and so we have an amplified signal that we can monitor as attackers and try to learn the secret behind it.
+ \subsection { Core I7 chip }
+Following is the core I7 chip image:
+% TODO: add the core I7 image
+
+We can see ordered items that are the storage elements, there are 24 items that are the GPUs and they have a little memory next to the (upper left). The CPU core has also a cash memory in it.
+\subsection { Power Consumption is Variable }
+Next we will see how to get secrets from the power consumption.
+% TODO: add the NOT gate from Yossi presentation (slide ‘Power Consumption is Variable’)
+This is the NOT gate as before connected with an ampere meter so we can measure the power consumption, also there are two capacitors (C1 & C2). The capacitors are connected because the characteristics of the circuit which make it to act like capacitors. They are not transferring current but they will have an effect on the math we are going to do next.
+Next we are taking a square wave, which looks like this:
+% TODO: add the square wave diagram
+And we have to feed it into the NOT gates, the output is going to be the opposite of the square wave, and we want to measure the power consumption using an oscilloscope.
+% TODO: add the oscilloscope output from Yossi PPT
+The x axis of the oscilloscope is time and the y axis in this case it's a voltage of the power. It's a current moving across the ampere meter. What we can see here is that when the circuit is stable, there was not much power consumption, but when the system is switching, when there is a high power consumption, because there is a glitch when one transistor is opening and the other one is closing.
+Also, we can see that the lines in the oscilloscope are not having the same size as the capacitors are actually charging and discharging without we want it. We can learn from this if there was one or zero and what is the rate of switching, and we can store this information.
+The power consumption is the sum of the statistic and the dynamic power consumption. 
+% TODO: add the equation from Yossi slide
+We are really don’t care about the statistic power consumption as it is just defined by the kind of silicone that we are using, the size of the features decided to be in the transistors, the temperature, the technology, etc. But really interesting for us is the dynamic power consumption that depends on the o'clock rate and the circuit activity input data.
+Because the power consumption is a function of the circuit activity, we can try to measure the power consumption and send the results to the equations and to get the circuit activity, in a way we can find out all the secrets.
+In order to calculate the power consumption this way we need a lots of data about the circuit and about the environment and about the temperature etc. And this is too much work for us as an engineers. There is a much simplified way of measuring the power consumption of a device, assuming it's a CMOS device we can measure how many bits changes every clock.
+So, our assumptions are the followings: 1. this is a CMOS device. 2. when it’s static the static power is very low, and when it switches, there is a very high power consumption. 3. This is synchronous circuit, which means it has a lot of flip flops that all change at the same time. 4. The power consumption is proportional to the amount of changes and the outputs of these flip flops.
+\subsection { hamming distance model }
+For doing this we are going to use hamming distance model. The Hamming distance between two vectors is the number of bits we must change to change one into the other. Example, what is the distance between the vectors 01101010 and 11011011? 
+Answer: They differ in four places, so the Hamming distance d(01101010,11011011) = 4.
+When talking about CMOS devices we are estimating our power consumption as amount of bits (transitions) that change from one to zero or from zero to one, this is our hamming distance. By monitoring the changes as explained we can find the power consumption.
+But, this is not enough. By connecting the oscilloscope to our device we are trying to measure a physical device with another physical equipment, and what they are measuring is subject to measurement errors like switching noise, thermal noise and measurement noises.
+Switching noise means that there are other kinds of activity which are going on in the circuit in addition. Measurement noise means that our desk setup is not always accurate, or we might be connected not properly, or we might not be measuring the precise correct moment of time etc. Thermal noise - we are measuring electrical activity, as electrons are very crazy particles and they like to disappear and reappear in a nearby location. So the higher is the temperature, the more likely they are to vanish and disappear. And when the electrons are moving, they generate radiation and they affect our measurements.
+So now when we are measuring the power, we get the static power, the dynamic power and we get the noise.
+% TODO: add the equation from Yossi slide
+In order to avoid the noise we can measure it again and again and then the noise might be canceling itself. What happens sometimes is that the noise, especially the switching noise, is sometimes correlated with the activity of the circuits. Another thing we can do is controlling the noise somehow like running our experiment inside a freezer, or an isolated environment where there's no electric noise around. We can also, open the dives and try to kill the sources of noise.
+That's one very nice thing we can do is instead of measuring power consumption, we can measure electromagnetic radiation. And this has two advantages, first of all, it's less invasive and second of all, it can be focused and, and reduce the switching noise.
+\subsection { From Power to Electromagnetic }
+% TODO: add the electromagnetic diagram from Yossi ptt
+Electric fields are created by differences in voltage: the higher the voltage, the stronger will be the resultant field. We can use the right hand rule in order to remember the direction of the electromagnetic field direction when we know the current direction. We can measure the magnetic field, but one disadvantage is that it is very localize, so we need to get access to the device. We can connect an antenna to the device and then we can measure the electromagnetic wave using a receiver. There is a very nice paper called screening channels that you can read more about this kind of attacks.
 
