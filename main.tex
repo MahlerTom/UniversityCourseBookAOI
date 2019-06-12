@@ -4,6 +4,25 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{url}
 
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+\usepackage[top=50pt,bottom=50pt,left=65pt,right=60pt]{geometry}
+\usepackage{csquotes}
+\usepackage{enumerate}
+\usepackage{wrapfig}
+\usepackage[export]{adjustbox}
+\usepackage{algorithm, algpseudocode}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\urlstyle{same}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+
+
 % Add support to force LaTeX to put figures at a certain place.
 \usepackage{float}
 
@@ -63,8 +82,21 @@
 
 \input{chapters/04_chapter_3.tex}
 
+\input{chapters/05_chapter_4.tex}
+
+\input{chapters/06_chapter_5.tex}
+
+\input{chapters/07_chapter_6.tex}
+
+\input{chapters/08_chapter_7.tex}
+
+\input{chapters/09_chapter_8.tex}
+
+\input{chapters/10_chapter_9.tex}
+
 \clearpage
 \bibliographystyle{unsrt}
-\bibliography{bibliography/english}
+%\addbibresource{bibliography/english}
+\bibliography{bibliography/ch9_fault_attacks}
 
 \end{document}
