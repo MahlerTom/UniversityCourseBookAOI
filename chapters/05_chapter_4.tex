@@ -1,40 +1,32 @@
 \chapter{Power/EM I} \label{c4_forthchapter:cha}
-
 \section{Electronic Circuits}
 \subsection{A basic electronic circuit}
-The most basic electronic circuit consist of a power supply 
-(i.e. a battery) and an electrical load (any component consuming electric power) 
-connected to it on one side and to the "ground" (the reference point from 
-which voltages are measured) on the other side.
+The most basic electronic circuit consist of a power supply (i.e. a battery) that generates an electric potential that aim to move to the ground. And an electrical load (any component consuming electric power) connected to the power supply (Vdd) on one side and to the "ground" (the reference point from which voltages are measured) on the other side. As the electric potential goes through the load, it (the load) does some kind of a work. We can consider electric current to behave like water, in this example the water wants to go from the mountains (Vdd) to the sea level (Ground) and there are rivers and obstacles that tries to prevent it to do so. When the load has small resistance then more of the current will “flow” through it, and when the load has bigger resistance then the “flow” is smaller.  
 % here we should add a figure of this basic circuit, as shown on Yossi's presentation
-The difference in the electric potential between the power supply and the ground
-creates an electric current which flow through the load to the ground.
-
-The difference in electric potential between two points is measured in Volts 
-(usually denoted by \textbf{\textit{V}}). The amount of current flowing thru
-the circuit at a given time is measured in Amperes (denoted by \textbf{\textit{A}}).
-The electrical resistance of the load is a measure of its opposition to the flow 
-of electric current through it. It is measured in Ohms (and denoted by \textbf{\textit{R}}).
+There are two different ways in which we can wire things together in an electric circuit, called series and parallel.
+When things are wired in series, things are wired one after another, such that electricity has to pass through one load, then the next load, then the next, and so on.
+When things are wired in parallel, they are wired side by side, such that electricity passes through all of them at the same time, from one common point to another common point.
+The difference in the electric potential between the power supply and the ground creates an electric current which flows through the load toward the ground.
+The difference in electric potential between two points is measured in Volts (usually denoted by \textbf{\textit{V}}). The amount of current flowing thru the circuit at a given time is measured in Amperes (denoted by \textbf{\textit{A}}).
+The electrical resistance of the load is a measure of its opposition to the flow of electric current through it. It is measured in Ohms (and denoted by \textbf{\textit{R}}).
 
 % Ohm's law: V=I*R - we should add it inside a box
 $V=I*R$
+% TODO: add the following pic
+\\subsection{Resistors}
+As the name implies, a resistor resists the flow of electrical current. The amount of resistance is measured in Ohms. A resistor is considered a passive component that consumes power that is dissipated as heat. The power rating of a resistor determines how much power it can consume without overheating.
+% TODO: add the following pic
 \newline
-Ohm's law defines the relationship between the Voltage, Current and Resistance in a circuit:
-The voltage is equal to the current multiplied by the resistance of the load.
-Since in most of the circuits we are using, the voltage is fixed 
-(defined by the characteristics of the power supply), a change in the resistance
-of the circuit will cause a change in the current in the opposite direction.
-This means we can measure the current over time in order to calculate the resistance.
-
-A useful analogy for the relations between V, I and R is to imagine a fountain on a high mountain,
-where the water flow down through a river to the sea. The difference in height between the fountain
-and the sea is the Voltage, the width of the river can be thought of as the resistance,
-and the flow of the water is the current.
-
+\\subsection{ Ohm's law}
+Ohm's law defines the relationship between the Voltage, Current and Resistance in a circuit: The voltage is equal to the current multiplied by the resistance of the load. Since in most of the circuits we are using, the voltage is fixed (defined by the characteristics of the power supply), a change in the resistance of the circuit will cause a change in the current in the opposite direction. This means we can measure the current over time in order to calculate the resistance.
+A useful analogy for the relations between V, I and R is to imagine a fountain on a high mountain, where the water flow down through a river to the sea. The difference in height between the fountain and the sea is the Voltage, the width of the river can be thought of as the resistance, and the flow of the water is the current.
+\\subsection{Power}
+Power is the rate at which work is done by the circuit and is measured in Watts. Electricity bills are measured by K Watts hour, i.e. 1 KWH is 1 kilo watts used over an hour, and this is the energy that we used and we need to pay for.
 $Power = Work / Time$
 \newline
 % Power consumption: P=I*V - we should add it inside a box
 Power consumption: $P=I*V$
+For example we can take a look on a phone; the battery can be measure in Milliamper hour, i.e. if the battery is 3000mil Amper Hour so if the current is 1 Amper then we can use it for 3 hours. If we want the battery to run out quickly, we can use services like streaming, flashlight and more. That means we have greater current that caused by leveraging the load of the phone and the battery will run our much faster than before. The phone also, will get hot. If a device is getting hot then it sometimes uses its fans (noise), and so we can detect it for cyber usage.
 \newline
 Electricity can be used to do various kinds of work:
 \begin{itemize}
@@ -44,76 +36,54 @@ Electricity can be used to do various kinds of work:
     \item Chemical work (charging a battery)
     \item Computational work (store or load from memory, compute a value)
 \end{itemize}
-
-The power consumption of a device is the work it does divided by time.
-It is measured in Watts (\textbf{\textit{W}}).
-The power consumption can be calculated as current (\textbf{\textit{I}})
-multiplied by Voltage (\textbf{\textit{V}}).
-Power is consumed when it leaves the circuit.
-
+\\subsection{Power Consumption}
+When the current leaves the circuit to the ground then we consume it as power, but sometimes we need to be careful as there are cases where the current is no leaving the circuit, like battery charging. In order to measure the power we will connect our measuring device between the load and the ground.
+The power consumption of a device is the work it does divided by time. It is measured in Watts (\textbf{\textit{W}}).
+The power consumption can be calculated as current (\textbf{\textit{I}}) multiplied by Voltage (\textbf{\textit{V}}).
 \subsection{Current and Voltage dividers}
-Before we take a look at two simple electronic circuits, we need to
-introduce two additional terms:
-A \textbf{short circuit} is a piece of wire with almost no resistance at all.
-An \textbf{open circuit} is a circuit which doesn't allow any
-current to pass through it.
-
+Before we take a look at two simple electronic circuits, we need to introduce two additional terms:
+A \textbf{short (closed) circuit} is a piece of wire with almost no resistance at all. The circuit is in a closed state and there is current in the circuit. In other words, it works as normal.
+An \textbf{open circuit} is a circuit which doesn't allow any current to pass through it. The circuit is in an open state and there is no current in the circuit; that’s to say. It doesn’t work.
+% TODO: add the following pic
 \subsubsection{Connecting in serial}
 % diagrams of connecting a short circuit and an open circuit in serial to the load.
-If we connect a short circuit after the load, it will have no influence on it.
-If we connect an open circuit after the load, it will increase the resistance
-to a very high value, causing the current to become zero effectively.
-
+If we connect a short circuit between the load and the ground, it will have no influence on it the current will not change as from the power supply point of view – nothing has been change, we just cut a cable and put another one instead. The voltage drop will be very very low.
+% TODO: add the following pic
+If we connect an open circuit after the load, it will increase the resistance to a very high value, causing the current to become zero effectively. If the current is zero then the voltage is also zero (Ohm’s Law).
+% TODO: add the following pic
 \subsubsection{Connecting in parallel}
 % diagrams of connecting a short circuit and an open circuit in parallel to the load.
-If we connect an open circuit in parallel to the load, the current will flow only thru the load path,
-so the current on the open circuit will be 0.
-However, the voltage drop between both points of the open circuit will be the same as the drop between
-the load sides.
+If we connect an open circuit in parallel to the load, the current will flow only thru the load path, so the current on the open circuit will be 0. However, the voltage drop between both points of the open circuit will be the same as the drop between the load sides.
 
-If we connect a short circuit in parallel to the load, the current will "prefer" flowing thru it rather
-than thru the load, so the current thru the load will be equal 0, while the current thru the short
-circuit will be very high - by Ohm's law.
-Since the cable is not a perfect conductor, some of the energy will be consumes in the form of
-thermal work, so the cable will heat, and possibly melt and start a fire\dots
-
+If we connect a short circuit in parallel to the load, the current will "prefer" flowing thru it rather than thru the load, so the current thru the load will be equal to zero, while the current thru the short circuit will be very high - by Ohm's law.
+Since the cable is not a perfect conductor, some of the energy will be consumes in the form of thermal work, so the cable will heat, and possibly melt and start a fire.
 \section{Measuring Power Consumption}
+Next, as an attackers, we want to measure the power consumption of this load, and to do so, we are going to use Ammeter device.
 \subsection{Ammeter}
 % an icon of Ammeter symbol ("A" inside a circle) - like here: https://thenounproject.com/term/ammeter/96074/
 % maybe also a good photo of such device
-An Ammeter (from \textbf{Am}pere \textbf{Meter}) is a device capable of measuring the amount of
-electric current going through it. It has very low resistance, so it doesn't interrupt the system
-connected to it.
-
+An Ammeter (from \textbf{Am}pere \textbf{Meter}) is a device capable of measuring the amount of electric current going through it. It has very low resistance, so it doesn't interrupt the system connected to it.
 \subsubsection{Using Ammeter to measure power consumption}
 We need to "cut" the wire connected to the load and connect both sides to the Ammeter.
-Doing so will cause all current flowing through the load to pass through the Ammeter as well,
-so we will be able to read the current at any given time.
-In case we know the voltage (i.e. a 5V battery, a 220V power socket), we can compute the power
-consumption: $P=I*V$
-
-The problem: sometimes, we don't want (or simply can't) cut the circuit after the load in order
-to connect an Ammeter.
-% Yossi started talking about what to do if we don't want to cut, but the conclusion
-% (after talking about connecting a Voltmeter in parallel) was we can't do it without cut...
-
+Doing so will cause all current flowing through the load to pass through the Ammeter as well, so we will be able to read the current at any given time. The resistance of the Ammeter is very low so it will not affect the voltage that going through the load that will have the same voltage drop as before. 
+% TODO: add the following pic
+Now we will measure the current going through the ammeter and next we will convert the current in order to find the power consumption of the load.
+In case we know the voltage (i.e. a 5V battery, a 220V power socket), we can compute the power consumption: $P=I*V$.
+The problem: sometimes, we don't want (or simply can't) cut the circuit after the load in order to connect an Ammeter, and this is a way that the architect of the device are trying to protect it. So, let’s see if we can use the ammeter without cutting anything, and let’s connect it in parallel to the load.
+% TODO: add the following pic
+Connecting the ammeter this way will burn the ammeter as it has no resistance and so, all of the current will flow through it. So, instead of ammeter we can use a voltmeter as follow:
 \subsection{Voltmeter}
-% an icon of Voltmeter symbol ("V" inside a circle) - like here: https://commons.wikimedia.org/wiki/File:Voltmeter_symbol.png
-% maybe also a good photo of such device
-A Voltmeter is a device capable of measuring the electrical potential (also called "Voltage drop")
-between two points in an electric circuit.
-
-By connecting a Voltmeter in parallel with a very small and accurate resistor, we can measure the
-electric current by Ohm's law: $I=V/R$
-
+% TODO: add the following pic
+The voltmeter resistance is very very high so the current will not go through it. The voltmeter is measuring the voltage drop between one side of the load and the other side of it. If we want to measure the current using the voltmeter we are taking a load with a very small resistance and connect it as follows:
+% TODO: add the following pic
+This way, because of the current divider, by connecting a Voltmeter in parallel with a very small and accurate resistor, we can measure the electric current by Ohm's law: $I=V/R$
+ 
 Summary: we learnt what is Power Consumption and how we can measure it.
 A very important fact is that \textbf{Power Consumption varies with time!}.
-If we can find a relationship between the secret information we want to extract and
-the power consumption, we can recover this information by measuring the power consumption over time.
+If we can find a relationship between the secret information we want to extract and the power consumption, we can recover this information by measuring the power consumption over time. 
 
-% TO BE CONTINUED: 
-% https://www.temi.com/editor/t/iT2GGbpWLF-dheqB2Wljm3PU5R9Yqyu1ynigOlYve96G2opOgaLbI27Ilw944MYylUBuF6U_xc5uZKfvlG3VhCKYswg?loadFrom=DeliveryEmail
-
+% End of part #1
+%###################################################
 % 2nd lecture
 \subsection{Types of electronic components}
 In general there are two types of elements in the circuit, the first one are Passive devices like a resistors (a passive two-terminal electrical component that implements electrical resistance as a circuit element), inductors (is a passive two-terminal electrical component that stores energy in a magnetic field when electric current flows through it), capacitors and diodes. And there are Active devices like transistors (a semiconductor device used to amplify or switch electronic signals and electrical power), amplifiers (an electronic device that can increase the power of a signal (a time-varying voltage or current)) and ICs. From our perspective, the Active devices are much more interesting for us (attackers) as they are using electricity in order to control electricity. One example can be an amplifier that has audio signal and power supply as inputs and it generates a greater audio signal as an output using the power supply. 
