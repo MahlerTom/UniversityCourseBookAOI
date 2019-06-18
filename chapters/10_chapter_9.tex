@@ -92,7 +92,7 @@ Another example of such attack scenarios is in the field of RFID readers -- the 
 The clock is typically a bus shared by many of the system's components which synchronizes the propagation of calculations through the system -- i.e. at the beginning all inputs are ready, and when there is a rising edge on the clock bus they start propagating throughout the various computational components. When all computations are finished they all wait for the next rising edge on the clock bus in order to proceed to the next stage.
 In a clock glitching attack the attacker would inject a rising edge on the clock bus at an arbitrary time. This way only \emph{some} of the computations will have finished by that time while others are still being processed, and thus the device will be in a faulty (unstable) state.
 
-A notable example is the attack on Mifare Classic RFID chips we talked about in the beginning of the course \cite{bib:nohl2008} -- the RNG in the chip is only dependent on the time between powering up the RFID tag and challenging it. An RFID reader operated by the attacker can control both parameters, thus making the generated challenges deterministic.
+A notable example is the attack on Mifare Classic RFID chips we talked about in the beginning of the course \cite{nohl2008} -- the RNG in the chip is only dependent on the time between powering up the RFID tag and challenging it. An RFID reader operated by the attacker can control both parameters, thus making the generated challenges deterministic.
 
 \subsubsection{Temperature attacks}
 This attack method relies on the physical property of electrons (current). Electrons  "jump", and the higher the temperature -- they will jump more frequently and to longer distances.
@@ -102,7 +102,7 @@ Because of the ubiquity of devices failures due to temperature, nowadays tempera
 
 An attacker can bypass the temperature sensor by disconnecting it. Another method would be to quickly alternate the temperature of the device from extremely high to extremely low, so that \emph{on average} the temperature is reasonable, but it will still experience faults during the extreme phases of the cycles.
 
-In an interesting research paper \cite{bib:appel} a type-confusion attack on the Java virtual-machine was demonstrated: at first, the entire memory was filled with small arrays (say of size one). The Java VM is type-safe, so it is normally impossible to access one of the memory regions using a pointer to a different region. To inject a type-confusion fault the researchers used a 50W light bulb to heat the memory chip of the device enough to flip some of the bits (for illustration see Fig. \ref{fig:memory_lightbulb}). As a result, a small portion of the data-structures describing the arrays in memory now held wrong values (e.g. changed their value from $size=1$ to $size=20$). At this point, some affected data-structure \emph{contains} a header of a different data-structure, to which the attackers now have read and write access. Changing the header of the second data structure to an arbitrary value gave the attackers access to the entirety of the device's memory.
+In an interesting research paper \cite{appel} a type-confusion attack on the Java virtual-machine was demonstrated: at first, the entire memory was filled with small arrays (say of size one). The Java VM is type-safe, so it is normally impossible to access one of the memory regions using a pointer to a different region. To inject a type-confusion fault the researchers used a 50W light bulb to heat the memory chip of the device enough to flip some of the bits (for illustration see Fig. \ref{fig:memory_lightbulb}). As a result, a small portion of the data-structures describing the arrays in memory now held wrong values (e.g. changed their value from $size=1$ to $size=20$). At this point, some affected data-structure \emph{contains} a header of a different data-structure, to which the attackers now have read and write access. Changing the header of the second data structure to an arbitrary value gave the attackers access to the entirety of the device's memory.
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.7\linewidth]{images/ch9/bulb.png}
@@ -169,7 +169,7 @@ What could be targeted by a fault attack?
 
 \paragraph{Two examples of Fault Attacks targeting Control Flow:}
 \begin{enumerate}
-	\item The CHDK hacking community, used to dump the firmwares of Canon cameras via blinking one of their LEDs \cite{bib:chdk, bib:canon}.
+	\item The CHDK hacking community, used to dump the firmwares of Canon cameras via blinking one of their LEDs \cite{chdk, bib:canon}.
 
 	\item "The Unlooper": Back in the 90's pay-tv devices started cryptographically signing the content, and if the cryptographic checksum did not check out -- the device would enter an endless loop. The hacking community invented "unloopers" -- a gadget that would inject a power spike and fault the IP register, so that the pay-tv device would jump to some other section of the code, from which point it would function normally.
 \end{enumerate}
@@ -220,7 +220,7 @@ To combine the values, we do:
 
 It is easily provable that \(M^*(mod\ p)=M_q\) and \(M^*(mod\ q)=M_p\), so by the Chinese Remainder Theorem, this value \emph{must} be equal to $M$.
 
-\subsubsection{The Boneh, DeMillo \& Lipton Fault Attack on RSA-CRT \cite{bib:boneh}}
+\subsubsection{The Boneh, DeMillo \& Lipton Fault Attack on RSA-CRT \cite{boneh}}
 
 The attacker has a decryption box (known plaintext scenario) with public key $n$ and would like to recover $d$ (the private key). Additionally, the attacker knows that the decryption box is decrypting using CRT. Finally, let us assume that the attacker can inject a fault (any fault) in the decryption process.
 
@@ -247,9 +247,9 @@ Finally, calculating the $gcd$ of $n$ and $M - M'$ yields:
 
 \paragraph{Why does this work?} The greatest common divisor of $n$ and anything can be only $p$, $q$, $n$ or $1$. On the other hand, $M_p$ and $M'_p$ can never be multiples of $p$, otherwise both would equal 0. So, by that reasoning, $\gcd(p \cdot q, (M_p - M'_p) \cdot q \cdot (q^{-1} mod\ p))$ \underline{must} equal $q$, and thus we have cracked the cipher using a single fault attack.
 
-A later paper co-written by Arjen Lenstra \cite{bib:lenstra} further improved upon this attack to not require knowledge of $M$.
+A later paper co-written by Arjen Lenstra \cite{lenstra} further improved upon this attack to not require knowledge of $M$.
 
-\paragraph{BML in practice:} A paper \cite{bib:schmidt} showed how ZAPPING a device with an electric spark from a lighter during computation can achieve the described effect.
+\paragraph{BML in practice:} A paper \cite{schmidt} showed how ZAPPING a device with an electric spark from a lighter during computation can achieve the described effect.
 
 \section{Rowhammer}
 In the final section, we will describe the Rowhammer attack.
@@ -270,7 +270,7 @@ In the final section, we will describe the Rowhammer attack.
 \subsection{Double-sided Rowhammer}
 DRAM is the most common type of volatile memory. It is slow, dense and cheap relatively to SRAM. Every bit of RAM is stored in a single capacitor.
 
-The attack \cite{bib:rowhammer} utilizes the physical structure of RAM chips in order to induce faults: Due to parasitic leakage in DRAM capacitors, if enough consecutive reads are performed on the immediately adjacent rows eventually a bit will flip in the target row.
+The attack \cite{rowhammer} utilizes the physical structure of RAM chips in order to induce faults: Due to parasitic leakage in DRAM capacitors, if enough consecutive reads are performed on the immediately adjacent rows eventually a bit will flip in the target row.
 
 \subsubsection{The challenge of CPU caching}
 The CPU cache prevents the same memory address to be read consecutively from main memory, for performance reasons.
@@ -290,7 +290,7 @@ To circumvent this limitation, several techniques can be employed:
 \subsubsection{Flip Feng-Shui}
 \paragraph{Page de-duplication:} On modern systems, typically much memory is shared among many processes running on the system. This is even more true of virtualized environments where the guest and the host, for example, could run the same OS. A common optimization is for the system to detect and de-duplicate pages containing the same data, thus freeing up memory.
 \paragraph{Rowhammer + page de-duplication:}
-In a paper \cite{bib:ffs} researchers from VUA demonstrated how they can utilize page-deduplication in a virtualized environment to weaken cryptographic keys, resulting in unauthorized access via OpenSSH, and breach of trust via forging GPG signatures. The attack relies on the fact that the the attacker can \emph{read} a de-duplicated page as much as they want. The attacker has to wait (or arrange) for a page containing sensitive information to be de-duped, then hammer on it until a bit in the key flips, making it much easier to factor.
+In a paper \cite{ffs} researchers from VUA demonstrated how they can utilize page-deduplication in a virtualized environment to weaken cryptographic keys, resulting in unauthorized access via OpenSSH, and breach of trust via forging GPG signatures. The attack relies on the fact that the the attacker can \emph{read} a de-duplicated page as much as they want. The attacker has to wait (or arrange) for a page containing sensitive information to be de-duped, then hammer on it until a bit in the key flips, making it much easier to factor.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\linewidth]{images/ch9/flip_feng_shui.PNG}
@@ -299,4 +299,4 @@ In a paper \cite{bib:ffs} researchers from VUA demonstrated how they can utilize
 \end{figure}
 
 \subsubsection{ECCPloit}
-In another paper \cite{bib:eccploit} researchers from VUA showed how they can use Rowhammer to quickly flip \emph{enough} (typically three) bits on an ECC-RAM chip that error correction will not be able to detect it, thus defeating the ECC mitigation. The attack relies on the fact that error-correction takes time to compute, and this gives the attacker a window of opportunity.
+In another paper \cite{eccploit} researchers from VUA showed how they can use Rowhammer to quickly flip \emph{enough} (typically three) bits on an ECC-RAM chip that error correction will not be able to detect it, thus defeating the ECC mitigation. The attack relies on the fact that error-correction takes time to compute, and this gives the attacker a window of opportunity.
