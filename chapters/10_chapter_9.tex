@@ -34,7 +34,7 @@ In fault attacks we are being \emph{active} -- we give additional inputs beside 
 	\item Power spikes etc.
 \end{enumerate}
 
-This way, we receive other (usually erroneous) outputs which might give us additional information about the computation and/or the secret. This process is described in figure \ref{fig:fault_attacks_schematic}.
+This way, we receive other (usually erroneous) outputs which might give us additional information about the computation and/or the secret. This process is described in \cref{fig:fault_attacks_schematic}.
 
 \begin{figure}[!ht]
 	\centering
@@ -102,7 +102,7 @@ Because of the ubiquity of devices failures due to temperature, nowadays tempera
 
 An attacker can bypass the temperature sensor by disconnecting it. Another method would be to quickly alternate the temperature of the device from extremely high to extremely low, so that \emph{on average} the temperature is reasonable, but it will still experience faults during the extreme phases of the cycles.
 
-In an interesting research paper \cite{appel} a type-confusion attack on the Java virtual-machine was demonstrated: at first, the entire memory was filled with small arrays (say of size one). The Java VM is type-safe, so it is normally impossible to access one of the memory regions using a pointer to a different region. To inject a type-confusion fault the researchers used a 50W light bulb to heat the memory chip of the device enough to flip some of the bits (for illustration see Fig. \ref{fig:memory_lightbulb}). As a result, a small portion of the data-structures describing the arrays in memory now held wrong values (e.g. changed their value from $size=1$ to $size=20$). At this point, some affected data-structure \emph{contains} a header of a different data-structure, to which the attackers now have read and write access. Changing the header of the second data structure to an arbitrary value gave the attackers access to the entirety of the device's memory.
+In an interesting research paper \cite{appel} a type-confusion attack on the Java virtual-machine was demonstrated: at first, the entire memory was filled with small arrays (say of size one). The Java VM is type-safe, so it is normally impossible to access one of the memory regions using a pointer to a different region. To inject a type-confusion fault the researchers used a 50W light bulb to heat the memory chip of the device enough to flip some of the bits (for illustration see \cref{fig:memory_lightbulb}). As a result, a small portion of the data-structures describing the arrays in memory now held wrong values (e.g. changed their value from $size=1$ to $size=20$). At this point, some affected data-structure \emph{contains} a header of a different data-structure, to which the attackers now have read and write access. Changing the header of the second data structure to an arbitrary value gave the attackers access to the entirety of the device's memory.
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.7\linewidth]{images/ch9/bulb.png}
