@@ -201,7 +201,7 @@ O(|p|^2) = O(|q|^2) = \frac{1}{4}O(|n|^2) \Rightarrow (O(|p|^2) + O(|q|^2)) = \f
 So if we could multiply by $p$ and $q$ instead of by $n$, we would cut \emph{each} multiplication operation's time complexity in half!
 
 \subsubsection{Chinese Remainder Theorem}
-\begin{figure}[h!]
+\begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.5\linewidth]{images/ch9/soldiers.jpeg}
 	\caption{Chinese Remainder Theorem (Source: \url{https://russinoff.com/papers/crt.html})}
@@ -260,7 +260,7 @@ In the final section, we will describe the Rowhammer attack.
 		\item Method: Memory accesses
 	\end{itemize}
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.5\linewidth]{images/ch9/DRAM.jpg}
 	\caption{High Level Illustration of DRAM Organization (Source: Wikipedia:Row Hammer)}
@@ -291,7 +291,7 @@ To circumvent this limitation, several techniques can be employed:
 \paragraph{Page de-duplication:} On modern systems, typically much memory is shared among many processes running on the system. This is even more true of virtualized environments where the guest and the host, for example, could run the same OS. A common optimization is for the system to detect and de-duplicate pages containing the same data, thus freeing up memory.
 \paragraph{Rowhammer + page de-duplication:}
 In a paper \cite{ffs} researchers from VUA demonstrated how they can utilize page-deduplication in a virtualized environment to weaken cryptographic keys, resulting in unauthorized access via OpenSSH, and breach of trust via forging GPG signatures. The attack relies on the fact that the the attacker can \emph{read} a de-duplicated page as much as they want. The attacker has to wait (or arrange) for a page containing sensitive information to be de-duped, then hammer on it until a bit in the key flips, making it much easier to factor.
-\begin{figure}[H]
+\begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.5\linewidth]{images/ch9/flip_feng_shui.PNG}
 	\caption{The attacker maps the same page as the victim, then utilizes rowhammer to change the victim's memory without causing page duplication.}
