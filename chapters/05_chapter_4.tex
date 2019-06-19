@@ -13,14 +13,14 @@ The electrical resistance of the load is a measure of its opposition to the flow
 % Ohm's law: V=I*R - we should add it inside a box
 $V=I*R$
 % TODO: add the following pic
-\\subsection{Resistors}
+\subsection{Resistors}
 As the name implies, a resistor resists the flow of electrical current. The amount of resistance is measured in Ohms. A resistor is considered a passive component that consumes power that is dissipated as heat. The power rating of a resistor determines how much power it can consume without overheating.
 % TODO: add the following pic
 \newline
-\\subsection{ Ohm's law}
+\subsection{ Ohm's law}
 Ohm's law defines the relationship between the Voltage, Current and Resistance in a circuit: The voltage is equal to the current multiplied by the resistance of the load. Since in most of the circuits we are using, the voltage is fixed (defined by the characteristics of the power supply), a change in the resistance of the circuit will cause a change in the current in the opposite direction. This means we can measure the current over time in order to calculate the resistance.
 A useful analogy for the relations between V, I and R is to imagine a fountain on a high mountain, where the water flow down through a river to the sea. The difference in height between the fountain and the sea is the Voltage, the width of the river can be thought of as the resistance, and the flow of the water is the current.
-\\subsection{Power}
+\subsection{Power}
 Power is the rate at which work is done by the circuit and is measured in Watts. Electricity bills are measured by K Watts hour, i.e. 1 KWH is 1 kilo watts used over an hour, and this is the energy that we used and we need to pay for.
 $Power = Work / Time$
 \newline
@@ -36,7 +36,7 @@ Electricity can be used to do various kinds of work:
     \item Chemical work (charging a battery)
     \item Computational work (store or load from memory, compute a value)
 \end{itemize}
-\\subsection{Power Consumption}
+\subsection{Power Consumption}
 When the current leaves the circuit to the ground then we consume it as power, but sometimes we need to be careful as there are cases where the current is no leaving the circuit, like battery charging. In order to measure the power we will connect our measuring device between the load and the ground.
 The power consumption of a device is the work it does divided by time. It is measured in Watts (\textbf{\textit{W}}).
 The power consumption can be calculated as current (\textbf{\textit{I}}) multiplied by Voltage (\textbf{\textit{V}}).
@@ -80,11 +80,11 @@ This way, because of the current divider, by connecting a Voltmeter in parallel 
  
 Summary: we learnt what is Power Consumption and how we can measure it.
 A very important fact is that \textbf{Power Consumption varies with time!}.
-If we can find a relationship between the secret information we want to extract and the power consumption, we can recover this information by measuring the power consumption over time. 
+If we can find a relationship between the secret information we want to extract and the power consumption, we can recover this information by measuring the power consumption over time.
 
-% End of part #1
-%###################################################
-% 2nd lecture
+%############
+%Second part
+%############
 \subsection{Types of electronic components}
 In general there are two types of elements in the circuit, the first one are Passive devices like a resistors (a passive two-terminal electrical component that implements electrical resistance as a circuit element), inductors (is a passive two-terminal electrical component that stores energy in a magnetic field when electric current flows through it), capacitors and diodes. And there are Active devices like transistors (a semiconductor device used to amplify or switch electronic signals and electrical power), amplifiers (an electronic device that can increase the power of a signal (a time-varying voltage or current)) and ICs. From our perspective, the Active devices are much more interesting for us (attackers) as they are using electricity in order to control electricity. One example can be an amplifier that has audio signal and power supply as inputs and it generates a greater audio signal as an output using the power supply. 
 Another interesting active element for this course is a transistor. In an integrated circuits, there are a lot of active devices such as transistors  that if we can analyze their behavior we can learn about the data that they are processing. So when we look at the final consumption of these active elements, we can figure out some kind of secrets.
@@ -150,7 +150,7 @@ We can see ordered items that are the storage elements, there are 24 items that 
 \subsection { Power Consumption is Variable }
 Next we will see how to get secrets from the power consumption.
 % TODO: add the NOT gate from Yossi presentation (slide ‘Power Consumption is Variable’)
-This is the NOT gate as before connected with an ampere meter so we can measure the power consumption, also there are two capacitors (C1 & C2). The capacitors are connected because the characteristics of the circuit which make it to act like capacitors. They are not transferring current but they will have an effect on the math we are going to do next.
+This is the NOT gate as before connected with an ampere meter so we can measure the power consumption, also there are two capacitors (C1 \& C2). The capacitors are connected because the characteristics of the circuit which make it to act like capacitors. They are not transferring current but they will have an effect on the math we are going to do next.
 Next we are taking a square wave, which looks like this:
 % TODO: add the square wave diagram
 And we have to feed it into the NOT gates, the output is going to be the opposite of the square wave, and we want to measure the power consumption using an oscilloscope.
@@ -175,5 +175,7 @@ In order to avoid the noise we can measure it again and again and then the noise
 That's one very nice thing we can do is instead of measuring power consumption, we can measure electromagnetic radiation. And this has two advantages, first of all, it's less invasive and second of all, it can be focused and, and reduce the switching noise.
 \subsection { From Power to Electromagnetic }
 % TODO: add the electromagnetic diagram from Yossi ptt
-Electric fields are created by differences in voltage: the higher the voltage, the stronger will be the resultant field. We can use the right hand rule in order to remember the direction of the electromagnetic field direction when we know the current direction. We can measure the magnetic field, but one disadvantage is that it is very localize, so we need to get access to the device. We can connect an antenna to the device and then we can measure the electromagnetic wave using a receiver. There is a very nice paper called screening channels that you can read more about this kind of attacks.
+Electric fields are created by differences in voltage: the higher the voltage, the stronger will be the resultant field. We can use the right hand rule in order to remember the direction of the electromagnetic field direction when we know the current direction. We can measure the magnetic field, but one disadvantage is that it is very localize, so we need to get access to the device. We can connect an antenna to the device and then we can measure the electromagnetic wave using a receiver. There is a very nice paper called screaming channels that you can read more about this kind of attacks.
+
+
 
