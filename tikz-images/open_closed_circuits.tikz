@@ -1,0 +1,265 @@
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,199.3333282470703); %set diagram left start at 0, and has height of 199.3333282470703
+
+%Straight Lines [id:da2325261898014528] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (35.5,90.67) -- (35.5,152.67) -- (151.67,151.56) -- (151.67,23.39) -- (35.67,24.06) -- (35.67,84.06) ;
+
+\draw [shift={(35.5,90.67)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+%Straight Lines [id:da28409341931115617] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (25,84.06) -- (46.33,84.06) ;
+
+
+%Shape: Polygon Curved [id:ds5857087256403513] 
+\draw  [fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (165.14,94.26) .. controls (165.14,94.26) and (173.39,101.09) .. (179.94,101.26) .. controls (186.5,101.42) and (191.14,95.16) .. (191.14,87.86) .. controls (191.15,80.56) and (186.14,75.26) .. (179.14,75.26) .. controls (172.14,75.26) and (165.12,82.03) .. (165.14,82.06) .. controls (165.17,82.08) and (165.14,94.26) .. (165.14,94.26) -- cycle ;
+%Rounded Same Side Corner Rect [id:dp42554815939285007] 
+\draw  [fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (162.24,94.72) .. controls (160.63,94.72) and (159.33,93.42) .. (159.33,91.82) -- (159.33,84.96) .. controls (159.33,83.36) and (160.63,82.06) .. (162.24,82.06) -- (165.14,82.06) .. controls (165.14,82.06) and (165.14,82.06) .. (165.14,82.06) -- (165.14,94.72) .. controls (165.14,94.72) and (165.14,94.72) .. (165.14,94.72) -- cycle ;
+%Straight Lines [id:da9150604099279609] 
+\draw [line width=0.75]    (156.94,83.96) -- (156.94,92.56) ;
+
+
+%Straight Lines [id:da28384528220983696] 
+\draw [line width=0.75]    (154.94,84.76) -- (154.94,91.56) ;
+
+
+%Straight Lines [id:da8752324892632142] 
+\draw [line width=0.75]    (153.34,86.36) -- (153.34,89.56) ;
+
+
+%Straight Lines [id:da25290786107493535] 
+\draw [line width=0.75]    (176.94,82.96) -- (170.34,88.16) -- (176.94,93.36) ;
+
+
+%Straight Lines [id:da9185196513242853] 
+\draw [line width=1.5]    (21.17,95.78) -- (30.5,95.78) ;
+
+
+%Shape: Circle [id:dp23397738064818174] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (147.6,75.97) .. controls (147.6,73.67) and (149.47,71.8) .. (151.77,71.8) .. controls (154.07,71.8) and (155.93,73.67) .. (155.93,75.97) .. controls (155.93,78.27) and (154.07,80.13) .. (151.77,80.13) .. controls (149.47,80.13) and (147.6,78.27) .. (147.6,75.97) -- cycle ;
+%Straight Lines [id:da482836286674198] 
+\draw    (150.05,75.97) -- (153.48,75.97) ;
+
+
+
+%Shape: Circle [id:dp7549375095754003] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (147.4,54.77) .. controls (147.4,52.47) and (149.27,50.6) .. (151.57,50.6) .. controls (153.87,50.6) and (155.73,52.47) .. (155.73,54.77) .. controls (155.73,57.07) and (153.87,58.93) .. (151.57,58.93) .. controls (149.27,58.93) and (147.4,57.07) .. (147.4,54.77) -- cycle ;
+%Straight Lines [id:da4285424058101477] 
+\draw    (149.85,54.77) -- (153.28,54.77) ;
+
+
+
+%Shape: Circle [id:dp5457818708688953] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (147.4,34.43) .. controls (147.4,32.13) and (149.27,30.27) .. (151.57,30.27) .. controls (153.87,30.27) and (155.73,32.13) .. (155.73,34.43) .. controls (155.73,36.73) and (153.87,38.6) .. (151.57,38.6) .. controls (149.27,38.6) and (147.4,36.73) .. (147.4,34.43) -- cycle ;
+%Straight Lines [id:da8515924061724973] 
+\draw    (149.85,34.43) -- (153.28,34.43) ;
+
+
+
+%Shape: Circle [id:dp4359422667224846] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (137.73,23.43) .. controls (137.73,21.13) and (139.6,19.27) .. (141.9,19.27) .. controls (144.2,19.27) and (146.07,21.13) .. (146.07,23.43) .. controls (146.07,25.73) and (144.2,27.6) .. (141.9,27.6) .. controls (139.6,27.6) and (137.73,25.73) .. (137.73,23.43) -- cycle ;
+%Straight Lines [id:da45892746068057066] 
+\draw    (140.19,23.43) -- (143.61,23.43) ;
+
+
+
+%Shape: Circle [id:dp10968014625901534] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (118.07,23.77) .. controls (118.07,21.47) and (119.93,19.6) .. (122.23,19.6) .. controls (124.53,19.6) and (126.4,21.47) .. (126.4,23.77) .. controls (126.4,26.07) and (124.53,27.93) .. (122.23,27.93) .. controls (119.93,27.93) and (118.07,26.07) .. (118.07,23.77) -- cycle ;
+%Straight Lines [id:da5692830288753206] 
+\draw    (120.52,23.77) -- (123.95,23.77) ;
+
+
+
+%Shape: Circle [id:dp43116716627713836] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (98.73,23.43) .. controls (98.73,21.13) and (100.6,19.27) .. (102.9,19.27) .. controls (105.2,19.27) and (107.07,21.13) .. (107.07,23.43) .. controls (107.07,25.73) and (105.2,27.6) .. (102.9,27.6) .. controls (100.6,27.6) and (98.73,25.73) .. (98.73,23.43) -- cycle ;
+%Straight Lines [id:da7403562369362462] 
+\draw    (101.19,23.43) -- (104.61,23.43) ;
+
+
+
+%Shape: Circle [id:dp03302036024104882] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (79.4,23.77) .. controls (79.4,21.47) and (81.27,19.6) .. (83.57,19.6) .. controls (85.87,19.6) and (87.73,21.47) .. (87.73,23.77) .. controls (87.73,26.07) and (85.87,27.93) .. (83.57,27.93) .. controls (81.27,27.93) and (79.4,26.07) .. (79.4,23.77) -- cycle ;
+%Straight Lines [id:da40757318650872465] 
+\draw    (81.85,23.77) -- (85.28,23.77) ;
+
+
+
+%Shape: Circle [id:dp8000122366529838] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (59.4,23.43) .. controls (59.4,21.13) and (61.27,19.27) .. (63.57,19.27) .. controls (65.87,19.27) and (67.73,21.13) .. (67.73,23.43) .. controls (67.73,25.73) and (65.87,27.6) .. (63.57,27.6) .. controls (61.27,27.6) and (59.4,25.73) .. (59.4,23.43) -- cycle ;
+%Straight Lines [id:da0875021467717878] 
+\draw    (61.85,23.43) -- (65.28,23.43) ;
+
+
+
+%Shape: Circle [id:dp05690070919084467] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (39.73,23.77) .. controls (39.73,21.47) and (41.6,19.6) .. (43.9,19.6) .. controls (46.2,19.6) and (48.07,21.47) .. (48.07,23.77) .. controls (48.07,26.07) and (46.2,27.93) .. (43.9,27.93) .. controls (41.6,27.93) and (39.73,26.07) .. (39.73,23.77) -- cycle ;
+%Straight Lines [id:da5744558280008554] 
+\draw    (42.19,23.77) -- (45.61,23.77) ;
+
+
+
+%Shape: Circle [id:dp09815936705452866] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (31.4,36.77) .. controls (31.4,34.47) and (33.27,32.6) .. (35.57,32.6) .. controls (37.87,32.6) and (39.73,34.47) .. (39.73,36.77) .. controls (39.73,39.07) and (37.87,40.93) .. (35.57,40.93) .. controls (33.27,40.93) and (31.4,39.07) .. (31.4,36.77) -- cycle ;
+%Straight Lines [id:da1455188221370589] 
+\draw    (33.85,36.77) -- (37.28,36.77) ;
+
+
+
+%Shape: Circle [id:dp898572524230915] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (31.07,57.77) .. controls (31.07,55.47) and (32.93,53.6) .. (35.23,53.6) .. controls (37.53,53.6) and (39.4,55.47) .. (39.4,57.77) .. controls (39.4,60.07) and (37.53,61.93) .. (35.23,61.93) .. controls (32.93,61.93) and (31.07,60.07) .. (31.07,57.77) -- cycle ;
+%Straight Lines [id:da9743601868292349] 
+\draw    (33.52,57.77) -- (36.95,57.77) ;
+
+
+
+%Shape: Circle [id:dp6955964743895362] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (31.73,71.1) .. controls (31.73,68.8) and (33.6,66.93) .. (35.9,66.93) .. controls (38.2,66.93) and (40.07,68.8) .. (40.07,71.1) .. controls (40.07,73.4) and (38.2,75.27) .. (35.9,75.27) .. controls (33.6,75.27) and (31.73,73.4) .. (31.73,71.1) -- cycle ;
+%Straight Lines [id:da6213610339187869] 
+\draw    (34.19,71.1) -- (37.61,71.1) ;
+
+
+
+%Shape: Circle [id:dp9264817359074005] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (137.73,150.77) .. controls (137.73,148.47) and (139.6,146.6) .. (141.9,146.6) .. controls (144.2,146.6) and (146.07,148.47) .. (146.07,150.77) .. controls (146.07,153.07) and (144.2,154.93) .. (141.9,154.93) .. controls (139.6,154.93) and (137.73,153.07) .. (137.73,150.77) -- cycle ;
+%Straight Lines [id:da9036669479861532] 
+\draw    (140.19,150.77) -- (143.61,150.77) ;
+
+
+
+%Shape: Circle [id:dp5844969098724175] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (118.07,151.1) .. controls (118.07,148.8) and (119.93,146.93) .. (122.23,146.93) .. controls (124.53,146.93) and (126.4,148.8) .. (126.4,151.1) .. controls (126.4,153.4) and (124.53,155.27) .. (122.23,155.27) .. controls (119.93,155.27) and (118.07,153.4) .. (118.07,151.1) -- cycle ;
+%Straight Lines [id:da09046684668382188] 
+\draw    (120.52,151.1) -- (123.95,151.1) ;
+
+
+
+%Shape: Circle [id:dp3885888198313816] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (98.73,150.77) .. controls (98.73,148.47) and (100.6,146.6) .. (102.9,146.6) .. controls (105.2,146.6) and (107.07,148.47) .. (107.07,150.77) .. controls (107.07,153.07) and (105.2,154.93) .. (102.9,154.93) .. controls (100.6,154.93) and (98.73,153.07) .. (98.73,150.77) -- cycle ;
+%Straight Lines [id:da7589232460632716] 
+\draw    (101.19,150.77) -- (104.61,150.77) ;
+
+
+
+%Shape: Circle [id:dp8123284122535401] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (79.4,151.1) .. controls (79.4,148.8) and (81.27,146.93) .. (83.57,146.93) .. controls (85.87,146.93) and (87.73,148.8) .. (87.73,151.1) .. controls (87.73,153.4) and (85.87,155.27) .. (83.57,155.27) .. controls (81.27,155.27) and (79.4,153.4) .. (79.4,151.1) -- cycle ;
+%Straight Lines [id:da22457079830109827] 
+\draw    (81.85,151.1) -- (85.28,151.1) ;
+
+
+
+%Shape: Circle [id:dp3398253087803511] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (59.4,150.77) .. controls (59.4,148.47) and (61.27,146.6) .. (63.57,146.6) .. controls (65.87,146.6) and (67.73,148.47) .. (67.73,150.77) .. controls (67.73,153.07) and (65.87,154.93) .. (63.57,154.93) .. controls (61.27,154.93) and (59.4,153.07) .. (59.4,150.77) -- cycle ;
+%Straight Lines [id:da4761807980612174] 
+\draw    (61.85,150.77) -- (65.28,150.77) ;
+
+
+
+%Shape: Circle [id:dp08104931167537988] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (39.73,151.1) .. controls (39.73,148.8) and (41.6,146.93) .. (43.9,146.93) .. controls (46.2,146.93) and (48.07,148.8) .. (48.07,151.1) .. controls (48.07,153.4) and (46.2,155.27) .. (43.9,155.27) .. controls (41.6,155.27) and (39.73,153.4) .. (39.73,151.1) -- cycle ;
+%Straight Lines [id:da9286267104864216] 
+\draw    (42.19,151.1) -- (45.61,151.1) ;
+
+
+
+%Shape: Circle [id:dp4591909478978906] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (147.93,136.63) .. controls (147.93,134.33) and (149.8,132.47) .. (152.1,132.47) .. controls (154.4,132.47) and (156.27,134.33) .. (156.27,136.63) .. controls (156.27,138.93) and (154.4,140.8) .. (152.1,140.8) .. controls (149.8,140.8) and (147.93,138.93) .. (147.93,136.63) -- cycle ;
+%Straight Lines [id:da27768924319706034] 
+\draw    (150.39,136.63) -- (153.81,136.63) ;
+
+
+
+%Shape: Circle [id:dp49148284196801884] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (147.73,116.43) .. controls (147.73,114.13) and (149.6,112.27) .. (151.9,112.27) .. controls (154.2,112.27) and (156.07,114.13) .. (156.07,116.43) .. controls (156.07,118.73) and (154.2,120.6) .. (151.9,120.6) .. controls (149.6,120.6) and (147.73,118.73) .. (147.73,116.43) -- cycle ;
+%Straight Lines [id:da43922422127862903] 
+\draw    (150.19,116.43) -- (153.61,116.43) ;
+
+
+
+%Shape: Circle [id:dp45434208681679933] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (147.73,99.1) .. controls (147.73,96.8) and (149.6,94.93) .. (151.9,94.93) .. controls (154.2,94.93) and (156.07,96.8) .. (156.07,99.1) .. controls (156.07,101.4) and (154.2,103.27) .. (151.9,103.27) .. controls (149.6,103.27) and (147.73,101.4) .. (147.73,99.1) -- cycle ;
+%Straight Lines [id:da5414882082978889] 
+\draw    (150.19,99.1) -- (153.61,99.1) ;
+
+
+
+%Shape: Circle [id:dp3331602882322313] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (31.73,102.43) .. controls (31.73,100.13) and (33.6,98.27) .. (35.9,98.27) .. controls (38.2,98.27) and (40.07,100.13) .. (40.07,102.43) .. controls (40.07,104.73) and (38.2,106.6) .. (35.9,106.6) .. controls (33.6,106.6) and (31.73,104.73) .. (31.73,102.43) -- cycle ;
+%Straight Lines [id:da02142976481388592] 
+\draw    (34.19,102.43) -- (37.61,102.43) ;
+
+
+
+%Shape: Circle [id:dp9754321905396712] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (31.4,119.43) .. controls (31.4,117.13) and (33.27,115.27) .. (35.57,115.27) .. controls (37.87,115.27) and (39.73,117.13) .. (39.73,119.43) .. controls (39.73,121.73) and (37.87,123.6) .. (35.57,123.6) .. controls (33.27,123.6) and (31.4,121.73) .. (31.4,119.43) -- cycle ;
+%Straight Lines [id:da7550329579379682] 
+\draw    (33.85,119.43) -- (37.28,119.43) ;
+
+
+
+%Shape: Circle [id:dp011724346284818887] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 248; green, 231; blue, 28 }  ,fill opacity=1 ] (32.07,138.77) .. controls (32.07,136.47) and (33.93,134.6) .. (36.23,134.6) .. controls (38.53,134.6) and (40.4,136.47) .. (40.4,138.77) .. controls (40.4,141.07) and (38.53,142.93) .. (36.23,142.93) .. controls (33.93,142.93) and (32.07,141.07) .. (32.07,138.77) -- cycle ;
+%Straight Lines [id:da8736628215119031] 
+\draw    (34.52,138.77) -- (37.95,138.77) ;
+
+
+
+%Straight Lines [id:da3899071848171487] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (221.5,90.67) -- (221.5,152.67) -- (337.67,151.56) -- (337.67,23.39) -- (221.67,24.06) -- (221.67,84.06) ;
+
+\draw [shift={(221.5,90.67)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+%Straight Lines [id:da37508901289340324] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (211,84.06) -- (232.33,84.06) ;
+
+
+%Shape: Polygon Curved [id:ds24549832802924154] 
+\draw   (351.14,94.26) .. controls (351.14,94.26) and (359.39,101.09) .. (365.94,101.26) .. controls (372.5,101.42) and (377.14,95.16) .. (377.14,87.86) .. controls (377.15,80.56) and (372.14,75.26) .. (365.14,75.26) .. controls (358.14,75.26) and (351.12,82.03) .. (351.14,82.06) .. controls (351.17,82.08) and (351.14,94.26) .. (351.14,94.26) -- cycle ;
+%Rounded Same Side Corner Rect [id:dp34144127821072634] 
+\draw   (348.24,94.72) .. controls (346.63,94.72) and (345.33,93.42) .. (345.33,91.82) -- (345.33,84.96) .. controls (345.33,83.36) and (346.63,82.06) .. (348.24,82.06) -- (351.14,82.06) .. controls (351.14,82.06) and (351.14,82.06) .. (351.14,82.06) -- (351.14,94.72) .. controls (351.14,94.72) and (351.14,94.72) .. (351.14,94.72) -- cycle ;
+%Straight Lines [id:da31101478924181625] 
+\draw [line width=0.75]    (342.94,83.96) -- (342.94,92.56) ;
+
+
+%Straight Lines [id:da11445856361248885] 
+\draw [line width=0.75]    (340.94,84.76) -- (340.94,91.56) ;
+
+
+%Straight Lines [id:da09816256721846428] 
+\draw [line width=0.75]    (339.34,86.36) -- (339.34,89.56) ;
+
+
+%Straight Lines [id:da8794205064436325] 
+\draw [line width=0.75]    (362.94,82.96) -- (356.34,88.16) -- (362.94,93.36) ;
+
+
+%Straight Lines [id:da6986158242664113] 
+\draw [line width=1.5]    (207.67,96.28) -- (217,96.28) ;
+
+
+%Straight Lines [id:da44308703870512445] 
+\draw [line width=1.5]    (25.75,71.83) -- (25.75,80.33) ;
+
+
+%Straight Lines [id:da5041838646315877] 
+\draw [line width=1.5]    (30,76.08) -- (21.5,76.08) ;
+
+
+
+%Straight Lines [id:da9872675948488978] 
+\draw [line width=1.5]    (212.75,71.33) -- (212.75,79.83) ;
+
+
+%Straight Lines [id:da18493137571677032] 
+\draw [line width=1.5]    (217,75.58) -- (208.5,75.58) ;
+
+
+
+
+% Text Node
+\draw (91,171.33) node  [align=left] {Closed Circuit};
+% Text Node
+\draw (280,170.33) node  [align=left] {Open Circuit};
+
+
+\end{tikzpicture}

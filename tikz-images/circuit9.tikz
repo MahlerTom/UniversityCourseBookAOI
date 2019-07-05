@@ -1,0 +1,55 @@
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,201.3333282470703); %set diagram left start at 0, and has height of 201.3333282470703
+
+%Straight Lines [id:da07885295239893186] 
+\draw [line width=1.5]    (51,30.33) -- (240.75,30.33) ;
+
+
+%Straight Lines [id:da39856222237487815] 
+\draw [line width=1.5]    (180.67,30.67) -- (180.67,60.67) -- (169.71,60.33) -- (169.6,56.8) -- (169.6,84.05) -- (169.6,80.62) -- (180.4,80.8) -- (180.4,119.81) ;
+
+
+%Straight Lines [id:da5857134524935192] 
+\draw [line width=1.5]    (180.4,89.81) -- (180.4,119.81) -- (169.45,119.47) -- (169.33,115.94) -- (169.33,143.19) -- (169.33,139.76) -- (180.13,139.94) -- (180.13,170) ;
+
+
+%Straight Lines [id:da21313521807196745] 
+\draw [line width=1.5]    (51,170.33) -- (240.75,170.33) ;
+
+
+%Straight Lines [id:da5667092258145612] 
+\draw [line width=1.5]    (180.4,100.3) -- (223.5,100) ;
+
+
+%Straight Lines [id:da6991442899200719] 
+\draw [line width=1.5]    (164.67,80.16) -- (164.8,59.4) ;
+
+
+%Straight Lines [id:da08031166754703278] 
+\draw [line width=1.5]    (164.25,129.33) -- (139.75,129.5) -- (140,69.92) -- (156.38,69.8) ;
+\draw [shift={(159.73,69.78)}, rotate = 359.6] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]      (0, 0) circle [x radius= 4.36, y radius= 4.36]   ;
+
+%Straight Lines [id:da21308267181792218] 
+\draw [line width=1.5]    (164.18,139.71) -- (164.32,118.96) ;
+
+
+%Straight Lines [id:da40299410186396645] 
+\draw [line width=1.5]    (70.25,100.35) -- (139.88,99.71) ;
+
+
+
+% Text Node
+\draw (32,29) node  [align=left] {VDD};
+% Text Node
+\draw (32,169) node  [align=left] {VSS};
+% Text Node
+\draw (233,101) node  [align=left] {Q};
+% Text Node
+\draw (61,101) node  [align=left] {A};
+
+
+\end{tikzpicture}
