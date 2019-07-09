@@ -7,4 +7,4 @@
 *.fdb_latexmk
 *.fls
 *.out
-*.synctex
+*.synctex*
