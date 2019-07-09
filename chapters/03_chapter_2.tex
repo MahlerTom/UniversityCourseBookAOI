@@ -1,6 +1,6 @@
-\chapter{Inserting Images} \label{c2_secondchapter:cha}
+\chapter{Inserting Images}\label{cha:c2_secondchapter}
 
-\section{Images}\label{c1_images:sec}
+\section{Images}\label{sec:c1_images}
 
 As in Word, in \LaTeX{}, images are separate from the text. Images are usually
 packaged together with a caption and a label to reference it from the text.
@@ -8,10 +8,10 @@ These three entities are packaged together into a figure. The figure itself
 configures the size of the image as well as where it should be put. Let us look
 at a code sample:
 \begin{lstlisting}[language=Tex]
-\begin{figure}[H]
+\begin{figure}[!ht]
     \centering
     \includegraphics{images/ebookLatex_Cover.jpg}
-    \caption{The cover of this book.} \label{c1_cover:fig}
+    \caption{The cover of this book.} \label{fig:c1_cover}
 \end{figure}
 \end{lstlisting}
 
@@ -33,15 +33,15 @@ place the image exactly where it is in the \LaTeX{} code.
 \begin{figure}[!ht]
 	\centering
 	\includegraphics{images/cover.jpg}
-	\caption{The cover of this book.} \label{c1_cover:fig}
+	\caption{The cover of this book.}\label{fig:c1_cover}
 \end{figure}
 
-In Figure~\ref{c1_cover:fig}, you can see the result of the command. Instead of
+In \Cref{fig:c1_cover}, you can see the result of the command. Instead of
 graphics, you can also include other TEX files that contain graphics (or
-commands to draw graphics, see chapter~\ref{c1_tikzgraphics:sec}).
+commands to draw graphics, see \Cref{sec:c1_tikzgraphics}).
 
 
-\section{TikZ Graphics}\label{c1_tikzgraphics:sec}
+\section{TikZ Graphics}\label{sec:c1_tikzgraphics}
 
 For graphics, you can use the inbuilt TikZ graphics generator. Due to its
 flexibility, I even recommend images you already have for a number of reasons:
@@ -57,7 +57,7 @@ flexibility, I even recommend images you already have for a number of reasons:
 \end{itemize}
 
 If you want to create a TikZ graphic, simply create a new TEX file in the
-\textit{tex-images} folder and include it with \lstinline[language=Tex]!\input!
+\textit{tex-images} folder and include it with \lstinline[language=Tex]!\input{...}! % chktex 27
 (replacing \lstinline[language=Tex]!\includegraphics{}!) where you want to. 
 
 Then, do a ``recompile from scratch'' by clicking on the top right corner of the
@@ -66,14 +66,12 @@ preview window (showing Warning or Error) to regenerate the TikZ file. If
 recreate it. 
 
 For the format of the file itself, it is a series of commands surrounded by the
-\lstinline[language=Tex]!\begin{tikzpicture}...\end{tikzpicture}! environment.
-Discussing all the commands is beyond the scope of this book, so I recommend
-three options:
+\lstinline[language=Tex]!\begin{tikzpicture}...\end{tikzpicture}!%
+environment. Discussing all the commands is beyond the scope of this book, so I recommend three options:
 
 \begin{itemize}
     \item Check out the PGF manual at \url{https://www.ctan.org/pkg/pgf}. It is
     more than 1100 pages full with documentation of each command and
     corresponding examples.
-    \item Check out the few example TikZ pictures from my two books \cite{PFH1E}
-    and \cite{PFH2E} in the \textit{tex-images} directory.
+    \item Check out the few example TikZ pictures from my two books~\cite{PFH1E, PFH2E} in the \textit{tex-images} directory.
 \end{itemize}
