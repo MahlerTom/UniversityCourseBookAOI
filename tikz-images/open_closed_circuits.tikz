@@ -3,7 +3,7 @@
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
-%uncomment if require: \path (0,199.3333282470703); %set diagram left start at 0, and has height of 199.3333282470703
+%uncomment if require: \path (0,184); %set diagram left start at 0, and has height of 184
 
 %Straight Lines [id:da2325261898014528] 
 \draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (35.5,90.67) -- (35.5,152.67) -- (151.67,151.56) -- (151.67,23.39) -- (35.67,24.06) -- (35.67,84.06) ;
@@ -255,6 +255,10 @@
 
 
 
+%Straight Lines [id:da3739004797714043] 
+\draw [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ][line width=3]    (302,24) -- (324,24) ;
+
+
 
 % Text Node
 \draw (91,171.33) node  [align=left] {Closed Circuit};
@@ -263,3 +267,4 @@
 
 
 \end{tikzpicture}
+
