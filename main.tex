@@ -4,25 +4,6 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{url}
 
-\setlength{\parskip}{5pt}
-\setlength{\parindent}{0pt}
-\usepackage[top=50pt,bottom=50pt,left=65pt,right=60pt]{geometry}
-\usepackage{csquotes}
-\usepackage{enumerate}
-\usepackage{wrapfig}
-\usepackage[export]{adjustbox}
-\usepackage{algorithm, algpseudocode}
-\usepackage{booktabs}
-\usepackage{float}
-\usepackage{amsmath}
-\usepackage{mathtools}
-\usepackage[colorlinks=true, allcolors=blue]{hyperref}
-\usepackage{cleveref}
-\urlstyle{same}
-
-\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
-\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
-
 % Add support to force LaTeX to put figures at a certain place.
 \usepackage{float}
 
@@ -56,7 +37,7 @@
     keywordstyle=\color{cyan},                    % keywords
     commentstyle=\color{blue},    % comments
     stringstyle=\color[rgb]{0.627,0.126,0.941}  % strings
-    % columns=fullflexible
+    % columns=fullflexible   
     tabsize=2,
 }
 
@@ -68,7 +49,7 @@
 
 \pagenumbering{roman}
 
-\input{chapters/01_Introduction.tex}
+% \input{chapters/01_Introduction.tex}
 
 \clearpage
 \tableofcontents
@@ -76,15 +57,7 @@
 
 \pagenumbering{arabic}
 
-\input{chapters/02_chapter_1.tex}
-
-\input{chapters/03_chapter_2.tex}
-
-\input{chapters/04_chapter_3.tex}
-
-\input{chapters/07_chapter_6.tex}
-
-\input{chapters/10_chapter_9.tex}
+\input{chapters/05_chapter_5.tex}
 
 \clearpage
 \bibliographystyle{unsrt}
