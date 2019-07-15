@@ -262,9 +262,18 @@ Following is the core I7 chip image:
 \end{figure}
 
 We can see ordered items that are the storage elements, there are 24 items that are the GPUs and they have a little memory next to the (upper left). The CPU core has also a cash memory in it.
+\pagebreak
 \subsection { Power Consumption is Variable }
 Next we will see how to get secrets from the power consumption.
 % TODO: add the NOT gate from Yossi presentation (slide ‘Power Consumption is Variable’)
+%NOTE: i think i have added all three to do's in here but there is a need to verify it
+%TODO: fix the caption
+\begin{figure}[h]
+    \centering
+    \input{tikz-images/Not_Gate.tikz}
+    \caption{Not gate connected to an oscilloscope.} \label{fig:flipflop}
+\end{figure}
+\newline
 This is the NOT gate as before connected with an ampere meter so we can measure the power consumption, also there are two capacitors (C1 \& C2). The capacitors are connected because the characteristics of the circuit which make it to act like capacitors. They are not transferring current but they will have an effect on the math we are going to do next.
 Next we are taking a square wave, which looks like this:
 % TODO: add the square wave diagram
@@ -272,9 +281,13 @@ And we have to feed it into the NOT gates, the output is going to be the opposit
 % TODO: add the oscilloscope output from Yossi PPT
 The x axis of the oscilloscope is time and the y axis in this case it's a voltage of the power. It's a current moving across the ampere meter. What we can see here is that when the circuit is stable, there was not much power consumption, but when the system is switching, when there is a high power consumption, because there is a glitch when one transistor is opening and the other one is closing.
 Also, we can see that the lines in the oscilloscope are not having the same size as the capacitors are actually charging and discharging without we want it. We can learn from this if there was one or zero and what is the rate of switching, and we can store this information.
-The power consumption is the sum of the statistic and the dynamic power consumption. 
-% TODO: add the equation from Yossi slide
-We are really don’t care about the statistic power consumption as it is just defined by the kind of silicone that we are using, the size of the features decided to be in the transistors, the temperature, the technology, etc. But really interesting for us is the dynamic power consumption that depends on the o'clock rate and the circuit activity input data.
+The power consumption is the sum of the statistic and the dynamic power consumption: 
+% NOTE: equation here
+\begin{displaymath}
+    P(t)=P_{stat}(t) + P_{dyn}(t)
+\end{displaymath}
+%NOTE: changed "We are realy don't care" to "we dont care"
+We don’t care about the statistic power consumption as it is just defined by the kind of silicone that we are using, the size of the features decided to be in the transistors, the temperature, the technology, etc. But really interesting for us is the dynamic power consumption that depends on the o'clock rate and the circuit activity input data.
 Because the power consumption is a function of the circuit activity, we can try to measure the power consumption and send the results to the equations and to get the circuit activity, in a way we can find out all the secrets.
 In order to calculate the power consumption this way we need a lots of data about the circuit and about the environment and about the temperature etc. And this is too much work for us as an engineers. There is a much simplified way of measuring the power consumption of a device, assuming it's a CMOS device we can measure how many bits changes every clock.
 So, our assumptions are the followings: 1. this is a CMOS device. 2. when it’s static the static power is very low, and when it switches, there is a very high power consumption. 3. This is synchronous circuit, which means it has a lot of flip flops that all change at the same time. 4. The power consumption is proportional to the amount of changes and the outputs of these flip flops.
@@ -284,13 +297,21 @@ Answer: They differ in four places, so the Hamming distance d(01101010,11011011)
 When talking about CMOS devices we are estimating our power consumption as amount of bits (transitions) that change from one to zero or from zero to one, this is our hamming distance. By monitoring the changes as explained we can find the power consumption.
 But, this is not enough. By connecting the oscilloscope to our device we are trying to measure a physical device with another physical equipment, and what they are measuring is subject to measurement errors like switching noise, thermal noise and measurement noises.
 Switching noise means that there are other kinds of activity which are going on in the circuit in addition. Measurement noise means that our desk setup is not always accurate, or we might be connected not properly, or we might not be measuring the precise correct moment of time etc. Thermal noise - we are measuring electrical activity, as electrons are very crazy particles and they like to disappear and reappear in a nearby location. So the higher is the temperature, the more likely they are to vanish and disappear. And when the electrons are moving, they generate radiation and they affect our measurements.
-So now when we are measuring the power, we get the static power, the dynamic power and we get the noise.
-% TODO: add the equation from Yossi slide
+So now when we are measuring the power, we get the static power, the dynamic power and we get the noise:
+% NOTE: equation here
+\begin{displaymath}
+    P_{meas}(t)=P_{stat}(t) + P_{dyn}(t) + N(t)
+\end{displaymath}
 In order to avoid the noise we can measure it again and again and then the noise might be canceling itself. What happens sometimes is that the noise, especially the switching noise, is sometimes correlated with the activity of the circuits. Another thing we can do is controlling the noise somehow like running our experiment inside a freezer, or an isolated environment where there's no electric noise around. We can also, open the dives and try to kill the sources of noise.
 That's one very nice thing we can do is instead of measuring power consumption, we can measure electromagnetic radiation. And this has two advantages, first of all, it's less invasive and second of all, it can be focused and, and reduce the switching noise.
 \subsection { From Power to Electromagnetic }
 % TODO: add the electromagnetic diagram from Yossi ptt
-Electric fields are created by differences in voltage: the higher the voltage, the stronger will be the resultant field. We can use the right hand rule in order to remember the direction of the electromagnetic field direction when we know the current direction. We can measure the magnetic field, but one disadvantage is that it is very localize, so we need to get access to the device. We can connect an antenna to the device and then we can measure the electromagnetic wave using a receiver. There is a very nice paper called screaming channels that you can read more about this kind of attacks.
-
-
+\begin{figure}[h]
+    \centering
+    \input{tikz-images/electromagnetic.tikz}
+    \caption{electromagnetic emition.} \label{fig:flipflop}
+\end{figure}
+%NOTE: changed "that you can read more about" to "where you can read more about"
+%NOTE: "Very localize" sounds wrong to me  but i cant think currently of a propper replacement 
+Electric fields are created by differences in voltage: the higher the voltage, the stronger will be the resultant field. We can use the right hand rule in order to remember the direction of the electromagnetic field direction when we know the current direction. We can measure the magnetic field, but one disadvantage is that it is very localize, so we need to get access to the device. We can connect an antenna to the device and then we can measure the electromagnetic wave using a receiver. There is a very nice paper called screaming channels where you can read more about this kind of attacks.
 
