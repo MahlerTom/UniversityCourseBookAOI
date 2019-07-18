@@ -1,8 +1,6 @@
 \chapter{Introduction to Attacks On Implementations}
 \label{chap:c1_IntroductionAOI}
 
-Oren Yossi, Ben Gurion University, Israel
-
 \section{Motivation} %arbel
 \label{sec:Motivation}
 
@@ -17,16 +15,16 @@ The adversaries can build a machine which does the decryption – insert the cip
 
 One-time pad, also called Vernam Cipher, is a simple and powerful encryption system. The idea behind this technique is that the length of the key is the same length as the plain text, and to encrypt you just add them together – if we use digital bits we use XOR, and if we use letters we define an addition operation. It’s called a one-time pad because you can use your pre-shared key only once.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{images/ch1_Intro/MIxer.jpg}
-    \caption{\textbf{AN/FGQ-1 Mixer}. Two-way teletypewriter repeater and mixer equipment enclosed in a wooden Table-type cabinet.}
-    \label{fig:Mixer}
-\end{figure}
-
 Why does this one-time pad protect from brute force attacks? Because $plaintext \oplus key = ciphertext$ and $ciphertext \oplus key = plaintext$, meaning we can take the ciphertext and any plaintext we want, XOR them together, and get the corresponding random key. In a very secure encryption technique, like AES-256, there are \(2^{256}\) possible keys and with a ciphertext which is 1 MB, we have \(2^{8000000}\) possible keys, but if we don’t know the key there are \(2^{256}\) random plaintext, and maybe just one of them is the real one. The one-time pad has been proven to be completely secure by Claude Shannon, and there is no way to break it.
 
 Back to the years of World War II, to use one-time pad those days, they used machine which called \textbf{AN/FGQ-1 mixer}\cite{cryptoMix} as can be seen in \Cref{fig:Mixer}.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/ch1_Intro/MIxer.jpg}
+    \caption{\textbf{AN/FGQ-1 Mixer}. Two-way teletypewriter repeater and mixer equipment enclosed in a wooden Table-type cabinet.}
+    \label{fig:Mixer}
+\end{figure}
 
 This machine is a kind of a box, and next to the box was seat a wireless operator with a typewriter, and the tape that came out from the typewriter was with holes that spooled into the box together with another piece of tape, which was the key. Inside the box were little lights that shine through the holes, and little punches which would punch holes in the third piece of tape – the XOR of the plain text and the key, and this is the output of one operation of the machine. Afterward, the wireless operator feeds the ciphertext into the digital radio to transmit.
 
