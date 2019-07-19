@@ -12,7 +12,7 @@ Now, how do we know that we guessed this bit correctly? We have in each row a bi
 In DPA the output of our device under test (DUT) is the cipher text. AES is a very structured cipher, it has a fixed structure and it’s going to be very rare that we will have a different run time. So, usually there is a program running on a CPU which has a clock and in each tick execute operation. AES is very simple: it shifts, xor and so on. Luckily, we have other side channels, such as current. The attacker took the device and measured the instantaneous power consumption of the device. There are two ways for the attacker to do this. The first way is to do this directly: take the current that is exiting the circuit to the ground and instead of letting it go directly to the ground you send it through a little probe, that will measure the power consumption on the circuit. The advantage is that we get is a clean signal and the disadvantage is that we will have to quite aggressively manipulate the device and maybe it’s not a reasonable assumption to make. The second way is electromagnetic (EM). What does EM means? 
 \begin{figure}[H]
     \centering
-    \includegraphics{images/right_hand_rule.jpeg}
+    \includegraphics{images/chapter8/right_hand_rule.jpeg}
     \caption{Right hand rule} \label{c8_right_hand_rule:fig}
 \end{figure}
 Current (I) flowing through a wire and the change in the current generates EM wave, so if we will put an antenna next to a wire we will be able to pick up the current on this wire next to the antenna and to do this we only need to get close (don’t need to cut anything open), which makes it more reasonable attack model. The disadvantages is that you have a lot of noise going on and you will have a lot of RF signal processing to do so it’s not trivial to get from there to the key. Let’s assume we are doing PA without EM. So, your output now is a data structure. This data structure has plain text, cipher text and power consumption, but power consumption is not a fixed value, it’s a trace vector. Now, if you think about device under test (DUT), most of the time when we are doing the measurement of the power consumption it’s not actually handling the secret, it’s doing something else. So if we look at the first byte of the key of AES, its processed in the beginning of the encryption where there is adding the key operation. The idea of AES is that every bit of the key will get mixed into the whole cipher text, so it’s not very easy to track it. In the beginning of the encryption the key is not being processed at all and at the end its affected so dilute into the cipher text. So there is going to be very specific time when this trace is interesting. From a very long trace with millions of points there are only few interesting points for an attacker. In DPA we had one number, the time, and we knew that the signal was decoded in this number. Now we have a big vector and we know the signal is somewhere in there but it’s not in all of the points. But we did the same thing here, we guessed a little part of key and then we gave each one of the rows in the data structure a bit, one or zero. So, we looked at some kind of intermediate value, we have the AES state and we took a little bit of the state and we gave each one of the rows in the data structure again, a one bit value and the one bit value was exactly the value of this bit of the state. Actually we have a way of splitting our group of traces into two, same thing as the timing attack. We claim that if we guessed the bit correctly we just made a meaningful split of the traces. Now we divide our traces into two sets and we want to test if there are different distributions. We hope that at some point (the correct time) there will be a good distribution. An important thing to understand is how many ways we have to split the traces into two in the timing attack. If we guess one bit of the key, there are two ways of splitting. Each time we decided we guessed a key bit we simulate it a little bit and then we gave each entry in the data structure a value of 1 or 0. However, AES is a byte oriented algorithm, so there is 256 ways of splitting, i.e. We have 256 different competing ways of splitting the traces into two. But again, we split the traces into two. So, once we decide on a split we go over the data structure and each row we assign a value of 1 or 0. Then we perform difference of means, i.e. we take the mean of the right, the mean of the left and we have 256 different ways of splitting into two and look at the difference of mean where we get the largest difference between the two means. 
@@ -30,7 +30,7 @@ Assume that if we guessed a byte correctly, the CPU is going to have to handle a
 AES is byte oriented so we have 256 different guesses. Now, we are trying to give label to each one of the inputs. We start with a guess and then we give it a label. The first step of AES is to take the bytes of the plain text and XOR them with the secret (bit wise operation). The next step is to apply the subByte transformation, which is basically a look-up table. After applying subByte we have a byte which is a mixture of the plain text that we know and the key which is secret. So if we guess a key we can completely simulate the value. After subByte we apply shiftRows. But shiftRows is just reading and writing the same value from memory. It actually reading this value (HW(S[P xor K])) and make it even stronger. Next there is Mix columns operation. The mixColumns operation uses 32 bits so we will have 232 different guesses to do mixColumns. Since 232 is a low we will need a lot of traces and we will need to measure the DUT a lot of times. Then we classify the measurements. There is going to be a statistical meaningful classification for correct guesses.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/aes_process.jpg}
+    \includegraphics[width=1.0\textwidth]{images/chapter8/aes_process.jpg}
     \caption{AES illustration} \label{c8_aes:fig}
 \end{figure}
 In the timing attack days the meaningful was that we can run the students t-test and get a division into 2 sets. In DPA we did  difference of means. To find meaningful classification in CPA we will need the statistical Pearson Correlation Coefficient \cite{PearsonCorrelationCoefficient}. The Correlation Coefficient is simply the covariance normalized to be between -1 and 1. The intuition is that if the correlation coefficient is zero than it means we are not guessing the key correctly and if we are guessing the key correctly we are getting a correlation coefficient which is high, notably better than what we get on the other key guesses. 
@@ -56,7 +56,7 @@ We have a DUT, we have a matrix of traces, we know the plain text, we know the c
 Now, let’s look at our data structure. We have a matrix of traces, D time T. Assume we have 1000 traces. Each one of these traces covers a long period of time, several millisecond so it has 1 million points. Each one of these values is not Boolean, usually it’s one byte if you are using a regular source code. We also have the inputs, we know for each one of these traces what was the plain text being processed. The size of the plain text in AES is 16 bytes (128 bits). So we have another data structure which is 128 bit by 1000 rows, so each input is 128 bit has 1 Megabyte of a trace attached to it. We also know the key, so we don’t have to guess it. So now, we are trying to find out where is the correct time. We want to find out for example, when is the DUT processing the first byte of the key. So we go over each one of our plain text. We can do plain text XOR key, we can also do subByte of that and we can do hamming weight of the output of subByte. To each of the input plain text we associate the output hamming weight. Our hypothesis is that the hamming weight the device will have to manipulate is the output hamming weight we calculated. We created 1000 such numbers. Each of the rows will now have plain text, trace, and hypothesis.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/cpa_warmup_example.jpg}
+    \includegraphics[width=1.0\textwidth]{images/chapter8/cpa_warmup_example.jpg}
     \caption{Graphic way of CPA warm up example} \label{c8_cpa_warmup_example:fig}
 \end{figure}
 The next step is to take the hypothesis and to sweep it across all moments of time. Assume we have a fixed certain moment in time, i.e. a vector of size 1 time 1000. This vector is the instantaneous power consumption of the device at the fixed particular time. Recall that the hypothesis is also a vector of size 1 time 1000. For 2 vectors of size 1000 we calculate the Pearson Correlation Coefficient. The Pearson Correlation Coefficient function receives as an input 2 vectors of 1 by 1000 and outputs a single value between -1 and 1. If this value is very high or low it means that there is a correlation between the input vectors, but if it is close to zero it means there is no correlation between the vectors. We will execute this process for each fixed moment in time, in our example we will run in 1 million times. So the output of this step is a vector of size 1 million by 1. So 1 million different times, for each one of these times we have a single value between -1 and 1. Now we can look at this and see where the maximum absolute valued point is and it is probably the correct time.
@@ -66,7 +66,7 @@ However, in the warm-up example we had one assumption that not always correct - 
 Let’s do this in pictures. So, when we had a single hypothesis we would take this red row and we sweep it across this red line, this was the warm-up. But now we don’t know the key if it is red or blue or green, so we take this blue vector and sweep it across and we will take this green vector and sweep it across. So this is the output here, it has the same number of rows as the number of key guesses and the same number of columns as we have times. This is full CPA and hopefully in one of these rows we will have a peak and we will be happy. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/cpa_example.jpg}
+    \includegraphics[width=1.0\textwidth]{images/chapter8/cpa_example.jpg}
     \caption{Graphic way of full CPA example} \label{c8_cpa_example:fig}
 \end{figure}
 
@@ -77,13 +77,13 @@ Figure \ref{c8_Matlab_power_as_sample_number:fig} describes the 200 traces power
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/power_consumption_as_sample_number.png}
+    \includegraphics[width=1.0\textwidth]{images/chapter8/DataSet.png}
     \caption{Power consumption as a function of sample number} \label{c8_Matlab_power_as_sample_number:fig}
 \end{figure}
 The density of the colors indicates the instantaneous power consumption at a particular moment at the DUT. The traces are very well aligned. Aligning is not a simple task but this device was actually aligned. It was a lab setup so it is easy to align. We can see that the device is doing the same thing at the same time for all of these devices. If we will zoom in, we will see variation between the traces. If we will zoom in to a two different traces, we will get figure \ref{c8_Matlab_zoomin_on_two_traces:fig}.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/zoomin_two_traces.png}
+    \includegraphics[width=1.0\textwidth]{images/chapter8/TwoSamples.png}
     \caption{Zoom-in on two different traces} \label{c8_Matlab_zoomin_on_two_traces:fig}
 \end{figure}
 The X axis represent the time (in samples) and the Y axis represent the power. The power consumption is between +-80. These two traces are very similar but there are some differences. The differences could be measurement noise or some other signal processing.\\
@@ -91,7 +91,7 @@ For explanation let’s do the warm-up example. At this example we know that the
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/hypothesis_vector_values.png}
+    \includegraphics[width=1.0\textwidth]{images/chapter8/hypothesis_vector_values.png}
     \caption{Hypothesis vector values} \label{c8_Matlab_hypothesis_vector_values:fig}
 \end{figure}
 
@@ -100,7 +100,7 @@ Figure \ref{c8_Matlab_hypothesis_vector_values:fig} presents the hypothesis\_vec
 Now that we have figure \ref{c8_Matlab_power_as_sample_number:fig} and figure \ref{c8_Matlab_hypothesis_vector_values:fig} we are going to sweep the later figure over the former and for  each time we are going to calculate the Pearson Correlation Coefficient. Thus, for each position we are going to get a number, and this number will be between -1 and 1. Figure \ref{c8_Matlab_pearson_correlation:fig} describes the results. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/pearson_correlation_numbers.png}
+    \includegraphics[width=1.0\textwidth]{images/chapter8/pearson_correlation_numbers.png}
     \caption{Pearson correlation graph} \label{c8_Matlab_pearson_correlation:fig}
 \end{figure}
 The X axis it the time in samples and the Y axis is the correlation Coefficient between the hypothesis and the actual power consumption. Most of the time it’s around +-1 but there is a peak described by the red circle. This peak describes the actual time that the AES making the sub byte operation on the first byte of the key. 
@@ -108,7 +108,7 @@ The X axis it the time in samples and the Y axis is the correlation Coefficient 
 However, this was the warm-up example. In a real attack scenario we don’t know the key. A real attack is very similar to the warm-up example, expect that we are padding the key guessing by a loop and at this loop we are checking all the 256 available for the key. A real attack is described at figure \ref{c8_Matlab_real_attack_scenario:fig}.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/real_attack_scenario.png}
+    \includegraphics[width=1.0\textwidth]{images/chapter8/real_attack_scenario.png}
     \caption{Real attack scenario} \label{c8_Matlab_real_attack_scenario:fig}
 \end{figure}
 
@@ -116,27 +116,27 @@ The X axis is time, and the Y axis are the key guesses. The color is the correla
 Figure \ref{c8_Matlab_classification_matrix:fig} is the trace classification matrix. The X axis is time, and the Y axis is the key guess. The color is the correlation. From a first glance, the correlation is more or less 0. However, there is on this matrix one high value. If we will print out the maximum of this matrix we will get 0.9168, which is very far from zero. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/real_attack_classification_matrix.png}
+    \includegraphics[width=1.0\textwidth]{images/chapter8/real_attack_classification_matrix.png}
     \caption{Real attack scenario classification matrix} \label{c8_Matlab_classification_matrix:fig}
 \end{figure}
 
 Now, we are going to find the correct time. The correct time is where there is a maximum correlation and the correct key is the row number of this value. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/correct_time_graph.png}
+    \includegraphics[width=1.0\textwidth]{images/chapter8/correct_time_graph.png}
     \caption{Correct time graph} \label{c8_Matlab_correct_time:fig}
 \end{figure}
 In figure \ref{c8_Matlab_correct_time:fig} we are taking the classification matrix shown in \ref{c8_Matlab_classification_matrix:fig}  and we are looking at the correct time. It has 256 different key guesses. The X axis is the key guess and the Y axis is the correlation at the correct time. Most of the time the correlation is around 0.3 but at the correct key guess the correlation is 0.9. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/correlation_around_correct_time.png}
+    \includegraphics[width=1.0\textwidth]{images/chapter8/correlation_around_correct_time.png}
     \caption{Correlation around the correct time} \label{c8_Matlab_correlation_around_the_correct_time:fig}
 \end{figure}
 
 In figure \ref{c8_Matlab_correlation_around_the_correct_time:fig} we can see the correlation around the correct time. The green line is the correlation for the correct key guess, while the other lines are the correlation for the wrong key guesses in the correct time.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{images/power_consumption_around_correct_time.png}
+    \includegraphics[width=1.0\textwidth]{images/chapter8/power_consumption_around_correct_time.png}
     \caption{Power consumption correlation around the correct time} \label{c8_Matlab_power_consumption_correlation_around_the_correct_time:fig}
 \end{figure}
 In addition, we can see in figure \ref{c8_Matlab_power_consumption_correlation_around_the_correct_time:fig} the real power consumption of the DUT vs. the hypothesis.
