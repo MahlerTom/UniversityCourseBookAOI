@@ -5,7 +5,7 @@ So far, we've attacked two cryptographic systems in the course:
 \item AES using simple power analysis
 \end{itemize}
 We attacked AES using simple power analysis, we had as an input a power trace consist of hundreds of thousands of points and then we actually wrote a classifier or let’s say dozen of classifiers and the classifier takes as input the power traces and outputs what is the hamming weight of the first byte of the state, and what was the hamming weight of the second byte of the state and so on… 
-\newpage
+\begin{table}
 \begin{center}
 \begin{tabular}{ | c c | }
 \hline
@@ -22,10 +22,10 @@ String & Hamming Weight \\
 \end{tabular}
 \end{center}
 \label{hammingWeights}
-\newline
+\caption{Hamming weights of different bit strings \cite{hamming}}
+\end{table}
 
 For AES you have 84 of this classifiers and we didn't actually talked about how these classifier are constructed but you can assume they take as input that power trace and output the hamming weight. 
-\newline
 A question arise: does the classifier look at the entire power trace? let’s say I have a classifier that wants to find out the hamming weight of the first sub-bytes operation of AES so you take the first byte of the plain text start with the first byte of the key and then you do sub bytes on this byte: you go to that sub bytes table and you replace the state with sub bytes of the state. 
 Do you think that this classifier needs to look at the entire 1000 or 100,000 points of the trace? Or maybe it needs to look at the certain limited amount of points in the trace?
 The answer is that our given power trace contains a lot of redundant information. We start our measurement a while before the first sub-byte operation happens, and therefore there are a lot of points in the data which is irrelevant for us (just an arbitrary operations that happened before the encryption started).
@@ -34,10 +34,7 @@ The answer is that our given power trace contains a lot of redundant information
  
  Now, we want to combine the two attack methods: timing and simple power analysis and take the best part of each one of these methods combining them somehow and the results is going to be called differential power analysis.
  
- Note: it might be though to understand this concept and to quote Yossi: "if you understand it in 6 weeks form now, it's perfect".
- 
- When we did a timing attack what was our threat model?
- What was the adversary allowed to do?
+ When we did a timing attack what was our threat model? What was the adversary allowed to do?
  We was allowed to send inputs to the device and get the outputs from the device and measure how long it took.
  
  We weren’t necessary in control of the inputs we just had to know when the input was provided we didn’t have to know what the input was. We just needed to know when was the input when was the output and find the time difference. We had to measure a lot of times and have many inputs, and then we did some statistics to analyze it.
@@ -171,7 +168,7 @@ First, we load the data and plot it in figure \ref{fig:traceByTime} with the fol
 \caption{the traces' power consumption by time}
 \label{fig:traceByTime}
 \end{figure}
-What we can see in this plot is that there are very aligned columns which indicate that the traces are aligned properly.
+What we can see in plot \ref{fig:traceByTime} is that there are very aligned columns which indicate that the traces are aligned properly.
 Our goal is to separate the power traces of the correct key from all the other traces. To do that, we start by showing in figure \ref{fig:2traces-by-time} by comparing the power consumption of 2 traces based on time.
 \begin{figure}[H]
 \centering
