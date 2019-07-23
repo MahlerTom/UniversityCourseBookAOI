@@ -98,7 +98,7 @@ So now our output isn't a vector but rather a Matrix \(M_{DxT}\).
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{images/Lecture6/DPA_Illustration.png}
-\caption{Figure: many measurements over time}
+\caption{many measurements over time}
 \label{fig:DPA_Illustration}
 \end{figure}
 
@@ -111,7 +111,7 @@ Unlike the timing attack where we knew that we measure the relevant data, when w
 \begin{figure}[H]
 \centering
 \includegraphics[height=0.9\textwidth]{images/Lecture6/vaizata.png}
-\caption{Figure: Vaizata method stages}
+\caption{Vaizata method stages}
 \label{fig:vaizata}
 \end{figure}
 
@@ -120,8 +120,8 @@ Now, we're looking for a stage during the AES algorithm, where a small amount of
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{images/Lecture6/AES-stages-figure.png}
-\caption{Figure: AES stages}
-\label{fig:DPA_Illustration}
+\caption{AES stages}
+\label{fig:aes-stages}
 \end{figure}
 
 We might consider measuring the power consumption just before the start of the algorithm, but in this case the key has no affect on the state. 
@@ -147,78 +147,77 @@ So for each data point, and for each byte guesses, we have 256 options. 255 out 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{images/Lecture6/dpa-separation-figure.png}
-\caption{Figure: The way we separate the data to groups based on the guess}
-\label{fig:DPA_Illustration}
+\caption{The way we separate the data to groups based on the guess}
+\label{fig:dpa-separation-figure}
 \end{figure}
 
-The problem is that we have many different points on time, and we shall see a difference only at a certain point. Therefore what we do is for each guess, we split the measurements to 2 sets and we measure the difference between the means. At most of the points, the difference won't be significant, except to the point where the guess was done correctly.
+The problem is that we have many different points on time, and we shall see a difference only at a certain point. Therefore what we do is as follows: for each guess, we split the measurements to 2 sets and we measure the difference between the means of their power traces on every point of time. At most of the points, the difference won't be significant, except to the point where the guess was done correctly. We illustrate it at figure \ref{fig:meansDiffFigure}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{images/Lecture6/meansDiffFigure.png}
-\caption{Figure: the difference of means as a function of time}
-\label{fig:DPA_Illustration}
+\caption{the difference of means as a function of time}
+\label{fig:meansDiffFigure}
 \end{figure}
 
 On the $X-axis$ we have the time and on the $Y-axis$ there's the difference of means. In Gray we can see the noise and even if we guessed the correct key we have a lot of similar points and that is because not all the times depends on the key. But we can see in the figure the moments of peak in the means difference, these moments are also called "the right times". These essentially should be the moments of the sub-bytes. If we incorrectly picked a peak which is a ghost noise, like in a point when we xor the plain the with the key, then we won't be able to find meaningful separation later on.
 
 \section{DPA Lab}
-In the class example, we attack AES algorithm with 200 trace with size $30,000$ using an example data from the \textit{Power Analysis Attacks} book.
-
-Now, we load the data and plot it with the following axis: $X-Axis$ will be the time and $Y-Axis$ will be the trace number. In addition, we had a dimension of color intensity which will be depend on the power consumption.
+In the class example, we attacked AES algorithm with 200 trace with size $30,000$ using an example data from the \textit{Power Analysis Attacks} book and we visualized the process.
+First, we load the data and plot it in figure \ref{fig:traceByTime} with the following axes: $X-Axis$ will be the time and $Y-Axis$ will be the trace number. In addition, we had a dimension of color intensity which will be depend on the power consumption.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{images/Lecture6/traceByTime.png}
-\caption{Figure: the traces' power consumption by time}
-\label{fig:DPA_Illustration}
+\caption{the traces' power consumption by time}
+\label{fig:traceByTime}
 \end{figure}
-What we can see in this plot is that there's a very aligned columns which indicate we aligned the traces properly.
-Now let's have a look on a power consumption of 2 traces based on time
+What we can see in this plot is that there are very aligned columns which indicate that the traces are aligned properly.
+Our goal is to separate the power traces of the correct key from all the other traces. To do that, we start by showing in figure \ref{fig:2traces-by-time} by comparing the power consumption of 2 traces based on time.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{images/Lecture6/2traces-by-time.png}
-\caption{Figure: 2 groups of traces by times}
-\label{fig:DPA_Illustration}
+\caption{2 groups of traces by times}
+\label{fig:2traces-by-time}
 \end{figure}
 We can see that both of them are overlapping, but if we had a difference between them we would be able to find a separations on this graph.
 
-Now we test for each key guess and input the power consumption, wheras yellow represent less power and blue more power
+Therefore, in figure \ref{fig:intensity_by_guess} we test for each key guess and input, what was the power consumption, whereas yellow represent less power and blue more power.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{images/Lecture6/intensity_by_guess.png}
-\caption{Figure: power consumption by guess and input}
-\label{fig:DPA_Illustration}
+\caption{power consumption by guess and input}
+\label{fig:intensity_by_guess}
 \end{figure}
 Now we calculate the mean of power consumption for each guess and we plot if over time
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{images/Lecture6/avg_of_many_traces.png}
-\caption{Figure: mean of each guess across the different inputs by time}
-\label{fig:DPA_Illustration}
+\caption{mean of each guess across the different inputs by time}
+\label{fig:avg_of_many_traces}
 \end{figure}
 If we made the split correctly, this power trace average will be different from all the other 255 graphs.
-
-A more advanced graph will be to look on the distance of means of each key guess by time and then to search for the moment with the maxmium difference ("the right time"). This job can be done using the following graph:
+The problem with this chart is that we need to check many graphs, so we need something that shows the distance of means for all the guesses.
+A better graph will be to plot the distance of means of each key guess by time and then to search for the moment with the maximum difference ("the right time") like in figure: \ref{fig:intensity_represents_means_diff}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{images/Lecture6/intensity_represents_means_diff.png}
-\caption{Figure: Distance of means by time and key guess, color intensity represents the distance}
-\label{fig:DPA_Illustration}
+\caption{distance of means by time and key guess, color intensity represents the distance}
+\label{fig:intensity_represents_means_diff}
 \end{figure}
 While it might be hard to spot it on this chart, there's a certain point of time where the difference is $8.91$, and at all the other points it's somewhere near 0 as we can see on the charts.
 
-What if we focus on the correct time across the different key guesses? we should be able to spot the correct guess as shown in the figure below:
+What if we focus on the correct time across the different key guesses? we should be able to spot the correct guess as shown in figure \ref{fig:the-correct-time}.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{images/Lecture6/the-correct-time.png}
-\caption{Figure: means distance at the correct time}
-\label{fig:DPA_Illustration}
+\caption{means distance at the correct time}
+\label{fig:the-correct-time}
 \end{figure}
 
-And lastly we finish by plotting the distance of means across time for all the keys, we can see in green the distance of means for the correct key and we can see that in the right time it's separated from the other keys as you can see below
+We finish by plotting the distance of means across time for all the keys, we can see in green the distance of means for the correct key and we can see that in the right time it's separated from the other keys as shown in figure \ref{fig:all}.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{images/Lecture6/all.png}
-\caption{Figure: distance of means for all key guesses across time}
-\label{fig:DPA_Illustration}
+\caption{distance of means for all key guesses across time}
+\label{fig:all}
 \end{figure}
