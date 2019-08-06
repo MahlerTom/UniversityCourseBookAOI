@@ -58,7 +58,7 @@ In the scope of this chapter we will focus on shared hardware in the form of dat
 \label{subsec:todaycpucomplex}
 From 2012 onwards Intel has released a new family of microprocessors every year. Each comes with its own new microarchitectural schemes with new Characteristics. To gain performance upgrade in each new installment, that has on average 5\% increase in performance depending on the feature, very small optimizations, such as caches and branch prediction units are added. Such optimizations are the main reason for a side-channel information leakage to exist. Unfortunately, said optimization often come with no documentation since this is Intel intellectual property. Such lack in documentation makes it harder for an attacker to perform said side-channel attacks.
 
-To emphasize today's CPU complexity, it is said that ``Intel x86 documentation has more pages than the 6502 has transistors" \cite{IntMan}, with 6502 being a reference to a 8-bit microprocessor, used in Apple II, Commodore 64, Atari 800 and more. It had, in the year 1975, roughly 3510 transistors, while the Intel Software Developer's Manuals is 4844 pages (may. 2018). In a more advance microprocessor, such as the 22-core Intel Xeon Broadwell-E5, more than 7 billion transistors can be found. 
+To emphasize today's CPU complexity, it is said that ``Intel x86 documentation has more pages than the 6502 has transistors"~\cite{IntMan}, with 6502 being a reference to a 8-bit microprocessor, used in Apple II, Commodore 64, Atari 800 and more. It had, in the year 1975, roughly 3510 transistors, while the Intel Software Developer's Manuals is 4844 pages (may. 2018). In a more advance microprocessor, such as the 22-core Intel Xeon Broadwell-E5, more than 7 billion transistors can be found. 
 
 \subsection{Background on Caches}
 \label{subsec:backgroundoncaches}
@@ -138,7 +138,7 @@ The different latencies of the different cache levels, as well as the timing dif
 \label{sec:cacheattackstech}
 
 Microarchitectural attacks exploit hardware properties that allow inferring information on other processes running on the same system.
-In particular, cache attacks exploit the measurable timing difference between the CPU cache and the main memory. They have been the most studied microarchitectural attacks for the past 20 years, and were found to be powerful to derive cryptographic secrets \cite{Percival2009}. In such attacks, the attacker monitors which memory lines are accessed, not the content of a certain memory line.
+In particular, cache attacks exploit the measurable timing difference between the CPU cache and the main memory. They have been the most studied microarchitectural attacks for the past 20 years, and were found to be powerful to derive cryptographic secrets~\cite{Percival2009}. In such attacks, the attacker monitors which memory lines are accessed, not the content of a certain memory line.
 
 \noindent Cache attacks are being used in one of the two following common scenarios:
 \begin{itemize}
@@ -189,9 +189,9 @@ The first step towards the attack is to build the histogram of the corner cases,
 \label{subsubsec:howtomeasuretimeaccuractely}
 Consider the fact that the time intervals of our cases is (relatively) very short timings, we ask how to measure time accurately. For such short timings, it is common to use the Time Stamp Counter (TSC) via the unprivileged \texttt{rdtsc} instruction as following:
 $$[...] \rightarrow \texttt{rstsc} \rightarrow \mbox{function()} \rightarrow \texttt{rstsc} \rightarrow [...]$$
-\noindent By using this instruction, due to out-of-execution, the actual execution order could be different, resulting with wrong measurements. The solution is to use the pseudo-serializing instruction \texttt{rdtscp} or to insert a serializing instruction like \texttt{cpuid} or use to fence instructions like \texttt{mfence} \cite{benchmark2010}.
+\noindent By using this instruction, due to out-of-execution, the actual execution order could be different, resulting with wrong measurements. The solution is to use the pseudo-serializing instruction \texttt{rdtscp} or to insert a serializing instruction like \texttt{cpuid} or use to fence instructions like \texttt{mfence}~\cite{benchmark2010}.
 
-We will now introduce two cache attack (main) techniques: Flush+Reload \cite{Gullasch:2011:CGB:2006077.2006784, Osvik:2006:CAC:2117739.2117741, Yarom2014} and Prime+Probe \cite{Percival2009,Osvik:2006:CAC:2117739.2117741,Liu:2015:LCS:2867539.2867673}. Both of them are exploitable on x86 and ARM and can be used for both covert channels and side-channel attacks.
+We will now introduce two cache attack (main) techniques: Flush+Reload~\cite{Gullasch:2011:CGB:2006077.2006784, Osvik:2006:CAC:2117739.2117741, Yarom2014} and Prime+Probe~\cite{Percival2009,Osvik:2006:CAC:2117739.2117741,Liu:2015:LCS:2867539.2867673}. Both of them are exploitable on x86 and ARM and can be used for both covert channels and side-channel attacks.
 \subsection{Flush+Reload}
 \label{subsec:flushreload}
 The attack is made of four basic steps and it goes as following:
@@ -264,7 +264,7 @@ We now have another issue, in practice, the L3 is divided in slices, as many sli
     \label{fig:slicedcache}
 \end{figure}
 
-In addition, the mentioned hash function is undocumented, it designed for performance. But, it does not mean that it is impossible to target the same set in the same slice. Previous work \cite{EURECOM+4671} showed that the hash function can be reverse engineered, for example in \Cref{fig:hashfunc}.
+In addition, the mentioned hash function is undocumented, it designed for performance. But, it does not mean that it is impossible to target the same set in the same slice. Previous work~\cite{EURECOM+4671} showed that the hash function can be reverse engineered, for example in \Cref{fig:hashfunc}.
 
 \begin{figure}[!ht]
     \centering
@@ -320,7 +320,7 @@ To sum up, hardware will most likely stay vulnerable, so patch implementations w
 
 The target of the attack in this demonstration, is to get the timestamp of the keystrokes pressed by a user in a gedit program. We only target the timestamps and not the keystrokes themselves, as we are not able to fully recover the pressed keys.
 
-The demonstration is performed on a non-virtualized Linux environment. A requirement to perform the attack is having an Intel CPU, as we need the inclusive property of L3 cache. The code for performing the attack can be cloned from the git repository \cite{GitClementine}. It is based on the Flush+Reload cache attack that we mentioned in \cref{subsec:flushreload} presented in \cite{Yarom2014} and \cite{Gruss2015}.
+The demonstration is performed on a non-virtualized Linux environment. A requirement to perform the attack is having an Intel CPU, as we need the inclusive property of L3 cache. The code for performing the attack can be cloned from the git repository~\cite{GitClementine}. It is based on the Flush+Reload cache attack that we mentioned in \cref{subsec:flushreload} presented in~\cite{Yarom2014} and~\cite{Gruss2015}.
 
 The attack is performed in 3 steps: calibration, profiling and exploit. For each of these steps, a folder exists in the repository.
 
@@ -414,4 +414,4 @@ We can even further improve the attack by finding the complete matrix of the key
     \label{fig:cache-keymap-matrix}
 \end{figure}
 
-Finally, as it may be annoying to perform the above process manually, we can automate the event triggering and other stuff as shown in \cite{GitGruss}.
+Finally, as it may be annoying to perform the above process manually, we can automate the event triggering and other stuff as shown in~\cite{GitGruss}.

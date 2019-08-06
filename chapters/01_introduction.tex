@@ -1,15 +1,13 @@
-\chapter{Introduction to Attacks On Implementations}
-\label{chap:c1_IntroductionAOI}
+\chapter{Introduction} \label{chap:c1_IntroductionAOI}
 
-\section{Motivation} %arbel
-\label{sec:Motivation}
+\section{Motivation} \label{sec:Motivation} %arbel
 
-The following story is a true story about the NSA – the U.S intelligence agency -  which has an internal and classified, cryptology journal. In the U.S there is a law called ``The Freedom of Information Act" (FOIA), which means that, in general, any person can ask access to government documents. So, on 2007, one person went ahead and asked for the table of contents of all the articles in the NSA journal, and the law is the law, so the NSA gave him what he asked, with censorship on some classified titles. After he got that, of course, he asked for the unclassified articles!
+The following story is a true story about the NSA – the U.S intelligence agency - which has an internal and classified, cryptology journal. In the U.S there is a law called ``The Freedom of Information Act" (FOIA), which means that, in general, any person can ask access to government documents. So, on 2007, one person went ahead and asked for the table of contents of all the articles in the NSA journal, and the law is the law, so the NSA gave him what he asked, with censorship on some classified titles. After he got that, of course, he asked for the unclassified articles!
 
-The journal, obviously, was used to be secret, but it was approved for release by NSA because of the FOIA law. One article that published in the journal, tells us about something that happened in the years of World War II. In those years, there were some significant developments, and one of them was digital wireless communication. People were able to send themselves messages from one side of the world to the other, using digital signals, but the military forces that used this communication were afraid to be wired by the enemy and to protect those transmissions they had to encrypt them.    
+The journal, obviously, was used to be secret, but it was approved for release by NSA because of the FOIA law. One article that published in the journal, tells us about something that happened in the years of World War II. In those years, there were some significant developments, and one of them was digital wireless communication. People were able to send themselves messages from one side of the world to the other, using digital signals, but the military forces that used this communication were afraid to be wired by the enemy and to protect those transmissions they had to encrypt them. 
 
-At the end of the encryption process, we get a ciphertext, which can be transmitted without any concern. The obstacle which prevents attackers from decrypting the ciphertext and discover the key is the algorithm which has been written very well.  
-Let's assume we have a weak computer to perform the encryption, because we are in the years of World War II -  no resistors, no iterative circuits – what can the adversary do to find the key?
+At the end of the encryption process, we get a ciphertext, which can be transmitted without any concern. The obstacle which prevents attackers from decrypting the ciphertext and discover the key is the algorithm which has been written very well. 
+Let's assume we have a weak computer to perform the encryption, because we are in the years of World War II - no resistors, no iterative circuits – what can the adversary do to find the key?
 
 The adversaries can build a machine which does the decryption – insert the ciphertext into the machine and try all the keys (brute force). But\ldots how do you know which key is the correct one? There is logic to the plaintext – maybe it's an English, a weather broadcast, an executable – and in general, it's something you can check the syntax, so with a very high probability, if you get an output that starts with ``Heil Hitler" – the key you used to decrypt the ciphertext is the correct key. We need to remember that the encryption machine was not very complex in those years, and to keep the secure massages safe, they had to find a way to protect their ciphertexts. The solution to that issue is a one-time pad.
 
@@ -17,13 +15,12 @@ One-time pad, also called Vernam Cipher, is a simple and powerful encryption sys
 
 Why does this one-time pad protect from brute force attacks? Because $plaintext \oplus key = ciphertext$ and $ciphertext \oplus key = plaintext$, meaning we can take the ciphertext and any plaintext we want, XOR them together, and get the corresponding random key. In a very secure encryption technique, like AES-256, there are \(2^{256}\) possible keys and with a ciphertext which is 1 MB, we have \(2^{8000000}\) possible keys, but if we don't know the key there are \(2^{256}\) random plaintext, and maybe just one of them is the real one. The one-time pad has been proven to be completely secure by Claude Shannon, and there is no way to break it.
 
-Back to the years of World War II, to use one-time pad those days, they used machine which called \textbf{AN/FGQ-1 mixer}\cite{cryptoMix} as can be seen in \Cref{fig:Mixer}.
+Back to the years of World War II, to use one-time pad those days, they used machine which called \textbf{AN/FGQ-1 mixer}~\cite{cryptoMix} as can be seen in \Cref{fig:Mixer}.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{images/ch1_Intro/MIxer.jpg}
-    \caption{\textbf{AN/FGQ-1 Mixer}. Two-way teletypewriter repeater and mixer equipment enclosed in a wooden Table-type cabinet.}
-    \label{fig:Mixer}
+    \caption{\textbf{AN/FGQ-1 Mixer}. Two-way teletypewriter repeater and mixer equipment enclosed in a wooden Table-type cabinet.} \label{fig:Mixer}
 \end{figure}
 
 This machine is a kind of a box, and next to the box was seat a wireless operator with a typewriter, and the tape that came out from the typewriter was with holes that spooled into the box together with another piece of tape, which was the key. Inside the box were little lights that shine through the holes, and little punches which would punch holes in the third piece of tape – the XOR of the plain text and the key, and this is the output of one operation of the machine. Afterward, the wireless operator feeds the ciphertext into the digital radio to transmit.
@@ -42,7 +39,7 @@ This Oscilloscope was not connected to the mixer, it was just laid at the other 
     \label{fig:Oscillo}
 \end{figure}
 
-The engineers discovered\cite{NSAsecret} that the top-secret information inside this machine was being transmitted over the air. The process the engineers were supposed to do is called responsible disclosure, meaning to report a bug. Like good engineers, they told the Secret Service people about this bug, but they didn't take their diagnosis seriously. So what did they do? The Bell labs were located next to the U.S Secret Service office, so they set up an antenna and they listened for an hour for radio transmissions that the Secret Service got in their office, and they gave the Secret Service their ``top-secrets" analyzed massages.
+The engineers discovered~\cite{NSAsecret} that the top-secret information inside this machine was being transmitted over the air. The process the engineers were supposed to do is called responsible disclosure, meaning to report a bug. Like good engineers, they told the Secret Service people about this bug, but they didn't take their diagnosis seriously. So what did they do? The Bell labs were located next to the U.S Secret Service office, so they set up an antenna and they listened for an hour for radio transmissions that the Secret Service got in their office, and they gave the Secret Service their ``top-secrets" analyzed massages.
 
 Obviously, the U.S Secret Service realized that the reported attack was not esoteric, and they asked for a solution from the engineers. The solution of Bell labs was to modify the mixers – to surround them in a wire cage which will swallow the radiation that coming out from the machine, to put a shield on the machine (to make sure the power consumption is not affecting the outside), and to make sure that people are not getting close to the machine more than 30 meters. The Secret Service people decided to accept just the distance solution and not the filtering/shielding/isolation solutions, because of the high expenses and time that will cost to modify all the machine during wartime.
 
@@ -52,10 +49,10 @@ In conclusion, a one-time pad is the most secure cipher known, but from the stor
 Here are a couple of other machines which will break using attacks on their implementation:
 
 \begin{itemize}
-    \item \textbf{Xbox 360}: Xbox is a PC that plays nothing but games, it is very cheap and you pay for the games. Attackers, obviously, want to crack the Xbox – to play games for free, to watch movies on the device or to run Linux. In Xbox there are some integrity checks, and one of the checks was done by a command called ``memory compare"\cite{memcmp}, so you would calculate the integrity check over whatever software it supposes to run and you would have it stored in the secure memory, and then you would try to compare using these 2 values. This command leaks the length of the number of correct bytes before the first incorrect byte, so if you compare 2 blocks and the first bit is different – the response will be fast, and if the blocks identical until the very last bit – it would take a longer. This is one of the things that was enough to break the machine. 
-    \item \textbf{Oyster Card}: it's a computer without power supply and Inside this computer that are stored values. Attackers could attack this card to take the train for free. There are a lot of ways to attack the implantation of that card. \cite{garcia2008dismantling, courtois2008algebraic}
-    \item \textbf{Car Keys}\cite{relayAttack}
-    \item \textbf{FPGA}\cite{fpga}: a piece of hardware which is a very versatile, meaning we can find it many kinds of hardware – routers, audio equipment, spaceships, etc. the FPGA has a firmware installed inside, and if you want to copy some designs you need to find the firmware. The firmware is encrypted, but a bunch of Germans researches discovered\cite{moradi2011vulnerability} that if you measure the power consumption of the FPGA while it is encrypting the firmware – you can find out what is the key.
+    \item \textbf{Xbox 360}: Xbox is a PC that plays nothing but games, it is very cheap and you pay for the games. Attackers, obviously, want to crack the Xbox – to play games for free, to watch movies on the device or to run Linux. In Xbox there are some integrity checks, and one of the checks was done by a command called ``memory compare"~\cite{memcmp}, so you would calculate the integrity check over whatever software it supposes to run and you would have it stored in the secure memory, and then you would try to compare using these 2 values. This command leaks the length of the number of correct bytes before the first incorrect byte, so if you compare 2 blocks and the first bit is different – the response will be fast, and if the blocks identical until the very last bit – it would take a longer. This is one of the things that was enough to break the machine. 
+    \item \textbf{Oyster Card}: it's a computer without power supply and Inside this computer that are stored values. Attackers could attack this card to take the train for free. There are a lot of ways to attack the implantation of that card~\cite{garcia2008dismantling, courtois2008algebraic}.
+    \item \textbf{Car Keys}~\cite{relayAttack}
+    \item \textbf{FPGA}~\cite{fpga}: a piece of hardware which is a very versatile, meaning we can find it many kinds of hardware – routers, audio equipment, spaceships, etc. the FPGA has a firmware installed inside, and if you want to copy some designs you need to find the firmware. The firmware is encrypted, but a bunch of Germans researches discovered~\cite{moradi2011vulnerability} that if you measure the power consumption of the FPGA while it is encrypting the firmware – you can find out what is the key.
 \end{itemize}
 
 When we implement an algorithm without being careful, we can be exposed to implementation attacks. To protects against these attacks, we must protect the implementation and do countermeasures, but as we saw at World War II, those countermeasures have a price, thus making the system more expensive, and they make the system heavier.
@@ -97,7 +94,7 @@ There are also \textbf{Active Attacks} – called also fault attacks -  try to b
 \section{Security of a System} \label{sec:SystemSecurity}
 
 When we can say that a system is secured?
-Usually, we define a system as a ``secured system" if the system maintains three aspects of information security, known as the CIA\cite{cia} triad:
+Usually, we define a system as a ``secured system" if the system maintains three aspects of information security, known as the CIA~\cite{cia} triad:
 
 \begin{itemize}
     \item \textbf{Confidentiality} - when you are interacting with a system, you only get what you wanted to get. For instance, when I check my test grade, I'll get my grade and not my friend's grade. A possible attack could be data leakage.
@@ -118,7 +115,7 @@ An \textbf{Algorithm} is a process or set of rules to be followed in calculation
     \label{fig:CIA}
 \end{figure}
 
-The millionaire problem\cite{lin2005efficient} is a classic problem by Yao and it is an example of a protocol – this problem asks whether two millionaires can learn who is richer, without revealing to one another how much money they each have. One possible solution, they could invite a poor man, tell him in secret how much money each has, and the poor man will announce who is richer.  
+The millionaire problem~\cite{lin2005efficient} is a classic problem by Yao and it is an example of a protocol – this problem asks whether two millionaires can learn who is richer, without revealing to one another how much money they each have. One possible solution, they could invite a poor man, tell him in secret how much money each has, and the poor man will announce who is richer.  
 
 Cryptographically Secure Algorithms and Protocols:
 \begin{itemize}
