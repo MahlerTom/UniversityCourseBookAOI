@@ -1,0 +1,216 @@
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,335); %set diagram left start at 0, and has height of 335
+
+%Shape: Rectangle [id:dp0360003318411668] 
+\draw  [fill={rgb, 255:red, 207; green, 207; blue, 207 }  ,fill opacity=0.71 ] (39.45,26.06) -- (184.07,26.06) -- (184.07,255.79) -- (39.45,255.79) -- cycle ;
+%Straight Lines [id:da9130268694115924] 
+\draw    (4.54,145.67) -- (66.52,146.62) ;
+
+
+%Straight Lines [id:da1343440150952362] 
+\draw    (66.52,98.21) -- (66.52,192.18) ;
+
+
+%Shape: Ellipse [id:dp6213874655305351] 
+\draw   (72.57,91.56) .. controls (75.92,91.56) and (78.63,95.17) .. (78.63,99.63) .. controls (78.63,104.09) and (75.92,107.7) .. (72.57,107.7) .. controls (69.23,107.7) and (66.52,104.09) .. (66.52,99.63) .. controls (66.52,95.17) and (69.23,91.56) .. (72.57,91.56) -- cycle ;
+%Straight Lines [id:da27434486206672837] 
+\draw    (66.52,192.18) -- (77.2,192.18) ;
+
+
+%Straight Lines [id:da07016771982069758] 
+\draw    (77.92,170.35) -- (77.92,210.22) ;
+
+
+%Straight Lines [id:da19036973562649373] 
+\draw    (83.62,170.35) -- (83.62,210.22) ;
+
+
+%Straight Lines [id:da8345791716423674] 
+\draw    (80.05,79.22) -- (80.05,119.09) ;
+
+
+%Straight Lines [id:da3271159414725533] 
+\draw    (86.47,82.07) -- (86.47,121.94) ;
+
+
+%Straight Lines [id:da14873596785352006] 
+\draw    (84.33,209.27) -- (100,209.27) ;
+
+
+%Straight Lines [id:da4420681124736481] 
+\draw    (84.33,171.3) -- (100,171.3) ;
+
+
+%Straight Lines [id:da04393107109208283] 
+\draw    (87.18,120.99) -- (100.72,120.99) ;
+
+
+%Straight Lines [id:da3871143133174997] 
+\draw    (87.18,83.02) -- (100.72,83.02) ;
+
+
+%Straight Lines [id:da5151381716842007] 
+\draw    (100.72,120.99) -- (100,171.3) ;
+
+
+%Straight Lines [id:da6069121794097094] 
+\draw    (100.72,44.1) -- (100.72,83.97) ;
+
+
+%Straight Lines [id:da2848668560084322] 
+\draw    (100.72,208.32) -- (100.72,248.19) ;
+
+
+%Straight Lines [id:da29161700195638374] 
+\draw    (101.43,45.05) -- (142.04,45.05) ;
+
+
+%Straight Lines [id:da2980631065657684] 
+\draw    (100.72,247.24) -- (141.32,247.24) ;
+
+
+%Straight Lines [id:da3565336880454746] 
+\draw    (141.32,45.05) -- (141.32,112.45) ;
+
+
+%Straight Lines [id:da47251450500555436] 
+\draw    (141.32,183.64) -- (141.32,247.24) ;
+
+
+%Straight Lines [id:da3833560512127223] 
+\draw    (121.38,184.59) -- (161.98,184.59) ;
+
+
+%Straight Lines [id:da8160698305270608] 
+\draw    (121.38,177.95) -- (161.98,177.95) ;
+
+
+%Straight Lines [id:da053729746303400994] 
+\draw    (121.38,112.45) -- (161.98,112.45) ;
+
+
+%Straight Lines [id:da6110612216423352] 
+\draw    (121.38,120.04) -- (161.98,120.04) ;
+
+
+%Straight Lines [id:da24663417263394583] 
+\draw    (141.32,120.99) -- (141.32,178.9) ;
+
+
+%Straight Lines [id:da6538334507705081] 
+\draw    (100.72,145.67) -- (196.18,146.62) ;
+
+
+%Straight Lines [id:da6610435045454974] 
+\draw    (121.38,16.57) -- (121.38,46) ;
+
+
+%Straight Lines [id:da11217271094658177] 
+\draw    (121.38,247.24) -- (121.38,265.28) ;
+
+
+%Shape: Ellipse [id:dp5116375931959476] 
+\draw  [fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=1 ] (108.2,282.84) .. controls (108.2,273.14) and (114.1,265.28) .. (121.38,265.28) .. controls (128.65,265.28) and (134.56,273.14) .. (134.56,282.84) .. controls (134.56,292.54) and (128.65,300.4) .. (121.38,300.4) .. controls (114.1,300.4) and (108.2,292.54) .. (108.2,282.84) -- cycle ;
+%Straight Lines [id:da9407053227115245] 
+\draw    (121.38,300.4) -- (121.38,318.44) ;
+
+
+%Rounded Rect [id:dp5069309881092712] 
+\draw  [color={rgb, 255:red, 139; green, 87; blue, 42 }  ,draw opacity=1 ][line width=2.25]  (300.91,53.14) .. controls (300.91,38.18) and (313.03,26.06) .. (327.98,26.06) -- (409.2,26.06) .. controls (424.15,26.06) and (436.27,38.18) .. (436.27,53.14) -- (436.27,290.42) .. controls (436.27,305.37) and (424.15,317.49) .. (409.2,317.49) -- (327.98,317.49) .. controls (313.03,317.49) and (300.91,305.37) .. (300.91,290.42) -- cycle ;
+%Rounded Rect [id:dp10813466593651544] 
+\draw  [color={rgb, 255:red, 139; green, 87; blue, 42 }  ,draw opacity=1 ][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=1 ][line width=1.5]  (308.05,59.3) .. controls (308.05,45.92) and (318.89,35.08) .. (332.27,35.08) -- (404.91,35.08) .. controls (418.29,35.08) and (429.13,45.92) .. (429.13,59.3) -- (429.13,284.26) .. controls (429.13,297.63) and (418.29,308.47) .. (404.91,308.47) -- (332.27,308.47) .. controls (318.89,308.47) and (308.05,297.63) .. (308.05,284.26) -- cycle ;
+%Straight Lines [id:da10126802822138314] 
+\draw [line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (213.28,146.62) -- (298.77,147.57) ;
+
+
+%Straight Lines [id:da8166666674599945] 
+\draw [line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (134.56,282.84) -- (301.26,283.79) ;
+
+
+%Straight Lines [id:da6599388820944971] 
+\draw [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][line width=3]    (294.5,147.57) -- (323.71,148.52) ;
+
+
+%Straight Lines [id:da6477850565472385] 
+\draw [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][line width=3]    (323.71,148.52) -- (329.41,93.46) ;
+
+
+%Straight Lines [id:da6713764130615041] 
+\draw [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][line width=3]    (329.41,93.46) -- (367.88,93.46) ;
+
+
+%Straight Lines [id:da6265334534856528] 
+\draw [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][line width=3]    (371.44,146.62) -- (367.88,93.46) ;
+
+
+%Straight Lines [id:da7580446433818473] 
+\draw [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][line width=3]    (371.44,146.62) -- (389.96,146.62) ;
+
+
+%Straight Lines [id:da12760629606366103] 
+\draw [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][line width=3]    (389.96,147.57) -- (395.66,92.51) ;
+
+
+%Straight Lines [id:da35722507690924] 
+\draw [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][line width=3]    (394.95,94.41) -- (433.42,94.41) ;
+
+
+%Straight Lines [id:da9407492544795262] 
+\draw [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][line width=3]    (436.98,148.52) -- (433.42,95.36) ;
+
+
+%Straight Lines [id:da36688349354965344] 
+\draw [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][line width=3]    (296.28,283.79) -- (341.16,283.79) ;
+
+
+%Straight Lines [id:da07990995883843] 
+\draw [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][line width=3]    (340.8,283.31) -- (348.64,228.26) ;
+
+
+%Straight Lines [id:da7808057757591158] 
+\draw [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][line width=3]    (359.33,284.26) -- (348.64,228.26) ;
+
+
+%Straight Lines [id:da6401094233638194] 
+\draw [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][line width=3]    (358.26,282.84) -- (398.16,282.84) ;
+
+
+%Straight Lines [id:da0933201425519079] 
+\draw [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][line width=3]    (398.51,284.26) -- (406.35,229.21) ;
+
+
+%Straight Lines [id:da038966229239766115] 
+\draw [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][line width=3]    (418.46,284.26) -- (407.77,230.16) ;
+
+
+%Straight Lines [id:da29582365028992696] 
+\draw [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,draw opacity=1 ][line width=3]    (418.1,283.79) -- (458,283.79) ;
+
+
+
+% Text Node
+\draw (8.81,125.74) node  [align=left] {a};
+% Text Node
+\draw (72.93,71.63) node  [align=left] {P1};
+% Text Node
+\draw (71.51,218.76) node  [align=left] {N1};
+% Text Node
+\draw (157,94.41) node  [align=left] {C1};
+% Text Node
+\draw (159.13,197.88) node  [align=left] {C2};
+% Text Node
+\draw (121.38,282.84) node  [align=left] {A};
+% Text Node
+\draw (202.59,137.13) node  [align=left] {q};
+% Text Node
+\draw (290.22,137.13) node  [align=left] {q};
+% Text Node
+\draw (220.4,272.87) node  [align=left] {Power consumption};
+% Text Node
+\draw (97.99,317.74) node  [align=left] {GND};
+% Text Node
+\draw (105.7,14.67) node  [align=left] {$\displaystyle V_{dd}$};
+
+
+\end{tikzpicture}

@@ -1,0 +1,31 @@
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,80.33332824707031); %set diagram left start at 0, and has height of 80.33332824707031
+
+%Straight Lines [id:da07885295239893186] 
+\draw [line width=1.5]    (40,29.33) -- (68.5,29.33) ;
+
+
+%Flowchart: Delay [id:dp4724078764954891] 
+\draw  [line width=1.5]  (68,21.33) -- (86.83,21.33) .. controls (97.23,21.33) and (105.67,29.77) .. (105.67,40.17) .. controls (105.67,50.57) and (97.23,59) .. (86.83,59) -- (68,59) -- cycle ;
+%Straight Lines [id:da5877789079181] 
+\draw [line width=1.5]    (40,49.33) -- (68.5,49.33) ;
+
+
+%Straight Lines [id:da2596764371394711] 
+\draw [line width=1.5]    (106.67,40.17) -- (130.25,40.17) ;
+
+
+
+% Text Node
+\draw (31,30) node  [align=left] {A};
+% Text Node
+\draw (31,50) node  [align=left] {B};
+% Text Node
+\draw (140,40.5) node  [align=left] {Q};
+
+
+\end{tikzpicture}

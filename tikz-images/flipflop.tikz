@@ -1,0 +1,55 @@
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,210.66666412353516); %set diagram left start at 0, and has height of 210.66666412353516
+
+%Shape: Polygon Curved [id:ds6291230594537647] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]  (64.57,15.54) .. controls (64.57,15.54) and (75.02,23.03) .. (74.57,36.44) .. controls (74.11,49.84) and (64.57,58.93) .. (64.57,58.93) .. controls (64.57,58.93) and (89.67,59.83) .. (104.89,55.29) .. controls (120.12,50.74) and (130.23,36.21) .. (130.23,36.21) .. controls (130.23,36.21) and (121.33,21.89) .. (105.43,17.64) .. controls (89.52,13.4) and (64.57,15.54) .. (64.57,15.54) -- cycle ;
+%Straight Lines [id:da32731251553352636] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (43.93,28.6) -- (72.96,28.6) ;
+
+
+%Straight Lines [id:da3869103872130202] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (163.94,158.49) -- (163.41,117.67) -- (41.48,85.33) -- (41.94,46.49) -- (72.16,46.1) ;
+
+
+%Straight Lines [id:da1720618143634285] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (138.66,36.27) -- (141.5,36.02) ;
+
+\draw [shift={(135.32,36.55)}, rotate = 355.1] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]      (0, 0) circle [x radius= 4.36, y radius= 4.36]   ;
+%Straight Lines [id:da9259051839045029] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (136.02,159.02) -- (250,159.02) ;
+
+\draw [shift={(132.67,159.02)}, rotate = 0] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]      (0, 0) circle [x radius= 4.36, y radius= 4.36]   ;
+%Shape: Polygon Curved [id:ds45090218745840094] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]  (62.45,138.53) .. controls (62.45,138.53) and (72.9,146.03) .. (72.45,159.43) .. controls (71.99,172.84) and (62.45,181.93) .. (62.45,181.93) .. controls (62.45,181.93) and (87.55,182.82) .. (102.77,178.28) .. controls (118,173.74) and (128.11,159.21) .. (128.11,159.21) .. controls (128.11,159.21) and (119.21,144.88) .. (103.3,140.64) .. controls (87.4,136.4) and (62.45,138.53) .. (62.45,138.53) -- cycle ;
+%Straight Lines [id:da4647074828700599] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (40.75,169.09) -- (69.78,169.09) ;
+
+
+%Straight Lines [id:da5333172740033338] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (165,36.02) -- (165,77.38) -- (41.48,112.37) -- (41.48,151.6) -- (70.64,151.07) ;
+
+
+%Straight Lines [id:da5430278461164106] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (141.5,36.02) -- (250,36.02) ;
+
+
+%Straight Lines [id:da9737841576113742] 
+\draw    (254.5,149.67) -- (266,149.67) ;
+
+
+
+% Text Node
+\draw (33,29) node  [align=left] {R};
+% Text Node
+\draw (31,169) node  [align=left] {S};
+% Text Node
+\draw (262,37) node  [align=left] {\textcolor[rgb]{0.82,0.01,0.11}{Q}};
+% Text Node
+\draw (261,160) node  [align=left] {Q};
+
+
+\end{tikzpicture}

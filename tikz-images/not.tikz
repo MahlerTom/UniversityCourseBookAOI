@@ -1,0 +1,29 @@
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,219); %set diagram left start at 0, and has height of 219
+
+%Straight Lines [id:da07885295239893186] 
+\draw [line width=1.5]    (40,39.33) -- (68.5,39.33) ;
+
+
+%Straight Lines [id:da2596764371394711] 
+\draw [line width=1.5]    (110.02,40.17) -- (130.25,40.17) ;
+
+\draw [shift={(106.67,40.17)}, rotate = 0] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]      (0, 0) circle [x radius= 4.36, y radius= 4.36]   ;
+%Straight Lines [id:da4451475450468101] 
+\draw [line width=0.75]    (135.67,32.17) -- (144,32.17) ;
+
+
+%Flowchart: Extract [id:dp4235554887602122] 
+\draw  [line width=1.5]  (101,40.07) -- (69,58.73) -- (69,21.4) -- cycle ;
+
+% Text Node
+\draw (31,40) node  [align=left] {A};
+% Text Node
+\draw (140,40.5) node  [align=left] {A};
+
+
+\end{tikzpicture}

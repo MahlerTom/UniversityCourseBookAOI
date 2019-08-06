@@ -1,0 +1,44 @@
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da730115903310417] 
+\draw [color={rgb, 255:red, 52; green, 167; blue, 252 }  ,draw opacity=1 ][line width=3.75]    (69,171) -- (583,169) ;
+
+
+%Straight Lines [id:da8949672238779289] 
+\draw [color={rgb, 255:red, 52; green, 167; blue, 252 }  ,draw opacity=1 ]   (179,153) -- (411,151.02) ;
+\draw [shift={(413,151)}, rotate = 539.51] [color={rgb, 255:red, 52; green, 167; blue, 252 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+%Curve Lines [id:da4084322101826783] 
+\draw [color={rgb, 255:red, 233; green, 117; blue, 20 }  ,draw opacity=1 ]   (493,179) .. controls (574,287) and (549,23) .. (492,148) ;
+\draw [shift={(492,148)}, rotate = 294.51] [fill={rgb, 255:red, 233; green, 117; blue, 20 }  ,fill opacity=1 ][line width=0.75]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+
+%Straight Lines [id:da8207423009134964] 
+\draw [color={rgb, 255:red, 52; green, 167; blue, 252 }  ,draw opacity=1 ]   (318,212) -- (276.13,273.35) ;
+\draw [shift={(275,275)}, rotate = 304.32] [color={rgb, 255:red, 52; green, 167; blue, 252 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+%Curve Lines [id:da43215348815507637] 
+\draw [color={rgb, 255:red, 233; green, 117; blue, 20 }  ,draw opacity=1 ]   (434,178) .. controls (515,286) and (490,22) .. (433,147) ;
+\draw [shift={(433,147)}, rotate = 294.51] [fill={rgb, 255:red, 233; green, 117; blue, 20 }  ,fill opacity=1 ][line width=0.75]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+
+%Curve Lines [id:da7658292921428724] 
+\draw [color={rgb, 255:red, 233; green, 117; blue, 20 }  ,draw opacity=1 ]   (146,179) .. controls (227,287) and (202,23) .. (145,148) ;
+\draw [shift={(145,148)}, rotate = 294.51] [fill={rgb, 255:red, 233; green, 117; blue, 20 }  ,fill opacity=1 ][line width=0.75]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+
+%Curve Lines [id:da6169102709245924] 
+\draw [color={rgb, 255:red, 233; green, 117; blue, 20 }  ,draw opacity=1 ]   (207,178) .. controls (288,286) and (263,22) .. (206,147) ;
+\draw [shift={(206,147)}, rotate = 294.51] [fill={rgb, 255:red, 233; green, 117; blue, 20 }  ,fill opacity=1 ][line width=0.75]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+
+
+% Text Node
+\draw (206,103) node  [align=left] {Magnetic Field};
+% Text Node
+\draw (325,140) node  [align=left] {Current I};
+% Text Node
+\draw (376,245) node  [align=left] {Electromagnetic wave};
+
+
+\end{tikzpicture}
+
