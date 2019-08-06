@@ -1,0 +1,23 @@
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,80.33332824707031); %set diagram left start at 0, and has height of 80.33332824707031
+
+%Shape: Circle [id:dp8443143357842926] 
+\draw  [line width=1.5]  (42,40.58) .. controls (42,29.95) and (50.62,21.33) .. (61.25,21.33) .. controls (71.88,21.33) and (80.5,29.95) .. (80.5,40.58) .. controls (80.5,51.21) and (71.88,59.83) .. (61.25,59.83) .. controls (50.62,59.83) and (42,51.21) .. (42,40.58) -- cycle ;
+%Straight Lines [id:da8989689187935987] 
+\draw [line width=1.5]    (80.5,40.58) -- (101.5,40.33) ;
+
+
+%Straight Lines [id:da08094666094700531] 
+\draw [line width=1.5]    (21,40.83) -- (42,40.58) ;
+
+
+
+% Text Node
+\draw (61.25,39.58) node [scale=1.44] [align=left] {A};
+
+
+\end{tikzpicture}
