@@ -1,19 +1,25 @@
 \chapter{Writing \LaTeX{}}\label{cha:c1_firstchapter}
 
-This document shows how you can get ePub-like formatting in \LaTeX{} with the \verb|memoir| document class. You can't yet export directly to ePub from writeLaTeX, but you can download the source and run it through a format conversion tool, such as \verb|htlatex| to get HTML, and then go from HTML to ePub with a tool like Sigil or Calibre. See \url{http://tex.stackexchange.com/questions/16569} for more advice. And they lived happily ever after.
+This document shows how you can get ePub-like formatting in \LaTeX{} with the
+\verb|memoir| document class. You can't yet export directly to ePub from
+writeLaTeX, but you can download the source and run it through a format
+conversion tool, such as \verb|htlatex| to get HTML, and then go from HTML to
+ePub with a tool like Sigil or Calibre. See
+\url{http://tex.stackexchange.com/questions/16569} for more advice. And they
+lived happily ever after.
 
 \section{Basic Formatting}\label{sec:c1_basicformatting}
 
 \paragraph{Comments.} If you want to just add a comment to a file without it
 being printed, add a \lstinline[language=Tex]!%! (percentage) sign in front of
-it. In the template files, you will find a number of such
-comments as well as deactivated commands.
+it. In the template files, you will find a number of such comments as well as
+deactivated commands.
 
-\paragraph{Bold formatting.} You can make your text bold by surrounding it
-with the command \lstinline[language=Tex]!\textbf{}!.
+\paragraph{Bold formatting.} You can make your text bold by surrounding it with
+the command \lstinline[language=Tex]!\textbf{}!.
 
-\paragraph{Italics formatting.} You can make your text italic by surrounding
-it with the command \lstinline[language=Tex]!\textit{}!.
+\paragraph{Italics formatting.} You can make your text italic by surrounding it
+with the command \lstinline[language=Tex]!\textit{}!.
 
 \paragraph{Small caps.} You can change your text into small capitals by
 surrounding it with the command \lstinline[language=Tex]!\textsc{}!.
@@ -42,9 +48,13 @@ the final text). For that, simply add a \lstinline[language=Tex]!\newpage!.
 more than one type of quotation marks. It is required to change all quotation
 marks into \lstinline[language=Tex]!``\dots''! (two back ticks at the beginning
 and two single ticks at the end) and refrain from using ``\dots'' (or “\dots”)
-altogether. This is because Word's “\dots” uses special characters, and ``\dots'' do not mark the beginning and end of the quotation.
+altogether. This is because Word's “\dots” uses special characters, and
+``\dots'' do not mark the beginning and end of the quotation.
 
-\paragraph{Horizontal line.} For a horizontal line, simply write \lstinline[language=Tex]!\toprule!, \lstinline[language=Tex]!\midrule!, or \lstinline[language=Tex]!\bottomrule! from booktabs. You can also use the less recommend \lstinline[language=Tex]!\hline!. % chktex 44
+\paragraph{Horizontal line.} For a horizontal line, simply write
+\lstinline[language=Tex]!\toprule!, \lstinline[language=Tex]!\midrule!, or
+\lstinline[language=Tex]!\bottomrule! from booktabs. You can also use the less
+recommend \lstinline[language=Tex]!\hline!. % chktex 44
 
 \paragraph{Underlined text.} It is generally not recommended to use underlined
 text.
@@ -102,8 +112,8 @@ The result will look like this:%
 Sometimes, you do want to simply use text in a verbatim way (including special
 characters and \LaTeX{} commands). For this, simply use the
 \lstinline[language=Tex]!\lstlisting! environment:
-\lstinline[language=Tex]!\begin{lstlisting}...\end{lstlisting}!%
-. For example, I put the itemize and enumerate listings above into a
+\lstinline[language=Tex]!\begin{lstlisting}...\end{lstlisting}!% . For example,
+I put the itemize and enumerate listings above into a
 \lstinline[language=Tex]!\lstlisting! block. If I did not, \LaTeX{} would have
 displayed the list as a list, instead of displaying the code.
 
@@ -127,11 +137,17 @@ In terms of their use in the code, they are all similar:
 \end{itemize}
 
 When using these commands, obviously replace the title, but also the label. For
-the label, I recommend to have it start with either ``cha:'', ``sec:'', ``subsec:'', etc.\ to specify what kind of label it is, followed with c and the current chapter number, an underscore, and the chapter, section, or subsection in one word and lowercase. These labels can then be used for references like we used previously for the images. For example, if you have defined a section
+the label, I recommend to have it start with either ``cha:'', ``sec:'',
+``subsec:'', etc.\ to specify what kind of label it is, followed with c and the
+current chapter number, an underscore, and the chapter, section, or subsection
+in one word and lowercase. These labels can then be used for references like we
+used previously for the images. For example, if you have defined a section
 \lstinline[language=Tex]!\section{Chapters and Sections}\label{sec:c1_chaptersandsections}!, 
-you could write ``We will discuss chapters
-and sections in section
-\lstinline[language=Tex]!\cref{sec:c1_chaptersandsections}!'' which results in the document in ``We will discuss chapters and sections in \cref{sec:c1_chaptersandsections}''.
+you could write ``We will discuss chapters and sections in section
+\lstinline[language=Tex]!\cref{sec:c1_chaptersandsections}!
+'' which results in
+the document in ``We will discuss chapters and sections in
+\cref{sec:c1_chaptersandsections}''.
 
 
 \section{Tables}\label{sec:c1_tables}
@@ -180,14 +196,14 @@ This table from the beginning of the book has the familiar figure, label,
 caption, and centering commands. The actual table is configured with the
 \lstinline[language=Tex]!\tabular{}! environment. Following the tabular command,
 you configure the columns in curly braces. Each column is separated with a
-vertical line and the \lstinline[language=Tex]!p{...}! % chktex 11
-entry specifies the width
-of the column. With \lstinline[language=Tex]!{p{2.5cm}|p{3.5cm}|p{3.5cm}}!, you
-would have three columns with 2.5cm width for the first column and 3.5cm width
-for the two others. Alternatively, you can use \lstinline[language=Tex]!c!
-instead of \lstinline[language=Tex]!p! and leave out the curly braces with the
-width. Then, \LaTeX{} simply calculates the required widths automatically. Then,
-for each line of the table, simply write: 
+vertical line and the \lstinline[language=Tex]!p{...}! % chktex 11 entry
+specifies the width of the column. With
+\lstinline[language=Tex]!{p{2.5cm}|p{3.5cm}|p{3.5cm}}!, you would have three
+columns with 2.5cm width for the first column and 3.5cm width for the two
+others. Alternatively, you can use \lstinline[language=Tex]!c! instead of
+\lstinline[language=Tex]!p! and leave out the curly braces with the width. Then,
+\LaTeX{} simply calculates the required widths automatically. Then, for each
+line of the table, simply write: 
 \lstinline[language=Tex]!content of the first cell & content of the second cell & content of the third cell\\\midrule!.
 
 \begin{table}[!ht]
@@ -215,7 +231,8 @@ for each line of the table, simply write:
         Multi-platform & only via export & possible with scripting \\
         \midrule
         
-        Refresh & some elements need, manual refresh & everything is refreshed with each compile \\
+        Refresh & some elements need, manual refresh & everything is refreshed
+        with each compile \\
         \midrule
         
         Formulas & basic support needs external tools & complete support \\
@@ -292,8 +309,9 @@ flexibility, I even recommend images you already have for a number of reasons:
 \end{itemize}
 
 If you want to create a TikZ graphic, simply create a new TEX file in the
-\textit{tex-images} folder and include it with \lstinline[language=Tex]!\input{...}! % chktex 27
-(replacing \lstinline[language=Tex]!\includegraphics{}!) where you want to. 
+\textit{tex-images} folder and include it with
+\lstinline[language=Tex]!\input{...}! % chktex 27 (replacing
+\lstinline[language=Tex]!\includegraphics{}!) where you want to. 
 
 Then, do a ``recompile from scratch'' by clicking on the top right corner of the
 preview window (showing Warning or Error) to regenerate the TikZ file. If
@@ -301,14 +319,16 @@ preview window (showing Warning or Error) to regenerate the TikZ file. If
 recreate it. 
 
 For the format of the file itself, it is a series of commands surrounded by the
-\lstinline[language=Tex]!\begin{tikzpicture}...\end{tikzpicture}!%
-environment. Discussing all the commands is beyond the scope of this book, so I recommend three options:
+\lstinline[language=Tex]!\begin{tikzpicture}...\end{tikzpicture}!% environment.
+Discussing all the commands is beyond the scope of this book, so I recommend
+three options:
 
 \begin{itemize}
     \item Check out the PGF manual at \url{https://www.ctan.org/pkg/pgf}. It is
     more than 1100 pages full with documentation of each command and
     corresponding examples.
-\item Check out the few example TikZ pictures from my two books~\cite{PFH1E, PFH2E} in the \textit{tex-images} directory.
+\item Check out the few example TikZ pictures from my two books~\cite{PFH1E,
+PFH2E} in the \textit{tex-images} directory.
 \end{itemize}
 
 \begin{figure}[!ht]

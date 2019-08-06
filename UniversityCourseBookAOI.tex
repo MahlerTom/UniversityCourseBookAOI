@@ -1,4 +1,6 @@
 \documentclass[ebook,12pt,oneside,openany]{memoir}
+\includeonly{chapters/foreword}
+
 \usepackage[utf8x]{inputenc}
 \usepackage[english]{babel}
 \usepackage[pdftex]{graphicx}
@@ -19,7 +21,6 @@
 \usepackage{nth}
 \usepackage{mathtools}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
-\usepackage{cleveref}
 \urlstyle{same}
 
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
@@ -37,6 +38,9 @@
 % For code listing
 \usepackage{listings}
 \usepackage{xcolor}
+
+\usepackage{cleveref}
+
 
 % For LaTeX code listing
 \lstset{%
@@ -75,29 +79,31 @@
 \tableofcontents
 \clearpage
 
-\input{chapters/01_introduction.tex}
+\include{chapters/foreword}
 
 \clearpage
 
 \pagenumbering{arabic}
+ 
+\include{chapters/01_introduction}
 
-\input{chapters/02_Temporal_SC_1.tex}
+\include{chapters/02_Temporal_SC_1}
 
-\input{chapters/03_Temporal_SC_2.tex}
+\include{chapters/03_Temporal_SC_2}
 
-\input{chapters/04_Low_Data_Complexity_Power_EM_1.tex}
+\include{chapters/04_Low_Data_Complexity_Power_EM_1}
 
-\input{chapters/05_Low_Data_Complexity_Power_EM_2.tex}
+\include{chapters/05_Low_Data_Complexity_Power_EM_2}
 
-\input{chapters/06_Cache_Attacks_Guest_Lecture.tex}
+\include{chapters/06_Cache_Attacks_Guest_Lecture}
 
-\input{chapters/07_High_Data_Complexity_Power_EM_1.tex}
+\include{chapters/07_High_Data_Complexity_Power_EM_1}
 
-\input{chapters/08_High_Data_Complexity_Power_EM_2.tex}
+\include{chapters/08_High_Data_Complexity_Power_EM_2}
 
-\input{chapters/09_Fault_Attacks.tex}
+\include{chapters/09_Fault_Attacks}
 
-\input{chapters/10_Ethics_and_Responsible_Disclosure.tex}
+\include{chapters/10_Ethics_and_Responsible_Disclosure}
 
 \clearpage
 \bibliographystyle{unsrt}
@@ -106,6 +112,6 @@
 
 \appendix
 
-\input{chapters/00_Writing_LaTeX.tex}
+\include{chapters/00_Writing_LaTeX}
 
 \end{document}
