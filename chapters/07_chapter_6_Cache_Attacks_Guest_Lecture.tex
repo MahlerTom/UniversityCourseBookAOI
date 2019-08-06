@@ -41,7 +41,7 @@ Consider the binary exponentiation algorithm presented in Algorithm \ref{algo:Sa
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{images/PPSM.PNG}
+    \includegraphics[width=\textwidth]{images/chapter_6/PPSM.PNG}
     \caption{Querying the buffer holding the multiplier $b$. The y axis is a latency scale, and the x axis represent the query index. The dotted plot is a scatter plot while the solid line is the normalized moving average.}
     \label{fig:PPSQ}
 \end{figure}
@@ -58,7 +58,7 @@ In the scope of this chapter we will focus on shared hardware in the form of dat
 \label{subsec:todaycpucomplex}
 From 2012 onwards Intel has released a new family of microprocessors every year. Each comes with its own new microarchitectural schemes with new Characteristics. To gain performance upgrade in each new installment, that has on average 5\% increase in performance depending on the feature, very small optimizations, such as caches and branch prediction units are added. Such optimizations are the main reason for a side-channel information leakage to exist. Unfortunately, said optimization often come with no documentation since this is Intel intellectual property. Such lack in documentation makes it harder for an attacker to perform said side-channel attacks.
 
-To emphasize today's CPU complexity, it is said that "Intel x86 documentation has more pages than the 6502 has transistors" \cite{IntMan}, with 6502 being a reference to a 8-bit microprocessor, used in Apple II, Commodore 64, Atari 800 and more. It had, in the year 1975, roughly 3510 transistors, while the Intel Software Developer's Manuals is 4844 pages (may. 2018). In a more advance microprocessor, such as the 22-core Intel Xeon Broadwell-E5, more than 7 billion transistors can be found. 
+To emphasize today's CPU complexity, it is said that ``Intel x86 documentation has more pages than the 6502 has transistors" \cite{IntMan}, with 6502 being a reference to a 8-bit microprocessor, used in Apple II, Commodore 64, Atari 800 and more. It had, in the year 1975, roughly 3510 transistors, while the Intel Software Developer's Manuals is 4844 pages (may. 2018). In a more advance microprocessor, such as the 22-core Intel Xeon Broadwell-E5, more than 7 billion transistors can be found. 
 
 \subsection{Background on Caches}
 \label{subsec:backgroundoncaches}
@@ -70,7 +70,7 @@ Since having Both a large and fast, single level of memory is unlikely, CPU's to
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{images/MemHier.PNG}
+    \includegraphics[width=\textwidth]{images/chapter_6/MemHier.PNG}
     \caption{Memory Hierarchy of a common CPU.}
     \label{fig:MemHier}
 \end{figure}
@@ -97,7 +97,7 @@ abstraction can be seen in \Cref{fig:SetWay}
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{images/SetWay.PNG}
+    \includegraphics[width=\textwidth]{images/chapter_6/SetWay.PNG}
     \caption{Set-Associative Cache - The set index of a line derives from the set index bits of the address. The cache way is determine according to the cache replacement policy.}
     \label{fig:SetWay}
 \end{figure}
@@ -116,14 +116,14 @@ We need to decide on a policy according to which a cache line will be evicted in
 
 Intel commonly applies a LRU policy or a pseudo-LRU policy (since pure LRU is complex to implement). Which determines that the oldest cache line to be referenced will be evicted, As if each cache line is attached with a time-stamp that is updated on access. An example can be thought of by having $n$ way cache set and $n+1$ different lines of memory that are mapped into said cache set and are accessed in order. The first $1,\dots,n$ lines will fill the cache ways, while the $n+1$ access will evict the first memory line from the set, since all the set ways are full.  
 
-A potential issue arises with LRU policy when a program need to access cyclically $n+1$ memory lines ("program working set") that are mapped to the same $n$ way cache set. This is referenced as a 'set thrasing' and will result in $0\%$ hit rate. If we compare LRU policy to a random policy, depending on the workload, some studies have shown that LRU and random replacement policies have the same hit rate on average.
+A potential issue arises with LRU policy when a program need to access cyclically $n+1$ memory lines (``program working set") that are mapped to the same $n$ way cache set. This is referenced as a 'set thrasing' and will result in $0\%$ hit rate. If we compare LRU policy to a random policy, depending on the workload, some studies have shown that LRU and random replacement policies have the same hit rate on average.
 
 When implementing a cache side-channel attack, we will normally will want to evict some special memory location from the cache. Considering a non-LRU replacement policy will mean that evicting a memory line from the cache will not necessarily be practical, since there is no guaranty that if the attacker access memory locations in a specific pattern we will evict the whole set from the cache. 
 \subsection{Caches on Intel CPUs}
 \label{subsec:cachesonintelcpus}
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{images/IntelCPU.PNG}
+    \includegraphics[width=\textwidth]{images/chapter_6/IntelCPU.PNG}
     \caption{Basic Intel CPU - each core has its own L1 and L2 caches, while all connected to a larger sliced L3 cache which can be accessed from all cores. }
     \label{fig:IntelCPU}
 \end{figure}
@@ -180,7 +180,7 @@ The first step towards the attack is to build the histogram of the corner cases,
 \noindent Having the two histograms, as in \Cref{fig:cache_hits_misses_hist}, we determine the threshold to be as high as possible such that there will be no cache miss below. 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{images/cache_hits_misses_hist.JPG}
+    \includegraphics[width=\textwidth]{images/chapter_6/cache_hits_misses_hist.JPG}
     \caption{Timing differences histogram of cache hits and cache misses.}
     \label{fig:cache_hits_misses_hist}
 \end{figure}
@@ -204,14 +204,14 @@ The attack is made of four basic steps and it goes as following:
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{images/fr_sharedlib.JPG}
+    \includegraphics[width=\textwidth]{images/chapter_6/fr_sharedlib.JPG}
     \caption{Attacker maps shared library (shared memory, in cache), shared cache line marked in red}
     \label{fig:fr_sharedlib}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{images/fr_flow.png}
+    \includegraphics[width=\textwidth]{images/chapter_6/fr_flow.png}
     \caption{Flush+Reload attack flow. Between the first flush and the first reload the victim did not access the shared cache line, so the first reload resulted with a cache hit. Then, after the second flush the victim accessed the shared cache line and hence, the second reload resulted with a miss.}
     \label{fig:fr_flow}
 \end{figure}
@@ -235,7 +235,7 @@ The attack is made of the three following steps:
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{images/pp_flow.JPG}
+    \includegraphics[width=\textwidth]{images/chapter_6/pp_flow.JPG}
     \caption{Prime+Probe flow.}
     \label{fig:pp_flow}
 \end{figure}
@@ -259,7 +259,7 @@ We now have another issue, in practice, the L3 is divided in slices, as many sli
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{images/slicedcache.JPG}
+    \includegraphics[width=\textwidth]{images/chapter_6/slicedcache.JPG}
     \caption{Sliced cache.}
     \label{fig:slicedcache}
 \end{figure}
@@ -268,7 +268,7 @@ In addition, the mentioned hash function is undocumented, it designed for perfor
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{images/hashfunc.JPG}
+    \includegraphics[width=\textwidth]{images/chapter_6/hashfunc.JPG}
     \caption{Three reversed engineered hash functions, depending on the number of cores. Function valid for Sandy Bridge, Ivy Bridge, Haswell, Broadwell}
     \label{fig:hashfunc}
 \end{figure}
@@ -295,7 +295,7 @@ In the Prime or the Probe step, the attacker evicts a cache set by filling it wi
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{images/haswellstrategy.JPG}
+    \includegraphics[width=\textwidth]{images/chapter_6/haswellstrategy.JPG}
     \caption{$a_1\dots a_9$ are in the same cache set. Fast and effective on Haswell: eviction rate $> 99.97\%$}
     \label{fig:haswellstrategy}
 \end{figure}
@@ -389,7 +389,7 @@ The idea is that if a 0 is shown for a given address while triggering the event,
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{images/profiling-cache-hits.png}
+    \includegraphics[width=\textwidth]{images/chapter_6/profiling-cache-hits.png}
     \caption{Addresses with cache hits.}
     \label{fig:profiling-cache-hits}
 \end{figure}
@@ -409,7 +409,7 @@ We can even further improve the attack by finding the complete matrix of the key
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/cache-keymap-matrix.png}
+    \includegraphics[width=0.8\textwidth]{images/chapter_6/cache-keymap-matrix.png}
     \caption{Complete matrix for each keystroke.}
     \label{fig:cache-keymap-matrix}
 \end{figure}

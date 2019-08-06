@@ -1,0 +1,41 @@
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,240); %set diagram left start at 0, and has height of 240
+
+%Straight Lines [id:da008984438739192413] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (91,99) -- (31.67,99) -- (31.67,41.33) ;
+\draw [shift={(31.67,38.33)}, rotate = 450] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (14.21,-6.37) .. controls (9.04,-2.99) and (4.3,-0.87) .. (0,0) .. controls (4.3,0.87) and (9.04,2.99) .. (14.21,6.37)   ;
+
+%Rounded Rect [id:dp7662687261949606] 
+\draw  [line width=1.5]  (91.5,93.25) .. controls (91.5,90.76) and (93.51,88.75) .. (96,88.75) -- (176,88.75) .. controls (178.49,88.75) and (180.5,90.76) .. (180.5,93.25) -- (180.5,106.75) .. controls (180.5,109.24) and (178.49,111.25) .. (176,111.25) -- (96,111.25) .. controls (93.51,111.25) and (91.5,109.24) .. (91.5,106.75) -- cycle ;
+%Straight Lines [id:da19872085195301215] 
+\draw [line width=1.5]    (181,100.25) -- (240.75,100.25) -- (240.75,120.13) ;
+
+
+%Straight Lines [id:da8624965983535746] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (240.88,120.13) -- (240.88,179.13) ;
+
+
+%Straight Lines [id:da9869704930235617] 
+\draw [line width=1.5]    (240.88,179.13) -- (240.9,199) ;
+\draw [shift={(240.9,199)}, rotate = 269.93] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+
+%Straight Lines [id:da3727804380230437] 
+\draw [line width=0.75]    (92,70) -- (179.33,70) ;
+\draw [shift={(181.33,70)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+
+
+% Text Node
+\draw (136,100) node [scale=1] [align=left] {Load R};
+% Text Node
+\draw (133.33,59.67) node  [align=left] {Current};
+% Text Node
+\draw (240,218) node  [align=left] {Ground};
+% Text Node
+\draw (32,19) node  [align=left] {VDD};
+
+
+\end{tikzpicture}
