@@ -39,7 +39,7 @@ This way, we receive other (usually erroneous) outputs which might give us addit
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=0.7\linewidth]{images/ch9/fault_attacks_schematic.png}
+	\includegraphics[width=0.7\linewidth]{images/chapter_9/fault_attacks_schematic.png}
 	\caption{A schematic diagram of fault attacks and leakage types.}\label{fig:fault_attacks_schematic}
 \end{figure}
 
@@ -118,7 +118,7 @@ attackers access to the entirety of the device's memory.
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=0.7\linewidth]{images/ch9/bulb.png}
+	\includegraphics[width=0.7\linewidth]{images/chapter_9/bulb.png}
 	\caption{A light bulb flipping memory bits filled with safe Java structures.}\label{fig:memory_lightbulb}
 \end{figure}
 
@@ -217,7 +217,7 @@ So if we could multiply by \(p\) and \(q\) instead of by \(n\), we would cut \em
 \subsubsection{Chinese Remainder Theorem}\label{subsubsec:chinese_remainder_theorem}
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=0.5\linewidth]{images/ch9/soldiers.jpeg}
+	\includegraphics[width=0.5\linewidth]{images/chapter_9/soldiers.jpeg}
 	\caption{Chinese Remainder Theorem (Source: \url{https://russinoff.com/papers/crt.html})}\label{fig:chinese_remainder}
 \end{figure}
 The idea is that if we know both \(x \pmod{p}\) and \(x \pmod{q}\) then we can 
@@ -274,7 +274,7 @@ In the final section, we will describe the Rowhammer attack.
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=0.5\linewidth]{images/ch9/DRAM.jpg}
+	\includegraphics[width=0.5\linewidth]{images/chapter_9/DRAM.jpg}
 	\caption{High Level Illustration of DRAM Organization (Source: Wikipedia:Row Hammer)}\label{fig:dram_svg}
 \end{figure}
 
@@ -304,7 +304,7 @@ To circumvent this limitation, several techniques can be employed:
 In a paper~\cite{ffs} researchers from VUA demonstrated how they can utilize page-deduplication in a virtualized environment to weaken cryptographic keys, resulting in unauthorized access via OpenSSH, and breach of trust via forging GPG signatures. The attack relies on the fact that the the attacker can \emph{read} a de-duplicated page as much as they want. The attacker has to wait (or arrange) for a page containing sensitive information to be de-duped, then hammer on it until a bit in the key flips, making it much easier to factor.
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=0.5\linewidth]{images/ch9/flip_feng_shui.PNG}
+	\includegraphics[width=0.5\linewidth]{images/chapter_9/flip_feng_shui.PNG}
 	\caption{The attacker maps the same page as the victim, then utilizes rowhammer to change the victim's memory without causing page duplication.}
 	\label{fig:flip_feng_shui}
 \end{figure}

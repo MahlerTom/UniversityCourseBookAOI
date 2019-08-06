@@ -41,7 +41,7 @@ Consider the binary exponentiation algorithm presented in Algorithm \ref{algo:Sa
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{images/PPSM.PNG}
+    \includegraphics[width=\textwidth]{images/chapter_6/PPSM.PNG}
     \caption{Querying the buffer holding the multiplier $b$. The y axis is a latency scale, and the x axis represent the query index. The dotted plot is a scatter plot while the solid line is the normalized moving average.}
     \label{fig:PPSQ}
 \end{figure}
@@ -70,7 +70,7 @@ Since having Both a large and fast, single level of memory is unlikely, CPU's to
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{images/MemHier.PNG}
+    \includegraphics[width=\textwidth]{images/chapter_6/MemHier.PNG}
     \caption{Memory Hierarchy of a common CPU.}
     \label{fig:MemHier}
 \end{figure}
@@ -97,7 +97,7 @@ abstraction can be seen in \Cref{fig:SetWay}
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{images/SetWay.PNG}
+    \includegraphics[width=\textwidth]{images/chapter_6/SetWay.PNG}
     \caption{Set-Associative Cache - The set index of a line derives from the set index bits of the address. The cache way is determine according to the cache replacement policy.}
     \label{fig:SetWay}
 \end{figure}
@@ -123,7 +123,7 @@ When implementing a cache side-channel attack, we will normally will want to evi
 \label{subsec:cachesonintelcpus}
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{images/IntelCPU.PNG}
+    \includegraphics[width=\textwidth]{images/chapter_6/IntelCPU.PNG}
     \caption{Basic Intel CPU - each core has its own L1 and L2 caches, while all connected to a larger sliced L3 cache which can be accessed from all cores. }
     \label{fig:IntelCPU}
 \end{figure}
@@ -180,7 +180,7 @@ The first step towards the attack is to build the histogram of the corner cases,
 \noindent Having the two histograms, as in \Cref{fig:cache_hits_misses_hist}, we determine the threshold to be as high as possible such that there will be no cache miss below. 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{images/cache_hits_misses_hist.JPG}
+    \includegraphics[width=\textwidth]{images/chapter_6/cache_hits_misses_hist.JPG}
     \caption{Timing differences histogram of cache hits and cache misses.}
     \label{fig:cache_hits_misses_hist}
 \end{figure}
@@ -204,14 +204,14 @@ The attack is made of four basic steps and it goes as following:
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{images/fr_sharedlib.JPG}
+    \includegraphics[width=\textwidth]{images/chapter_6/fr_sharedlib.JPG}
     \caption{Attacker maps shared library (shared memory, in cache), shared cache line marked in red}
     \label{fig:fr_sharedlib}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{images/fr_flow.png}
+    \includegraphics[width=\textwidth]{images/chapter_6/fr_flow.png}
     \caption{Flush+Reload attack flow. Between the first flush and the first reload the victim did not access the shared cache line, so the first reload resulted with a cache hit. Then, after the second flush the victim accessed the shared cache line and hence, the second reload resulted with a miss.}
     \label{fig:fr_flow}
 \end{figure}
@@ -235,7 +235,7 @@ The attack is made of the three following steps:
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{images/pp_flow.JPG}
+    \includegraphics[width=\textwidth]{images/chapter_6/pp_flow.JPG}
     \caption{Prime+Probe flow.}
     \label{fig:pp_flow}
 \end{figure}
@@ -259,7 +259,7 @@ We now have another issue, in practice, the L3 is divided in slices, as many sli
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{images/slicedcache.JPG}
+    \includegraphics[width=\textwidth]{images/chapter_6/slicedcache.JPG}
     \caption{Sliced cache.}
     \label{fig:slicedcache}
 \end{figure}
@@ -268,7 +268,7 @@ In addition, the mentioned hash function is undocumented, it designed for perfor
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{images/hashfunc.JPG}
+    \includegraphics[width=\textwidth]{images/chapter_6/hashfunc.JPG}
     \caption{Three reversed engineered hash functions, depending on the number of cores. Function valid for Sandy Bridge, Ivy Bridge, Haswell, Broadwell}
     \label{fig:hashfunc}
 \end{figure}
@@ -295,7 +295,7 @@ In the Prime or the Probe step, the attacker evicts a cache set by filling it wi
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{images/haswellstrategy.JPG}
+    \includegraphics[width=\textwidth]{images/chapter_6/haswellstrategy.JPG}
     \caption{$a_1\dots a_9$ are in the same cache set. Fast and effective on Haswell: eviction rate $> 99.97\%$}
     \label{fig:haswellstrategy}
 \end{figure}
@@ -389,7 +389,7 @@ The idea is that if a 0 is shown for a given address while triggering the event,
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{images/profiling-cache-hits.png}
+    \includegraphics[width=\textwidth]{images/chapter_6/profiling-cache-hits.png}
     \caption{Addresses with cache hits.}
     \label{fig:profiling-cache-hits}
 \end{figure}
@@ -409,7 +409,7 @@ We can even further improve the attack by finding the complete matrix of the key
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/cache-keymap-matrix.png}
+    \includegraphics[width=0.8\textwidth]{images/chapter_6/cache-keymap-matrix.png}
     \caption{Complete matrix for each keystroke.}
     \label{fig:cache-keymap-matrix}
 \end{figure}

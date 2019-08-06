@@ -1,8 +1,3 @@
-\documentclass{report}
- 
-\usepackage{graphicx}
-\begin{document}
-  
 \chapter{Low Data Complexity Power/EM 2}
 
 We want to see what is power analysis all about and see a very simple power https://www.overleaf.com/project/5d183b17c2fb9f144b44104c analysis attack that we can actually perform. Then we will dive into AES and its implementation.
@@ -83,9 +78,8 @@ Microcontroller is basically a regular computer, it gets commands and runs it on
 
 \begin{figure}[htp]
 \hspace*{-0.5in}
-\includegraphics[scale=0.4]{"../images/Lecture 5/ledger".png}
-\caption{Bitcoin Wallet}
-\label{}
+\includegraphics[scale=0.4]{images/Lecture_5/ledger.png}
+\caption{Bitcoin Wallet}\label{fig:Bitcoin Wallet}
 \end{figure}
 
 This is a Bitcoin wallet. The Bitcoin is basically numbers and if someone steals these numbers he steals your money, so you don't want these numbers to be on your computers. These do all the calculation when you connect to the network, we want it to be very secure because if someone steal the secret key he can take all of your money.
@@ -100,9 +94,8 @@ In this course we are going to talk only about microcontrollers, because we are 
 
 \begin{figure}[htp]
 \hspace*{+0.5in}
-\includegraphics[scale=0.4]{"../images/Lecture 5/arduino".png}
-\caption{Arduino}
-\label{}
+\includegraphics[scale=0.4]{images/Lecture_5/arduino.png}
+\caption{Arduino}\label{fig:Arduino}
 \end{figure}
 
 So what is the line between microcontroller and an ASIC? On one of the student table there is a chip that he will show us, this is a FPGA field programmable this chip. If I want to identify a particular face I can program this ASIC to do patterning for this face and doing it very very cheaply. I can do also audio compression maybe I don't know what exactly I want to do but I know that I need to do some kind of compression while I don't know exactly the algorithm by using this ASIC. So you will find an ASIC if you have a piece of equipment 10000 pieces, maybe a router ,oscilloscope, submarine and things like that. Best to make sure what is an Arduino? Microcontroller. 
@@ -114,9 +107,8 @@ This is an 8-bit microcontroller from the 80s, you see the center of this microc
 
 \begin{figure}[htp]
 \hspace*{-0.5in}
-\includegraphics[scale=0.4]{"../images/Lecture 5/8bit-mc".png}
-\caption{8-bit microcontroller}
-\label{}
+\includegraphics[scale=0.4]{images/Lecture_5/8bit-mc.png}
+\caption{8-bit microcontroller}\label{fig:8-bit microcontroller}
 \end{figure}
 
 
@@ -137,9 +129,8 @@ Let's see the power module this device under test, which does RSA decryption or 
 \begin{figure}[htp]
 \centering
 \hspace*{-0.5in}
-\includegraphics[scale=0.4]{"../images/Lecture 5/RSA-PA".png}
-\caption{RSA Power Analysis}
-\label{}
+\includegraphics[scale=0.4]{images/Lecture_5/RSA-PA.png}
+\caption{RSA Power Analysis}\label{fig:RSA Power Analysis}
 \end{figure}
 
 The axis are vector of power measurements, x is time, y are the power consumption,(how did we measure the power consumption? i put a probe, measer the voltege so on..
@@ -159,9 +150,8 @@ I am going to attack an 8 bit microcontroller. Let's look on the setup. This mic
 
 \begin{figure}
 \hspace*{0.5in}
-\includegraphics[scale=0.5]{"../images/Lecture 5/AES_setup".png}
-\caption{AES Setup}
-\label{}
+\includegraphics[scale=0.5]{images/Lecture_5/AES_setup.png}
+\caption{AES Setup}\label{fig:AES Setup}
 \end{figure}
  
 While he's doing this operation it is going to consume different amount of power and we would like to measure that. How do we going to measure them? We going to connect to the microcontroller power supply. But were do we need to cut and connect? The power is not going straight to the device it is going from this white box (small resistor). How much power is going to go through the resistor? Because he's small it's going to take very small power consumption. The voltage drops across this device is going to be measured by this Probe, and I'm going to measure the voltage over time. We know the voltage of the power supplies is 5 volt, so from this we can find out what is the current going through the microcontroller and from the current we can find out what is the power consumption. Do we need the code of the microcontroller? Yes. The only thing I don't know is what? The secret, but I know everything else.
@@ -204,9 +194,8 @@ So I have this stage registered which is 16 bytes, and the sub box table 256 byt
 
 \begin{figure}[htp]
 \centering
-\includegraphics[scale=0.2]{"../images/Lecture 5/Subbytes".png}
-\caption{SubBytes}
-\label{}
+\includegraphics[scale=0.2]{images/Lecture_5/Subbytes.png}
+\caption{SubBytes}\label{fig:SubBytes}
 \end{figure}
 
 \subsection{ShiftRows}
@@ -215,21 +204,18 @@ Then I need to do shift rows. The first row you don't need to do anything, the o
 
 \begin{figure}[htp]
 \centering
-\includegraphics[scale=0.2]{"../images/Lecture 5/shiftrows".png}
-\caption{ShiftRows}
-\label{}
+\includegraphics[scale=0.2]{images/Lecture_5/shiftrows.png}
+\caption{ShiftRows}\label{fig:ShiftRows}
 \end{figure}
 
 \subsection{MixColumns}
 
-Next operation mix columns, is the Matrix a complication, perform over algebra algorithm, it's takes as input 32 bits columns and his output is 32 bytes value what are all of the bytes in the output depend of input. How do you do it on a microcontroller? One of the reasons that rhino run the competition that it was very efficient way was doing mix column 8-bit microcontroller, using 13 operations which are shifts and exor.
-This is the most leaky part of AES this mixed columns.
+Next operation mix columns, is the Matrix a complication, perform over algebra algorithm, it's takes as input 32 bits columns and his output is 32 bytes value what are all of the bytes in the output depend of input. How do you do it on a microcontroller? One of the reasons that rhino run the competition that it was very efficient way was doing mix column 8-bit microcontroller, using 13 operations which are shifts and exor. This is the most leaky part of AES this mixed columns.
 
 \begin{figure}[htp]
 \centering
-\includegraphics[scale=0.2]{"../images/Lecture 5/mixcolumns".png}
-\caption{MixColumns}
-\label{}
+\includegraphics[scale=0.2]{images/Lecture_5/mixcolumns.png}
+\caption{MixColumns}\label{fig:MixColumns}
 \end{figure}
 
 \subsection{AddRoundKey}
@@ -240,9 +226,8 @@ Each round of AES is 84 leaking actions. You take the key and you use the same y
 
 \begin{figure}[htp]
 \centering
-\includegraphics[scale=0.2]{"../images/Lecture 5/addkey".png}
-\caption{AddKey}
-\label{}
+\includegraphics[scale=0.2]{images/Lecture_5/addkey.png}
+\caption{AddKey}\label{fig:AddKey}
 \end{figure}
 
 \section{AES Power Analysis}
@@ -453,14 +438,12 @@ result = input_data;
 
 \end{verbatim}
 
-
 First of all I expand the key, so I do the AES key expansion and I don't leak the key expansion. This is the assumption. Let's disregarded that description for a moment and this is the encryption. First of all I took the state and the input data in the state, and then I do a add round key, then do SUB bytes, shift rows, mix column. In the last round I done did you mixed columns, and every time I do this I don't replace the state and I saved the state. at the end I output the cipher text, but also the output to the state, so you can see the state is always changing. Now let's see how does it looks, I'm going to run AES twice, and then do some little figure.
 
-\begin{figure}[htp]
+\begin{figure}[!ht]
 \centering
-\includegraphics[scale=0.35]{"../images/Lecture 5/aes_mat_out".png}
-\caption{Diagram}
-\label{}
+\includegraphics[scale=0.35]{images/Lecture_5/aes_mat_out.png}
+\caption{Diagram}\label{fig:Diagram}
 \end{figure}
 
 The x-axis is the index of the byte in the state. I read the bytes not as a matrix I read it as a row. So there are 16 bites in the state. and the y-axis is the index of the rounds and round 40 is the final round ciphertext. So in between there is the stages.
@@ -478,10 +461,9 @@ I have connected a probe to my device, I have measured the power consumption ove
 
 \begin{figure}[htp]
 \centering
-\includegraphics[scale=0.30]{"../images/Lecture 5/trace1".png}
-\includegraphics[scale=0.30]{"../images/Lecture 5/trace2".png}
-\caption{}
-\label{}
+\includegraphics[scale=0.30]{images/Lecture_5/trace1.png}
+\includegraphics[scale=0.30]{images/Lecture_5/trace2.png}
+\caption{Traces}\label{fig:traces}
 \end{figure}
 
 I have a trace, which was recorded in the same device we saw here. I have a vector called 200 of traces of AES encryption, lets plot one of the traces. this is actually only one of the rounds of AES. Here is a trace. This is very very clean trace and I would like it to be in my lab.You can see some of them are high and some of them are low, how do I find the key out of this? let's start from the beginning then jump to the middle and the end I don't have time to teach you. the best thing I can hope for is not to get the bytes of the key because the bytes are not function of the bytes, what is the function of? The Hamming weight. So the best hope is the get the Hamming weight, so are you home we will get a vector like the state vector. is this enough to get the key? so you have to believe me that's yes. how do you do it? You will use algebraic the solver and you will have to read the paper. if you have the vector off all the time in Hamming weight you can get the key. But how do I get the vector Hamming weight from distance? Obviously somewhere in this trace, let's look at very very leaky operation like sub bytes, or add around key; it read the states you leave the key and xor them together and then you write the state again. Somewhere in this vector there is a peak where we know that exactly in this moment there was a read of the key. The key was read from memory and was travel in the data bus in this exact peak. And how do I find this particular moment in time I will show you in the next lecture.
@@ -508,7 +490,7 @@ So if you want to do a simple power analysis on AES the steps you do first of al
     model, an attacker might now be able to recover the secret key.
     
 \subsection{Algorithm}
-    Template attacks are a powerful type of side-channel attack. These attacks are a subset of profiling attacks, where an attacker creates a "profile" of a sensitive device and applies this profile to quickly find a victim's secret key.
+    Template attacks are a powerful type of side-channel attack. These attacks are a subset of profiling attacks, where an attacker creates a ``profile" of a sensitive device and applies this profile to quickly find a victim's secret key.
     
     Template attacks require more setup than CPA attacks. To perform a template attack, the attacker must have access to another copy of the protected device that they can fully control. Then, they must perform a great deal of pre-processing to create the template - in practice, this may take dozens of thousands of power traces. However, the advantages are that template attacks require a very small number of traces from the victim to complete the attack. With enough pre-processing, \textbf{the key may be able to be recovered from just a single trace} .
     
@@ -516,7 +498,7 @@ So if you want to do a simple power analysis on AES the steps you do first of al
     There are four steps to a template attack:
     \begin{itemize}
       \item Using a copy of the protected device, record a large number of power traces using many different inputs (plaintexts and keys). Ensure that enough traces are recorded to give us information about each subkey value.
-      \item Create a template of the device's operation. This template notes a few "points of interest" in the power traces and a multivariate distribution of the power traces at each point.
+      \item Create a template of the device's operation. This template notes a few ``points of interest" in the power traces and a multivariate distribution of the power traces at each point.
       \item the victim device, record a small number of power traces. Use multiple plaintexts. (We have no control over the secret key, which is fixed.)
       \item Apply the template to the attack traces. For each subkey, track which value is most likely to be the correct subkey. Continue until the key has been recovered.
     \end{itemize}
@@ -533,7 +515,7 @@ So if you want to do a simple power analysis on AES the steps you do first of al
     where $\displaystyle \mu$  is the mean and  $ \sigma$ is the standard deviation. For instance, our voltage source might have a mean of 5 and a standard deviation of 0.5, making the PDF look like:\\
     \begin{minipage}{\linewidth}
     \centering
-    \includegraphics[width=8cm]{"../images/Lecture 5/Normal-Dist".png}
+    \includegraphics[width=8cm]{images/Lecture_5/Normal-Dist.png}
     \end{minipage}
     We can use the PDF to calculate how likely a certain measurement is. Using this distribution,
     $f(5.1) \approx 0.7821$
@@ -545,21 +527,21 @@ So if you want to do a simple power analysis on AES the steps you do first of al
     Multivariate distributions let us model multiple random variables that may or may not be correlated. In a multivariate distribution, instead of writing down a single variance $\sigma$, we keep track of a whole matrix of covariances. For example, to model three random variables ($\mathbf{X}, \mathbf{Y}, \mathbf{Z}$), this matrix would be\\
     \begin{minipage}{\linewidth}
       \centering
-      \includegraphics{"../images/Lecture 5/cov".png}
+      \includegraphics{images/Lecture_5/cov.png}
       \end{minipage}
     Also, note that this distribution needs to have a mean for each random variable:\\
        \begin{minipage}{\linewidth}
       \centering
-      \includegraphics{"../images/Lecture 5/mu".png}
+      \includegraphics{images/Lecture_5/mu.png}
       \end{minipage}
     The PDF of this distribution is more complicated: The equation for k random variables is:\\
      \begin{minipage}{\linewidth}
       \centering
-      \includegraphics{"../images/Lecture 5/dist".png}
+      \includegraphics{images/Lecture_5/dist.png}
       \end{minipage}
 
 \subsection{Creating the Template}
-    A template is a set of probability distributions that describe what the power traces look like for many different keys. Effectively, a template says: "If you're going to use key k, your power trace will look like the distribution $f_k(\mathbf{x})$"\\
+    A template is a set of probability distributions that describe what the power traces look like for many different keys. Effectively, a template says: ``If you're going to use key k, your power trace will look like the distribution $f_k(\mathbf{x})$"\\
     . We can use this information to find subtle differences between power traces and to make very good key guesses for a single power trace.\\
     \\
     \textbf{Number of Traces}\\
@@ -582,33 +564,33 @@ So if you want to do a simple power analysis on AES the steps you do first of al
     
     For now, we'll look at a single operation k $(0 \le k < K)$. The steps are:
     \begin{itemize}
-      \item Find every power trace t that falls under the category of "operation k". (ex: find every power trace where we used a subkey of 0x01.) We'll say that there are $T_k$ of these, so $t_{j, s_i}$ means the value at trace j and POI i.
+      \item Find every power trace t that falls under the category of ``operation k". (ex: find every power trace where we used a subkey of 0x01.) We'll say that there are $T_k$ of these, so $t_{j, s_i}$ means the value at trace j and POI i.
       \item Find the average power $\mu_i$ at every point of interest. This calculation will look like:
       \begin{figure}[htp]
       \centering
-      \includegraphics{"../images/Lecture 5/pc1".png}
+      \includegraphics{images/Lecture_5/pc1.png}
       \end{figure}
        
       \item Find the variance $v_i$ of the power at each point of interest. One way of calculating this is:
       \begin{figure}[htp]
       \centering
-      \includegraphics{"../images/Lecture 5/pic2".png}
+      \includegraphics{images/Lecture_5/pic2.png}
       \end{figure}
     
       \item Find the covariance $c_{i, i^*}$ between the power at every pair of POIs $(i and i^*)$. One way of calculating this is:
       \begin{figure}[htp]
       \centering
-      \includegraphics{"../images/Lecture 5/pic3".png}
+      \includegraphics{images/Lecture_5/pic3.png}
       \end{figure}
       \item Put together the mean and covariance matrices as:
     
       \begin{minipage}{\linewidth}
       \centering
-      \includegraphics{"../images/Lecture 5/pic5".png}
+      \includegraphics{images/Lecture_5/pic5.png}
       \end{minipage}
       \begin{minipage}{\linewidth}
       \centering
-      \includegraphics{"../images/Lecture 5/pic4".png}
+      \includegraphics{images/Lecture_5/pic4.png}
       \end{minipage}
       
     \end{itemize}
@@ -622,23 +604,23 @@ So if you want to do a simple power analysis on AES the steps you do first of al
       \item Put our trace values at the POIs into a vector. This vector will be
        \begin{minipage}{\linewidth}
       \centering
-      \includegraphics{"../images/Lecture 5/pic6".png}
+      \includegraphics{images/Lecture_5/pic6.png}
       \end{minipage}
        
       \item Calculate the PDF for every key guess and save these for later. This might look like:
       \begin{minipage}{\linewidth}
       \centering
-      \includegraphics{"../images/Lecture 5/pic7".png}
+      \includegraphics{images/Lecture_5/pic7.png}
       \end{minipage}
       \item Repeat these two steps for all of the attack traces
     \end{itemize}
-    This process gives us an array of $p_{k, j}$, which says: "Looking at trace j, how likely is it that key k is the correct one?"\\
+    This process gives us an array of $p_{k, j}$, which says: ``Looking at trace j, how likely is it that key k is the correct one?"\\
     \textbf{Combining the Results}\\
     The very last step is to combine our $p_{k, j}$ values to decide which key is the best fit. The easiest way to do this is to combine them as:
     
     \begin{figure}[htp]
         \centering
-        \includegraphics{"../images/Lecture 5/pic8".png}
+        \includegraphics{images/Lecture_5/pic8.png}
        \end{figure}
     
     \subsection{practical template attacks}
@@ -649,20 +631,20 @@ So if you want to do a simple power analysis on AES the steps you do first of al
           \item For every operation k and every sample i, find the average power $M_{k, i}$. For instance, if there are $T_k$ traces where we performed operation k, then this average is\\
               \begin{minipage}{\linewidth}
               \centering
-              \includegraphics{"../images/Lecture 5/pic9".png}
+              \includegraphics{images/Lecture_5/pic9.png}
               \end{minipage}
            
-          \item After finding all of the means, calculate all of their absolute pairwise differences. Add these up. This will give one "trace" which has peaks where the samples are usually different. The calculation looks like\\
+          \item After finding all of the means, calculate all of their absolute pairwise differences. Add these up. This will give one ``trace" which has peaks where the samples are usually different. The calculation looks like\\
           \\
               \begin{minipage}{\linewidth}
               \centering
-              \includegraphics{"../images/Lecture 5/pic10".png}
+              \includegraphics{images/Lecture_5/pic10.png}
               \end{minipage}
        \end{itemize}
         An example of this sum of differences is:\\
               \begin{minipage}{\linewidth}
               \centering
-              \includegraphics{"../images/Lecture 5/pic11".png}
+              \includegraphics{images/Lecture_5/pic11.png}
               \end{minipage}
         \\
 
@@ -681,6 +663,3 @@ So if you want to do a simple power analysis on AES the steps you do first of al
     However, some customers are coming again and Eve gets hold of another
     trace. The template attack can easily be extended to take advantage of such
     situations, e.g. by adding up noise-probabilities p(Ni) of every captured trace and applying the maximum-likelihood approach on these sums. As a consequence, the power of the attacker is amplified. Using this approach, if n is the number of iterations, the error probability of template classification is reduced by the factor √n. 
-
-
-\end{document}
