@@ -3,18 +3,20 @@
 \usepackage[english]{babel}
 \usepackage[pdftex]{graphicx}
 \usepackage{url}
-
 \setlength{\parskip}{5pt}
 \setlength{\parindent}{0pt}
 \usepackage[top=50pt,bottom=50pt,left=65pt,right=60pt]{geometry}
 \usepackage{csquotes}
 \usepackage{enumerate}
+\usepackage{paralist}
 \usepackage{wrapfig}
 \usepackage[export]{adjustbox}
-\usepackage{algorithm, algpseudocode}
+% \usepackage{algorithm, algpseudocode}
+\usepackage{algorithm2e} % describe algorithms
 \usepackage{booktabs}
 \usepackage{float}
-\usepackage{amsmath}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{nth}
 \usepackage{mathtools}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{cleveref}
@@ -56,7 +58,7 @@
     keywordstyle=\color{cyan},                    % keywords
     commentstyle=\color{blue},    % comments
     stringstyle=\color[rgb]{0.627,0.126,0.941}  % strings
-    % columns=fullflexible
+    % columns=fullflexible   
     tabsize=2,
 }
 
@@ -68,25 +70,36 @@
 
 \pagenumbering{roman}
 
-\input{chapters/01_Introduction.tex}
+% \input{chapters/01_Introduction.tex}
 
 \clearpage
+% \setcounter{tocdepth}{3}
 \tableofcontents
 \clearpage
 
 \pagenumbering{arabic}
 
-\input{chapters/02_chapter_1.tex}
+\input{chapters/00_Writing_LaTeX.tex}
 
-\input{chapters/03_chapter_2.tex}
+\input{chapters/01_chapter_1_introduction.tex}
 
-\input{chapters/04_chapter_3.tex}
+\input{chapters/02_chapter_1_Temporal_SC_1.tex}
 
-\input{chapters/07_chapter_6.tex}
+\input{chapters/03_chapter_2_Temporal_SC_2.tex}
+
+\input{chapters/04_chapter_3_Low_Data_Complexity_Power_EM_1.tex}
+
+\input{chapters/05_chapter_4_Low_Data_Complexity_Power_EM_2.tex}
+
+\input{chapters/07_chapter_6_Cache_Attacks_Guest_Lecture.tex}
+
+\input{chapters/10_chapter_9_Fault_Attacks.tex}
 
 \input{chapters/Lecture6.tex}
 
 \input{chapters/10_chapter_9.tex}
+
+\input{chapters/11_chapter_10_Ethics_and_Responsible_Disclosure.tex}
 
 \clearpage
 \bibliographystyle{unsrt}
