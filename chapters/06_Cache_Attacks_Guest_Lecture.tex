@@ -443,6 +443,13 @@ different virtual memory pages, one of each process, will be mapped into the
 same physical memory page. As of today, no cloud service company that takes
 itself seriously is using memory deduplication, e.g., Amazon EC2.
 
+\subsubsection{Evicts+Reload}
+\label{subsubsec:evictreload}
+A Flush+Reload variant which not require using the clflush instruction.
+Instead of using the clflush instruction, Evicts+Reload~\cite{Gruss2015}, is accessing physically congruent addresses in
+a large array which is placed in large pages by the operating system. In order to compute physically congruent addresses we need to determine the lowest 18 bits of the physical address to attack, which can then be used to evict specific cache sets.
+
+
 \subsection{Prime+Probe}
 \label{subsec:primeprobe}
 First, for the Prime+Probe attack to work, the Last-Level-Cache (LLC) should be
