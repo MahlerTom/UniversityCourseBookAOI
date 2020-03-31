@@ -1,4 +1,4 @@
-# AttacksonImplementationsCourseBook
+# Attacks on Implementations Coursebook
 
 This is the handbook for the course "Attacks on Secure Implementations", taught in Ben-Gurion University by Dr. Yossi Oren.
 
