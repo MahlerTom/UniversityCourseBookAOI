@@ -303,7 +303,10 @@ after which it goes public, with or without a patch. The strict deadline is
 meant to make sure the vulnerable vendor does not dismiss fixing the bug due to
 it being unknown, and thus security is improved.
 
-CVEs can be used to predict exploits – for example, there was a bug in Linux
+Over the years using machine learning with CVEs was used for detecting and classifing vulnerabilities in code\cite{mokhov2010use}, 
+as well as making automatic predictions for unseen vulnerabilities\cite{edkrantz2015predicting}.
+
+On the other hand, CVEs can be used to find unpatched exploits – for example, there was a bug in Linux
 which hasn't yet gone public, but someone needed to commit the changes, which
-contained the CVE-ID. Thus hackers could see the fix and learn of the
+contained the CVE-ID. Thus hackers could see the fix and exploit of the
 vulnerability before a patch was posted.
