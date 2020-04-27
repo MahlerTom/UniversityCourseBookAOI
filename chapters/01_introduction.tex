@@ -34,7 +34,7 @@ it's an English, a weather broadcast, an executable – and in general, it's
 something you can check the syntax, so with a very high probability, if you get
 an output that starts with ``Heil Hitler" – the key you used to decrypt the
 ciphertext is the correct key. We need to remember that the encryption machine
-was not very complex in those years, and to keep the secure massages safe, they
+was not very complex in those years, and to keep the secure messages safe, they
 had to find a way to protect their ciphertexts. The solution to that issue is a
 one-time pad.
 
@@ -113,7 +113,7 @@ didn't take their diagnosis seriously. So what did they do? The Bell labs were
 located next to the U.S Secret Service office, so they set up an antenna and
 they listened for an hour for radio transmissions that the Secret Service got in
 their office, and they gave the Secret Service their ``top-secrets" analyzed
-massages.
+messages.
 
 Obviously, the U.S Secret Service realized that the reported attack was not
 esoteric, and they asked for a solution from the engineers. The solution of Bell
@@ -237,7 +237,7 @@ known as the CIA~\cite{cia} triad:
     I'll get my grade and not my friend's grade. A possible attack could be data
     leakage.
     \item \textbf{Integrity} - all the data in the system is correct. A possible
-    attack could be that one side of the communication will accept a massage
+    attack could be that one side of the communication will accept a message
     they are not supposed to accept.
     \item \textbf{Availability} - the system must work (in a reasonable time). A
     possible attack could be a Denial of Service (DOS).
@@ -281,7 +281,7 @@ Cryptographically Secure Algorithms and Protocols:
     \item \textbf{Key Exchange} - Diffie Hellman algorithm.
     \item \textbf{Hashing and HMACs} - a hash is a function that gets a long
     input (the length doesn't matter) and outputs a fixed size output. A hash
-    function is secure when it's hard to find collisions, e.g. 2 massages with
+    function is secure when it's hard to find collisions, e.g. 2 messages with
     the same hash. HMAC is a hash with a key – when you change the key, the hash
     is changed.
     \item \textbf{Multiparty Computation}
@@ -347,7 +347,7 @@ story. We divide them as follows:
                     to sign malware as a software update.
                     \item \textbf{Short term key} - a key that generated during
                     a session start from the long-term key. If one steals this
-                    key, he can decode all the massages in the current session
+                    key, he can decode all the messages in the current session
                     and modify/inject them.
                 \end{itemize}
                 Notice that if one steals the long-term key it doesn't mean he
