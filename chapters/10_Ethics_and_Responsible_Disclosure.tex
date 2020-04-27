@@ -10,28 +10,41 @@
 
 \section{Computer Laws}\label{sec:comp_laws}
 
-Israel's computer laws are \textit{case-laws} – meaning there are a few written
+Israel's computer laws\footnote{Published in \emph{Sefer Hachukkim} 5755 No. 1534, 25 July 1995 p. 366 (P.L. 5754 No. 2278 p. 478).}
+are \textit{case-laws} – meaning there are a few written
 laws, and a judge would use those along with precedents and personal judgment to
 determine whether a person is guilty. This is opposed to
 \textit{continental-law}, in which everything is written and proceedings are
 executed literally by the book.
 
+\subsection{Definitions}
+\begin{enumerate}
+    \item "computer material" - software or computer information
+    \item "computer" - A device that works with the software to perform arithmetic or logical processing of data and peripherals, with exception to auxiliary computer
+    \item "auxiliary computer" - A device that able only to perform arithmetic
+    \item "information" - or computer information, is signs,instructions,data or concepts, except for software. the information is expressed via computer language and stored in the computer or any other media or volume.
+    \item "output" - any information that being produced or derived via the computer
+    \item "computer language" - appropriate expressive form for interpretation, delivery or processing by computer
+    \item "software" - A group of instructions expressed in the computer language that can cause a computer to function or to perform an action, and is either embedded or marked with a device or by means of electronic, electromagnetic, electro-optics or any other means, or either united with the computer in some way or separated from it
+\end{enumerate}
+
 The laws state which cyber-activities are considered illegal, as follows:
 \begin{enumerate}
     \item Unlawfully disrupting or interfering with a computer system
+    \item Unlawfully modify or delete any material or files from the computer system
     \item Providing false information or false output
-    \item Unlawful access to a computer system
+    \item Unlawful access, invade or penetrate to a computer system
+    \item Unlawful eavesdrop, according to the Wiretap Act 1979 rule
     \item As the above, but in order to commit another offence
-    \item Creating or distributing a computer virus (a virus can perform a
-    variety of malicious actions, remove/change files, ransomware, etc.)
+    \item Creating, distributing or offering to another person a computer virus (a virus can perform  variety of malicious actions, such remove/change files, ransomware, backdoor etc.)
 \end{enumerate}
 
 From this we learn that not any crime committed with the aid of a computer
 constitutes a cyber-crime; if a computer was used in the process of the crime,
 but none of the above computer laws were broken -- for example while
-profiteering\footnote{Profiteering is the act of purchasing a lot of tickets to
-prevent other people from purchasing them and then sell them for a higher
-price.} off an online ticket sale -- the action, while illegal, is not a cyber
+profiteering\footnote{The activity of taking unfair advantage of a situation to make a large profit, 
+often by selling goods that are difficult to get at a very high price (Cambridge Business English Dictionary).} 
+off an online ticket sale -- the action, while illegal, is not a cyber
 crime.
 
 
@@ -163,7 +176,7 @@ for John's death:
 moral system. It is mostly instinctive, or composed of a personally devised
 code, rather than conforming to a set of rigid universal rules.
 
-\paragraph{The Trolley Problem.} Imagine a trolley approaching a fork in the
+\paragraph{The Trolley Problem\cite{foot1967problem}.} Imagine a trolley approaching a fork in the
 railway. On the first path lie five people, and on the second only a single
 person. The trolley, if its course remains unchanged, will head for the first
 path, resulting in the deaths of the five people there. However, you as a
@@ -202,9 +215,12 @@ Our ``closeness" to a situation affects how we judge it by our moral standards.
 \paragraph{How to decide.} There are two main theories by which the morality of
 an action is judged:
 \begin{itemize}
-    \item Deontological ethics (Kant) -- what do my rules/morals say about this
+    \item Deontological ethics (Kant\footnote{Immanuel Kant was a German philosopher during the
+    Enlightenment era. His contributions have had a profound impact on almost every philosophical movement that followed him})
+    -- what do my rules/morals say about this
     action? (i.e. judge by motives)
-    \item Utilitarian ethics (Bentham) -- what are the consequences of this
+    \item Utilitarian ethics (Bentham\footnote{Jeremy Bentham was an English philosopherduring the
+    Enlightenment era and a social reformer regarded as the founder of modern utilitarianism.}) -- what are the consequences of this
     action? (i.e. judge by consequences)
 \end{itemize}
 
@@ -282,12 +298,15 @@ $t_p$ in \cref{fig:vulnerability_timeline}). Microsoft called this practice of
 disclosing privately Coordinated Vulnerability Disclosure, and claim it
 significantly reduces the amount of exploits on new vulnerabilities\cite{CVD}.
 
-Google introduced a system where the vulnerability remains private for 90 days,
+Google introduced a system\cite{googleDisclosure} where the vulnerability remains private for 90 days,
 after which it goes public, with or without a patch. The strict deadline is
 meant to make sure the vulnerable vendor does not dismiss fixing the bug due to
 it being unknown, and thus security is improved.
 
-CVEs can be used to predict exploits – for example, there was a bug in Linux
+Over the years using machine learning with CVEs was used for detecting and classifing vulnerabilities in code\cite{mokhov2010use}, 
+as well as making automatic predictions for unseen vulnerabilities\cite{edkrantz2015predicting}.
+
+On the other hand, CVEs can be used to find unpatched exploits – for example, there was a bug in Linux
 which hasn't yet gone public, but someone needed to commit the changes, which
-contained the CVE-ID. Thus hackers could see the fix and learn of the
+contained the CVE-ID. Thus hackers could see the fix and exploit of the
 vulnerability before a patch was posted.
