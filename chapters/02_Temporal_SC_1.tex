@@ -1,8 +1,8 @@
 \chapter{Temporal Side Channels I} 
 
 \section{History}
-In 1995, at the age of 22, Paul Kocher released a paper called Timing attacks on
-implementations of Diffie-Helman, RSA, DSS and other
+In 1995, at the age of 22, Paul Kocher released a paper called Timing Attacks on
+Implementations of Diffie-Helman, RSA, DSS and other
 systems~\cite{kocher1996timing}.
 
 Before it was published, he wrote about it in a mailing list of
@@ -12,14 +12,22 @@ political change. Originally communicating through the Cypherpunks electronic
 mailing list, informal groups aimed to achieve privacy and security through
 proactive use of cryptography} which included all sorts of people like
 mathematicians, photographers, artists anarchists and more. The attack was first
-demonstrated in 1997 in a cryptography conference. And later, in 1998 an
+demonstrated in 1997 at a cryptography conference. And later, in 1998 an
 academic paper was published describing how to perform the attack.
+In 2003 and 2007 this kind of attack was used to break SSL.
 
 
 
 \section{The Threat Model}
-Figure \ref{c1_fig_threat_model} descirbes the Threat Model on an implementation
-of some secure system. It is important to mention that we're talking about
+The objective of the attacker is to discover the password. The attacker goes about this by sending
+unlimited queries and measures their time.
+Unlimited queries are not always possible. Some devices are disabled after three to five tries.
+The same applies to time measurements.
+However the assumption is that these are possible according to Kerckhoffs's principle(law), 
+that states that everything except the key is public knowledge. 
+
+Figure \ref{c1_fig_threat_model} describes the Threat Model on an implementation
+of a secure system. It is important to mention that we're talking about
 attacking an implementation, and not the algorithm itself as we consider the
 algorithm or protocol being examined as completely secure.
 
@@ -43,11 +51,7 @@ algorithm or protocol being examined as completely secure.
     may be very noisy and may be rather difficult to implement)
 \end{enumerate}
 
-The objective of the attacker to discover the password. And what could the
-attacker do? The attacker can send unlimited queries and measure their time.
-Unlimited queries are not so trivial, If you think about it. Some devices can
-disable themselves after 3 or 4 or 5 periods. This can be a
-defense~\cite{ATM_bruteforce_block}
+
 
 \section{Timing attack}
 
