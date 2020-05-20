@@ -54,13 +54,15 @@ algorithm or protocol being examined as completely secure.
 
 
 \section{Timing attack}
+    A timing attack is based on the time it takes to complete an algorithm.
+
 
 \begin{figure}[H]
     \centering
     \includegraphics{images/chapter_1/password_check_algo_1.png}
     \caption{A simple and efficient password checking algorithm. In line 4
     there's a check if there length of the password is the same as the length of
-    the input. In line 8 there's an iteration over all of the characters in the
+    the input. In line 8 there's an iteration over all of the characters in the password
     }
     \label{c1_fig_pass_check_1}
 \end{figure}
@@ -68,11 +70,11 @@ algorithm or protocol being examined as completely secure.
 Consider the algorithm for password checking as described in figure
 \ref{c1_fig_pass_check_1}
 
-In a scenario where timing attack is not possible, breaking the password
- requires the attacker to bruteforce the password. That is, checking every
+In a scenario where a timing attack is not possible, breaking the password
+ requires the attacker to bruteforce the password, checking every
  possible string for one successful attempt.
 
-Let's assume the password is of length 16, if the password only contains english
+Let's assume the password is the length of 16 characters, and if the password only contains english
 upper-case characters we have 26 possible values for each of the 16 characters
 in the password. The first character has 26 possiblites, the second has 26
 possiblites and so on. So bruteforcing a password like this requries ${26}^{16}$
@@ -80,7 +82,7 @@ different attempts, which cannot be completed by any computer in a decent amount
 of time. In general, for a password of length $n$ and character range of size
 $k$, breaking the password will take $O({k}^{n})$ attempts.
 
-Now let's consider the scenrio where \textbf{timing attack is possible}. To
+Now let's consider the scenrio where \textbf{a timing attack is possible}. To
 perform a timing attack, the attacker takes advantage of the fact that when the
 program checks for strings equality, the comparison will finish as soon as it
 finds one character that doesn't match. Consider the following example where the
@@ -102,8 +104,8 @@ mitigations we can implement on our system to prevent such attacks.
 
 \subsection{Mitigation}
 We can consider adding a random wait time after checking each one of the
-characters. The problem of course is that the whole process of checking a valid
-process becomes slower. And of course, if the attacker can perform a lot of
+characters. The problem of course is that the whole process of checking for a valid
+password becomes slower. And of course, if the attacker can perform a lot of
 measurements on our system, since the noise is random, the attacker would be
 able to ignore it.
 
@@ -117,29 +119,29 @@ completely resistant to timing attacks.
     \centering
     \includegraphics{images/chapter_1/password_check_algo_2.png}
     \caption
-    {Prevention method 2, padding the user guess and the secret password to the
+    {Prevention method 1, padding the user guess and the secret password to the
     same length and check all characters even if there's a mismatch in the first
     character.}
     \label{c1_fig_pass_check_2}
 \end{figure}
 
 The first method we examine is to pad the secret password and the user's guess
-to the same length. Also - we do not return as soon as we see a character
+to the same length. Also - the function dosen't exit as soon as we see a character
 mismatch. The code is described in figure 
  \ref{c1_fig_pass_check_2}
 
 The problem with this implementation is that every time there's a character
-mismatch we execute additional code. Which is loading the variable
+mismatch we execute additional code, which is loading the variable
 \lstinline{result} and writing the value \lstinline{false} to it. This may seem
-insignificant in the beginning but actually, this is makes our code \textbf{much
-more vulnerable than it was before}. As now the time of it takes for the entire
+insignificant in the beginning but actually, this makes our code \textbf{much
+more vulnerable than it was before}. As now the time it takes for the entire
 function to complete is linearly dependant on the amount of characters
 mismatches we have, this allows an attacker to perform the same attack from
 before with no significant changes to his original timing attack.
 
 One might think of a fix which is adding another branch to the \lstinline{if}
 statement that will do some garbage operation like \lstinline{foo = false} just
-so that the attacker might not be able to tell the difference between a match
+so that the attacker might not be able to distinguish between a match
 and a mismatch. The problem with this fix might be that the access time to one
 variable may be different than the access time to another variable, and the
 attacker will be able to tell the difference between them.
@@ -165,16 +167,16 @@ correct and which are not due to the Avalanche property.
 Using hashes to perform a secure password check is described in the algorithm in
 figure \ref{c1_fig_pass_check_3} A guess is being hashed before it is compared
 against the hash of the true password. An attacker might use the same methods
-from before to try to leak the hash of the true password, but that would be very
+as described previously to try to leak the hash of the true password, but that would be very
 difficult as the attacker does not input the hash, the attacker only controls a
-string that is later being hashed by the algorithm. So the trying the methods
-from before to leak the password would not work if the hash used is propely
+string that is later being hashed by the algorithm. So trying the previous methods
+to leak the password would not work assuming the hash function is propely
 implemented. 
 
-A possible leak that can occur from this method is the length of the true
+A possible leak occuring from this method is the length of the true
 password. In line 7 of the algorithm in figure \ref{c1_fig_pass_check_3} the
 hash of the true password is computed. Line 7 makes the total run time of the
-program dependant of the length of the true password. While this might be risky,
+program dependent upon the length of the true password. While this might be risky,
 this is easy to fix - we can just precompute the hash of the true password and
 use it whenever the algorithm runs. This is done for example in Linux where the
 hashes of user's passwords are stored in a file in \lstinline{/etc/shadow}.
@@ -236,8 +238,8 @@ To encrypt, we compute $2^{3} = 8$ mod 11, Which is the cipher. And to decrypt,
 we're using the private key $11$ as follows: $8^{11}$ = 2 mod 15. And now we
 have our message back, 2.
 
-Since this is not a crypto course, we will not go into any much more details
-about the algebra behind RSA. However it is important for us to get familiarize
+Since this is not a crypto course, we will not go into any more details
+about the algebra behind RSA. However it is important for us to familiarize ourselves
 with the basics of RSA in order to understand later how it was optimized and how
 can we break it.
 
