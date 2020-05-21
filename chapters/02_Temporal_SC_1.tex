@@ -183,27 +183,27 @@ hashes of user's passwords are stored in a file in \lstinline{/etc/shadow}.
 
 
 \section{The Algebra Behind RSA}
-The next thing we're going to perform a timing attack on is the RSA crypto
-system. But before we delve into how we break RSA (next chapter) we're going to
+The next thing we're going to perform is a timing attack on the RSA crypto
+system. But before we dive into how we break RSA (next chapter) we're going to
 discuss the algebraic foundation of RSA~\cite{kaliski2006mathematics}.
 
 The RSA cryptosystem lives in something called a multiplicative group. The group
 that is $Z^{*}_n$.
 
-We're taking 2 random prime numbers; $p$, $q$ and assign $n=pq$. The group
+We take 2 random prime numbers; $p$, $q$ and assign $n=pq$. The group
 $Z^{*}_n$ contains all the numbers from 1 to $n-1$ which do not divide $n$ (that
 is, do not divide $p$ or $q$). For example: for $p=3$ and $q=5$, $n= 3*5 = 15$
 so $Z^{*}_n = {\{1,2,4,7,8,11,13,14\}}$.
 
 Like all groups, this group has the associative operation which in our case is
-the modular multiplication, that is because we mentioned before that this group
+the modular multiplication, that is because, as we mentioned before,this group
 is a multiplicative group. The group is also closed under that operation.
 
 The group also has an identity element, 1. Which when multiplied by another
 element from the group - does not change it.
 
 The last property this group has is that every element $r$ in the group has an
-inverse element $r^{-1} \in Z^{*}_n$.
+inverse element $r^{-1} \in Z^{*}_n$ so that $r*r^{-1}=1$.
 
 Since the exponentiation is just repeated multiplication - we consider
 exponentiation to also be a closed operation under that group. Each element has
@@ -215,7 +215,7 @@ It also important to note that we cannot compute $(p-1)(q-1)$ from knowing $n$
 
 \subsection{Elementary Operations of RSA}
 To use the RSA crypto system to encrypt and decrypt messages you first have to
-generate the infrastructure. That is deciding on $p$ and $q$ both large prime
+generate the infrastructure, that means deciding on $p$ and $q$, both large prime
 numbers and computing $n = pq$ and $(p-1)(q-1)$ denoted as $\phi(n)$
 
 \begin{itemize}
@@ -234,8 +234,8 @@ Example: Consider $p = 3$, $q = 5$. So we can compute $n = 3*5 = 15$ and
 $\phi(15) = 2 * 4 = 8$ Let's assume we choose $e = 3$ and $d=11$. We consider
 the message 2.
 
-To encrypt, we compute $2^{3} = 8$ mod 11, Which is the cipher. And to decrypt,
-we're using the private key $11$ as follows: $8^{11}$ = 2 mod 15. And now we
+To encrypt, we compute $2^{3} = 8$ mod 11, Which is the cipher.To decrypt,
+we're using the private key $11$ as follows: $8^{11}$ = 2 mod 15. Now we
 have our message back, 2.
 
 Since this is not a crypto course, we will not go into any more details
