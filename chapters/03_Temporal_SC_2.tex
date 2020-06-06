@@ -2,11 +2,10 @@
 
 \section*{recap}\label{sec:recap}
 
-In the previous chapter we discussed about RSA cryptosystem~\cite{wikiRSA}, and
-presented  the most expensive operation in the RSA. When we need to take the
-message (m) and raise it to the power of the key (either the public key, the
-private key, the verification key and so on)
-\[ C = m^e(modn) \] But the simplest algorithm to raising by a number uses
+In the previous chapter we discussed about RSA cryptosystem~\cite{wikiRSA}. In this chapter, we
+presented the most expensive operation in the RSA algorithm which is when we need to take the
+message (m) and raise it to the power of the key.
+\[ C = m^e(modn) \] The simplest algorithm for raising a number to a power uses
 modular multiplication which is an expensive operation.
 
 \begin{figure}[!ht]
@@ -18,14 +17,14 @@ modular multiplication which is an expensive operation.
 Modular multiplication is pretty straightforward. It works just like modular
 addition. You just multiply the two numbers and then calculate the standard
 name. Examples for Modulo 7 and 15 can be found in \Cref{fig:modmul}. Why
-modular multiplication is expensive? Because we have to take the modulo many
-times which is as expensive as division. Division is the most expensive integer
-operation exists, and  therefore we don't want to do many divisions. So, one way
-to do this is by multiplying and multiplying and doing the modular reduction at
-the end, but the problem is the runtime of multiplication grows exponentially
-with the number of the multiplicands. Other way is with each multiplication do a
-\( mod n \), but the numbers grow longer and longer, and the runtime gets higher
-and higher, so we can't do that either. 
+modular multiplication is so expensive? Because we have to take the modulo many
+times which is as expensive as division\footnote{Division is the most expensive integer
+operation exists, and  therefore we don't want to do many divisions}. So, one way
+to do this is by keep multiplying and doing the modular reduction only at
+the end. The problem with that approach is that the runtime of multiplication grows exponentially
+with the number of the multiplicands. 
+Another way is to do a \( mod n \) with each multiplication, but the numbers keep growing 
+and the runtime keep raising, so we can't do that either. 
 
 \begin{figure}[!ht]
     \centering
@@ -33,33 +32,34 @@ and higher, so we can't do that either.
     \caption{Visualization of powers of 10 from one to 1 billion.} \label{vispow10:fig}
 \end{figure}
 
-So, as we discussed in the last chapter, the slowest and most trivial way of
-implementing modular multiplication is just to take $g$ and multiply it by $g$,
-by $g$, by $g$ ($e$ times) \(g^e mod n\) and every once in a while doing modulo
-n, either every multiplication or just in the end. The problem with this was
-that if e is a number that consists of 1024 bits, then the worst case number
-that we might need to multiply $g$ is \( 2^{1024} \) which is a lot, we don't
-want to do that.
+As we discussed in the last chapter, the slowest and most trivial way of
+implementing modular multiplication \(g^e mod n\) is to take $g$ and multiply it by itself
+$e$ times, and every once in a while do modulo $n$, 
+(either every multiplication or just in the end). The problem with this is
+that if $e$ is a number that consists of 1024 bits, then in the worst case 
+ we might need to multiply $g$ in itself \( 2^{1024} \) which is a huge number.
 
 \section{Efficiently Implementing Modular Exponentiations}\label{sec:Efficiently Implementing Modular Exponentiations}
 
-There are two ways of making this faster, and these two ways are either
-performing fewer modular multiplication (instead of  \( 2^{1000} \)  we would
-like to do 1000) and we also want the modular multiplication to be less
-expensive. The best case, would be same as regular multiplication over integer.
+There are two ways for efficiently implementing modular exponentiations:
+\begin{enumerate} 
+\item performing fewer modular multiplications (instead of  \( 2^{1000} \)  we would
+    like to do 1000). 
+\item Make each modular multiplication to be less expensive. 
+\end{enumerate} 
+The best case would be same as regular multiplication over integer.
 These two ways will reduce the cost of modular multiplication and modular
-exponentiations, and this is something we really want to do to make RSA work on
+exponentiations, and this is something we really want to do in order to make RSA work on
 a device.
 
-So, assume we are engineers, we want to implement modular exponentiations very
-cheaply. The right thing to do is of course to use some crypto library, but
-let's assume that's not possible, we are inventing the new CPU or something. So,
-there is very serious book online called the handbook of applied cryptography
-(\Cref{fig:appliedCrypt})~\cite{katz1996handbook}. The book is like a phone book
-or a recipe book, and is filled with algorithms, proofs and equations you need
+So, assumeing we are engineers, we want to implement modular exponentiations very
+cheaply. The right thing to do is obviously use some crypto library, but
+let's assume that's not possible, and we are inventing a new CPU. There is a very 
+famous book online called the handbook of applied cryptography
+(\Cref{fig:appliedCrypt})~\cite{katz1996handbook}. The book is like a recipe book,
+and is filled with algorithms, proofs and equations you need
 for cryptography. Chapter 14 deals with efficient algorithms for multiplicative
-proofs. The book contains the ways to do modular exponentiation: very cheaply,
-more cheaply and the old fashion approach. 
+proofs. The book contains several ways to do modular exponentiation. 
 
 \begin{figure}[!ht]
     \centering
@@ -76,31 +76,29 @@ known as square multiply.
 \end{figure}
 
 The inputs are $g$ (we want to raise g to the power of $e$, \(g^e\)) and \(e\)
-which is a bit string of $t$ ($t$ bits), in the book its $t+1$ (see
-\Cref{fig:ltrbe}). The most significant bit is always $1$, because there is no
-logic behind raising something to the power of zero. In this algorithm in the
-end \(A\) will be the result of $g$ raised to the power of $e$. 
+which is a bit string of $t$ ($t$ bits), (see \Cref{fig:ltrbe}). 
+The most significant bit is always $1$, because there is no
+logic behind raising something to the power of zero. In the end of this algorithm \(A\)
+will be the result of $g$ raised to the power of $e$. 
 
 In the beginning we set $A$ to be equal to $1$, and go over the bits from left
-to right (from the most significant to the least). Each time we do square ($A$
-equal $A$ times $A$, $A=A*A$) and multiply but we don't always multiply, we do
-it sometimes. If the current bit is $1$ (the \( i^{th}\) bit) then we multiply
-by $g$, $A=A*g$. This is the algorithm. Now, what happens when we do a squaring
+to right (from the most significant to the least). Each time we square $A$ ($A=A*A$),
+but we only multiply by $g$ $(A=A*g)$ if the current bit is $1$ (the \( i^{th}\) bit).
+Now, what happens when we do a squaring
 operation downstairs? What happens to the exponent upstairs? Its multiplied by
 $2$. So \({g^{e}}^2 = g^{2e} \)  and  \(g*g^{e} = g^{e+1} \). Now, we can think
 of a binary string, you can write down the bits using shifting (multiplying by
 $2$ is shifting) and adding $1$ is just putting one in the place.
 
-So how many modular multiplications will be performed in order raise g to the
-power of $e$ (the string is of length $t$)? The answer is \(O(t)\) What is the
-base case - lowest amount of multiplication that will be performed? the answer
-is $t+1$, the first bit is $1$ (most significant) so we do step 2.2 one time and
-all the rest of the string is zeros, and each time we do step 2.1. What is the
-highest amount of multiplication that will be performed? Answer: $2t$, if all
-the bits $1$ I do each time $2$ multiplications (step 2.1 and step 2.2). Anyway,
-this is \(O(t)\).
-
-So, instead of \(2^t\) as in the old algorithm we performed at most $2t$
+So how many modular multiplications will be performed in order to raise g to the
+power of $e$? The answer is \(O(t)\). In the best case - what is the lowest amount of 
+multiplications that will be performed? the answer
+is $t+1$ as the first bit is $1$ (most significant) so we do step 2.2 one time and
+all the rest of the bits are zeros, and so we will only do step 2.1 in these cases. 
+In the worst cast - what is the highest amount of multiplications that will be performed? 
+Answer: $2t$, if all the bits equal to $1$ we will do $2$ multiplications for 
+each bit (step 2.1 and step 2.2). In any case, this is equal to \(O(t)\),
+so instead of \(2^t\) as in the old algorithm we perform at most $2t$
 multiplications. 
 
 Lets review an example. Lets calculate \(7^6=7^{(110)}\) in the group \(
@@ -115,11 +113,11 @@ Lets review an example. Lets calculate \(7^6=7^{(110)}\) in the group \(
 	\item  \( A = A*A = 4 = 7^{(11<<1)} = 7^{(110)} \)
 \end{enumerate}
 
-Are there any ways doing it even faster? the answer is yes we can open the
-handbook of applied cryptography and find some others. The general thought of
-these algorithms is that we do some precomputation. In RSA there is a public
-number that you know that you are going to start, so g is known number, we don't
-care what $g$ is. So if we know what g is we can prepare all sort of lookup
+Are there any ways doing this even faster? The answer is yes as we can see in the
+handbook of applied cryptography. The general idea of
+these algorithms is that we do some pre-computation. The basic idea of RSA algorithm is
+that there is a public key $g$ that is a known number.
+So if we know what g is we can prepare all sort of lookup
 tables, in the window method we take each time three bits at the same time, and
 instead of doing \(A*g\) we do\( A*g*g\) or \(A*g*g*g\) .. (8 values we can
 use), and instead of \( A=A*A\) we do \(A=A*A*A\) and so on, this is the sliding
