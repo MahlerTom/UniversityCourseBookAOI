@@ -115,30 +115,32 @@ Lets review an example. Lets calculate \(7^6=7^{(110)}\) in the group \(
 
 Are there any ways doing this even faster? The answer is yes as we can see in the
 handbook of applied cryptography. The general idea of
-these algorithms is that we do some pre-computation. The basic idea of RSA algorithm is
+these algorithms is that we do some pre-computation. The idea of RSA algorithm is
 that there is a public key $g$ that is a known number.
-So if we know what g is we can prepare all sort of lookup
-tables, in the window method we take each time three bits at the same time, and
-instead of doing \(A*g\) we do\( A*g*g\) or \(A*g*g*g\) .. (8 values we can
+So if we know what $g$ is we can prepare all sort of lookup
+tables. One method for doing that is called the window method,
+where we take three bits at a time, and
+instead of doing \(A*g\) we do \( A*g*g\) or \(A*g*g*g\) .. (8 values we can
 use), and instead of \( A=A*A\) we do \(A=A*A*A\) and so on, this is the sliding
-window. There is binary method, you can just look at the book and find out (page
-616 algorithm 14.83, in the handbook of applied cryptography). So this is how
-you reduce modular multiplications and we can assume that any reasonable crypto
-implementation is not doing the naive method. It will use the left to right or
-the right to left which is basically the same idea or one of the window methods.
+window. Another method is called the binary method, which is well described in
+the handbook of applied cryptography (page 616 algorithm 14.83). We can assume 
+that any reasonable crypto implementation is not doing the naive method.
+It will use the left to right or the right to left binary exponentiation
+which is basically the same idea as one of the window methods.
 
-But what if we want the modular multiplication to be cheaper? There is a way and
-it's called the Chinese remainder theorem (CRT)~\cite{dingyi1996chinese}, which
-is called after Sun Tzu Suan, that was a teacher from the \nth{5} century and he
-wrote a book that contained all sorts of riddles and questions. And there is the
-riddle: 
+But what if we want the modular multiplication to be cheaper? A way to achive this 
+is called the Chinese remainder theorem (CRT)~\cite{dingyi1996chinese}, named after 
+Sun Tzu Suan that was a teacher from the \nth{5} century and
+wrote a book that contained all sorts of riddles and questions.
+The earliest known statement of the theorem was: 
 
-``there are certain things whose number is unknown.  If we count them by threes
+``There are certain things whose number is unknown.  If we count them by threes
 we have two left over; by fives we have three left over; and by sevens, two are
 left over. How many things are there?" 
 
-The answer is 23 and how it was discovered? Brute-force. So the CRT states that
-you have to have an equation set over modulo other multiplicative group such as
+The answer for this riddle is 23 and it can be discovered by Brute-force. 
+So the CRT states that you have to have an equation set over 
+modulo other multiplicative group such as
 this, you can solve it modulo $p$, you can solve it modulo $q$, this is more
 general theorem. You can solve it modulo the underling primes then combine them,
 and if there is only one solution in each of the sub-groups there is only one
