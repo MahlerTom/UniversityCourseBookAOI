@@ -337,100 +337,102 @@ device is doing the encryption.
 Let's assume the device under test is a remote controller.
 Inside the controller there is a secret key stored and also a counter. Whenever
 the button is pressed the remote controller constructs a package containing the
-serial number of the controller, the counter and whatever Boolean state of the
-button (which ever button was pressed). Then it sends it to a car and the car
-decrypts it. Why by the way do we need a serial number? Each ECU in the car has
+serial number of the controller, the counter and a boolean state of the
+button (which ever button was pressed). Then, it sends it to a car and the car
+decrypts it. Why do we need a serial number? Each ECU in the car has a 
 program to accept remote controls. So why do we need the counter? Without the
-counter an attacker can repeat a message sent from the remote controller to the
+counter, an attacker can repeat a message sent from the remote controller to the
 car only by reading the messages and sending them again. What happens when you
 press the button and the car is in the train station? The counter in the remote
-controller is out of sync with the counter in the car, there is a window of
-counter values the car will accept, if its closed the car will open without
+controller is out of sync with the counter in the car ans there is a window of
+counter values the car will accept. If its closed, the car will open without
 complaining. If it's a little closed we will need to press the remote control
-twice and when the car will see consecutive values it will open, but if it is
-too far it won't open. let's assume We can find out when the controller is
+twice and when the car will see consecutive values and it will open,
+ but if it is too far it won't open. 
+ Let's assume we can find out when the controller is
 transmitting (it is a very intensive operation that takes battery life and also
 radiates). So we know the moment in time when it is transmitting, did the
-encryption happened before or after the transmitting? Answer: before. Let's
-assume that the counter stored in the memory, let's say we found the moment in
-time when the chip is reading from memory, did it happen before or after the
-encryption? Answer: after, because we need the counter to be included in the
-message that will be sent.We can also make more assumptions such as ``the AES
-uses an 8 bit data pack or 16 bit or 32 bit", some of these assumptions might be
+encryption happened before or after the transmition? The ansewr is before. Let's
+assume that the counter stored in the memory and let's say we found the moment in
+time when the chip is reading from memory. Did it happen before or after the
+encryption? The answer is after, since we need the counter to be included in the
+message that will be sent. We can also make more assumptions such as ``the AES
+uses an 8 bit data pack or 16 bit or 32 bit". Some of these assumptions might be
 wrong but the ``vizata" method will help us to find out if they are wrong. 
 
-So first of all We make a simple assumption, assume that the smart card is using
+So first of all we make a simple assumption, that the smart card is using
 left to right binary exponentiation using Montgomery and this is a very
-reasonable assumption because everybody is using this method. The next thing to
-do is recursively (or inductively) guess a little part of the key. if we guessed
-the whole password it would take us exponential time but if we could guess a
-small part of the key each time it would take a linear time. So, we will try
-guess small parts of the key first, maybe the simplest thing to explain is
-guessing one bit or a single character but lets say we are guessing a small part
+reasonable assumption because most implementations are using this method.
+The next thing to do is recursively (or inductively) guess a little part of the key.
+if we guessed the whole password it would take us exponential time but if 
+we could guess a small part of the key each time it would take a linear time. 
+So, we will try to guess small parts of the key first, and maybe the simplest thing 
+to explain is guessing one bit or a single character, but lets say we are guessing a small part
 of the key. So now we know the beginning of the key and there is a little part
-we don't know. So the next step, we need to make a guess about what kind of an
+we don't know. The next step is that we need to make a guess about what kind of 
 effect our guess is going to have on the computation. We can say, for example,
-if we will guess the bit correctly than something will happen to the
-computation, if we will guess this key bit correctly it will take more
-power/take longer time/connect to the network more often, some kind of phenomena
-we can measure. So, in our case what is the only thing we can measure? Answer:
-time. we assume that if there is a Montgomery reduction in the calculation of
-this bit than the entire computation is going to take a little more time.
+that if we will guess the bit correctly then something will happen to the
+computation, and if we will guess this key bit correctly it will take more
+power/take longer time/connect to the network more often or some kind of other 
+phenomena we can measure. So, in our case what is the only thing we can measure? Answer:
+The anser is time. We assume that if there is a Montgomery reduction in the calculation of
+this bit then the entire computation is going to take a little more time.
 
 
-SO what is going on here? There is a very large computation here, we were able
+SO what is going on here? There is a very large computation here and we were able
 to guess the beginning of it but not the end of it. Now we are going to classify
 the measurements according to our hypothesis, in this case two groups (with or
 without Montgomery computation). If we guessed correctly then it will take
 longer to the group we said it will take longer. If not, it might take less or
-more, we don't know. If we guessed correctly, the groups will have meaning,
-means will will be able to statistically tell apart the set of the measurements
+more, we can't detrmine. If we guessed correctly, the groups will have meaning,
+means will be able to statistically tell apart the set of the measurements
 that will take a longer time and the set of measurements that will take less
-time. We are going to guess the left most bit of the key, there are only two
-options, most of the cases it will be 1. The next bit? 1 or 0. Now, we can
-simulate the running of this algorithm with our guess, not all the key but only
-the part we know and if there is going to be Montgomery reduction. So assume we
-have g, e and N. The device under test is calculating \(g^emodn\) where g came
-from? Supplied by the attacker. What about of e? secret we want to discover
-(\(e_t,e_{t-1},..,e_0\)) What about of N? public variable (known). The first
+time. We are going to guess the left bit of the key, and there is only one option.
+The next bit can be 1 or 0. Now, we can
+simulate the running of this algorithm with our guess, not for the whole key but only
+to the part we know, and if there is going to be Montgomery reduction. So assumeing we
+have $g$, $e$ and $N$. The device under test is calculating \(g^emodn\), but where $g$ came
+from? It is supplied by the attacker. What about $e$? Secret we want to discover
+(\(e_t,e_{t-1},..,e_0\)) What about $N$? public variable (known). The first
 thing it does, it enters the Montgomery representation. This information of how
 to enter the Montgomery representation is known to the attacker. It starts with
-g, then g becomes Mont(g), the attacker can also do it. First \(A=1\), than
+$g$, and then $g$ becomes $Mont(g)$, but the attacker can also do it. First \(A=1\), then
 \(A=A*A\) the next thing is \(A=A*g\) because we know that the most significant
 bit is 1. The next step is \(A=A*A\), now what is next? It depends, if
 \(e_{t-1}\) = 0 then \(A=A*A\) (skipping to next bit). Else if \(e_{t-1}\) = 1
-then \(A=A*g\). What happens next now we don't know. We can run both
+then \(A=A*g\). What happens next now we can't know. We can run both
 calculations, in particular we can find out if there was a reduction step in two
-optional operations. There are 4 option either one containing reduction step,
-neither or both. We can know exactly, assuming we make a guess on \(e_{t-1}\),
-if there is going to be an extra reduction step. We know enough to guess, if we
-guess correctly, we can know if there will be reduction step because we can
-calculate all the alternative options completely. So, lets do this now, we have
-many different g's, we have repeated this step many times, and for each of these
+optional operations. There are 4 options: Only one of then containing a reduction step,
+two of them containing a reduction steo or nither of them. We can know exactly, 
+assuming we make a guess on \(e_{t-1}\),
+if there is going to be an extra reduction step. We know enough to guess - if we
+guess correctly, we can know if there will be a reduction step because we can
+calculate all the alternative options completely. So, let's do this now, we have
+many different g's, and we have repeated this step many times, and for each of these
 g's we know if there is going to be an extra reduction step. So, now let's see
-how we do an attack using this. So, there is private key s, public key v and
-signing operation \(m^s mod n\). 
+how we can do an attack using this information. So, there is private key $s$, 
+a public key $v$ and a signing operation \(m^s mod n\). 
 
 We begin the attack with a bag of messages, all of them are valid, and we send
 them to the device under test (DUT). The DUT signs these messages (k messages),
 and for each one of the messages we get a trace, which is the data we collected
-using the side channel attack in this case it is only the time. now we have a
+using the side channel attack in this case it is only the time. Now we have a
 vector of size k and each element in the vector is the time it took to sign the
-message. Now, we are going to try to guess \(s_t,s_{t-1}\) \((s =
+message. Now, we are going to try and guess \(s_t,s_{t-1}\) \((s =
 s_t,s_{t-1},s_{t-2},…,s_0)\) and try to discover \(s_{t-2}\). 
 
 So for each of the messages and each key guess we are going to simulate the
 computation as far as we already know and in addition for the parts of the key
-we don't know we are going to simulate twice, why? One with a 0 and one with a
+that we don't know we are going to simulate twice - one with a 0 and one with a
 1. We are going to find out where the extra reduction step happens. If the next
-bit is 0, some of the messages have extra reduction we classify the message into
+bit is 0, then some of the messages have extra reduction and we classify the message into
 two bins, those who got extra reduction and those who didn't. But maybe the key
-is not 0 maybe its 1. So we can simulate the same thing with the next bit as 1,
+is not 0? maybe its 1. So we can simulate the same thing with the next bit as 1,
 and find out different set of messages with an extra reduction step. We can't
 find what the bits are but we can make a guess and simulate on both 0 and 1. So,
 now we divide our traces into two groups in 2 different ways, if the next key
-bit is 0 \(m_1,m_2,m_4,m_5,m_7\) got extra reduction and \(m_3,m_6,m_8,m_9\)
-didn't. If the next key bit is 1: \(m_2,m_3,m_5,m_8\) got extra reduction and
+bit is 0 then \(m_1,m_2,m_4,m_5,m_7\) got extra reduction and \(m_3,m_6,m_8,m_9\)
+didn't. If the next key bit is 1 then \(m_2,m_3,m_5,m_8\) got extra reduction and
 \(m_1,m_4,m_6,m_7,m_9\) didn't (see \Cref{fig:extraRed}). 
 
 
@@ -440,11 +442,11 @@ didn't. If the next key bit is 1: \(m_2,m_3,m_5,m_8\) got extra reduction and
     \caption{Key bit guess simulation} \label{fig:extraRed}
 \end{figure}
 
-If we guessed correctly what can we tell about the messages that got extra
-reduction? Answer: the runtime will be a little longer if we guessed the key bit
+If we guessed correctly what can we tell about the messages that got an extra
+reduction? Their runtime will be a little longer if we guessed the key bit
 correctly and If we guessed incorrectly it means we divided into two random
 groups which means the runtime will be similar in both groups. So if we guessed
-correctly the difference of runtime between the groups will be measurably
+correctly the difference in runtime between the groups will be measurably
 different. So now we are going to change the discussion about the messages into
 the traces.
 
@@ -457,43 +459,45 @@ the traces.
 
 if the next key bit is 0 then the statistics of the runtimes of 0 bit with extra
 reduction are going to be different from the runtimes of 0 bit without extra
-reduction. If we guessed wrong the runtimes of 1 bit with extra reduction will
-be different from 1 bit without extra reduction. Notice that we are not saying
+reduction. If we were wrong then the runtimes of 1 bit with extra reduction will
+be different from 1 bit without the extra reduction. Notice that we are not saying
 average or mean anywhere, because they are not required, it could be the
-variance changes or something else, the point is that there is some kind of
+variance changes or something else. The point is that there is some kind of
 difference that we can measure. So, how can we find out which of these two
-divisions is the correct one? Answer: we have two divisions of k traces, we
-measure distance of means. We are going to calculate the mean runtime of each
+divisions is the correct one? Answer: we have two divisions of k traces and we
+measure the distance of the means. We are going to calculate the mean runtime of each
 part (0 bit with or without the extra reduction and 1 bit with or without the
 extra reduction) and subtract between with/without extra reduction in each bit
 guess. If there is a large distance of means of the 0 bit guess as oppose to the
-1 bit guess than probably the splitting of traces in the 0 bit guess is more
-meaningful than 1 bit guess, if we are able to split meaningfully then we
+1 bit guess then probably the splitting of traces in the 0 bit guess is more
+meaningful than the 1 bit guess. If we are able to split meaningfully then we
 guessed the key correctly. Now, let's go back into statistics and talk about the
 T-test~\cite{wikittest}. The T-test was invented by William Sealy
 Gosset~\cite{wikigosset} who was a chemist who worked for a very famous brewery
 in Ireland (Guinness). So, what is the idea? We have two populations that are
 different in some way. There are two kinds of t-tests, pair T-test and unpaired
-T-test. what is the paired T-test? lets assume we claim that we are going to a
+T-test. what is the paired T-test? lets assume we are going to a
 tree and we taking the leaves that fall off the tree. We notice that the leaves
-that fall on the south side have less mold that on the north side, why is that?
-Because there is more sun on the south side that is drying the leaves. 
+that fall on the south side have less mold that the leaves that fall
+on the north side. Why is that? Because there is more sun on the south side that
+is drying the leaves. 
 
 How do we prove our theory? We send our undergrad research assistant to collect
-a bag of leaves form the north side and a bag of leaves from the south and now I
+a bag of leaves form the north side and a bag of leaves from the south side and 
 tell the undergrad to count the percentage of mold in the southern and northern
 leaves. When the undergrad comes back, very exhausted, he provides us with an
 excel file that have 1000 leaves from the north side and 1500 from the south
 side. Now we want to prove our theory, each one of the leaves has a mold, We
-want to prove that there is a statistical difference between the two groups,
-this is the unpaired T-test. What is the paired? It is when we are talking about
+want to prove that there is a statistical difference between the two groups - 
+this is the unpaired T-test. What is the paired T-test? 
+It is when we are talking about
 something which we can identify as pairs. For example, we are developing a
 cancer medicine and we want to test it. Now, we don't take any undergrads but
 only very sick mice with cancer. We measure the weight of the tumor in order to
 have a list of 100 mice and tumors. Then we divide them into two groups, one we
-treat with my medicine and the other we don't. In the end of the experiment, we
-measure the tumors again, but now each measurement is a pair, one before
-treatment and one is after. And we want to say that the size of the tumor is
+treat with a medicine and the other we don't. In the end of the experiment, we
+measure the tumors again, but now each measurement is a pair, one before the
+treatment and one is after. We want to say that the size of the tumor is
 smaller after the treatment. Now let's review the student's unpaired T-test demo
 in Matlab. The mat in Matlab is for matrix, we can define matrix like this:
 
@@ -522,7 +526,7 @@ The function randn(1) which creates normally distributed random variable which
 follows a Gaussian distribution which means the variance is 1 and the mean of 0.
 What is the minimum value this function will output? Answer: None, but
 statistically the value is closer to 0. How can we create a random variable with
-mean different from 0? Answer: add the mean, if we want mean N. we will do $N$ +
+mean different from 0? Answer: add a constant to the mean, if we want mean N. we will do $N$ +
 randn (1). We can even create a vector of randomly chosen numbers using randn
 (1, 5) + 5 : [4.9369, 5.7147, 4.7950, 4.8759, 6.4897] and if we will do randn
 (1, 5)*.1 + 5 the numbers will be even closer to 5. So, now we are ready to try
@@ -541,15 +545,15 @@ the student T-test.
     \caption{Plotting of the vectors for \(mu_1 = 10, mu_2 = 20\)} \label{fig:defmatplot}
 \end{figure}
 
-Looking only on the graphs can we say they are from the same distribution?
+Looking only on the graphs - can we say they are from the same distribution?
 Answer: we can't be sure. We want to run the T-test to find out if they are
 statistically significant. There is a hypothesis and we need to either reject or
-accept the hypothesis. If \(H_0\) than they are from the same distribution and
-if \(H_1\) than they are from different distributions. If we run the code the
-result will be that they are of different distributions with 0.959 certainty.
-Each time we ran we can get different results, if the certainty is smaller than
-0.95 in matlab, the hypothesis is rejected. How can we make it more difficult
-for the ttest2? Answer: if we change \(mu_2\) to 11, than they will be very
+accept the hypothesis. If \(H_0\) then they are from the same distribution and
+if \(H_1\) than they are from different distributions. If we run the code, the
+result will be that they are from different distributions with 0.959 certainty.
+Each time we run we can get different results, if the certainty is smaller than
+0.95, the hypothesis is rejected. How can we make it more difficult
+for the ttest2? Answer: if we change \(mu_2\) to 11, then they will be very
 close distributions. 
 
 \begin{figure}[!ht]
@@ -558,16 +562,16 @@ close distributions.
     \caption{Plotting of the vectors for \(mu_1 = 10, mu_2 = 11\)} \label{fig:defmatplot2}
 \end{figure}
 
-How we as attackers will handle this situation? Answer: run many times. So we
-change the vector length (such as 50000). There is something called power
-analysis, which means given these parameters (mu and sigma) how many
-measurements you need to run to be sure with 95%. As engineers we don't really
+How we as attackers can handle this situation? Answer: run many times. So we
+change the vector length (for example to 50000). There is something called power
+analysis, which means given these parameters ($mu$ and $sigma$) how many
+measurements you need to run to be sure with 95 percent. As engineers we don't really
 care about T-tests, we have a budget of measurements and we just take the one
 with the larger mean distance, but what if we are wrong (guessed 1 instead of
-0)? Answer: after we guessed one bit wrong all the bits afterwards are wrong
+0)? After we guessed one bit wrong all the bits afterwards are wrong
 because they are simulated wrongly. So, how can we simulate a full attack? If we
 guessed 1 bit using the differences of means then we continue to the next bit in
-linear time. Lets review  a figure from " A Practical Implementation of the
+linear time. Let's review a figure from " A Practical Implementation of the
 Timing Attack" which you are encouraged to read.
 
 
@@ -577,7 +581,7 @@ Timing Attack" which you are encouraged to read.
     \caption{x axis – is the bit index from right to left (the left most bit is known to be 1) and y axis – is the distance of means we chose (some times its 500 or 100 but after 151 the distance of means is a lot smaller which means we guessed a bit wrong). How to solve it? Answer: go backwards and backtrack.} \label{fig:figpita}
 \end{figure}
 
-Now lets talk about counter measurements. When Kocher announced the attack to
+Now let's talk about counter measurements. When Kocher announced the attack to
 the cipherpunks mailing list there was kind of discussion about it. Here is a
 message (see \Cref{fig:paul}) from there that was sent by Ron Riverst. He was
 replying to William Simpson, who was the author of Photuris which is related to
@@ -592,64 +596,63 @@ the IPsec protocol and was used for kits change in the IP protocol.
 When he read that this attack can attack Photuris, Bill replied: don't worry
 this will be fixed in Photuris. How to do this? By dithering the return time of
 identification message a few extra milliseconds. Which means he is doing
-mitigation, he is not adding a random delay because random is very expensive, he
+mitigation, as he is not adding a random delay because random is very expensive, he
 is going to finish the calculations and is going to look at the clock and
 exactly when the millisecond changes (or second) send the package. What does it
-mean? It means that since the beginning is random then he is going to add random
+mean? It means that since the beginning is random then he is going to add a random
 delay. So, what Ron Rivest replied? It will reduce the data leakage but will not
-eliminate it. Why so? How the attacker will overcome this? Answer: he will need
-to measure more, this is network-based protocol, the attacker can measure many
-more times. He says, in addition, the public key computation time should be
+eliminate it. Why so? How the attacker will overcome this? He will need
+to measure more, this is network-based protocol, the attacker can measure as 
+many times as he wants. He says, in addition, the public key computation time should be
 constant and independent from the message being sent. Ron Rivest suggest
 prevention as a countermeasure. So, what time it is going to be? Answer: the
 worst-case time. he adds a side note that this kind of attack is very difficult
 to mount in an internet environment due to packet-routing timing variabilities,
 however it is wise to be careful. Few years later a demonstration was presented
 over the internet, there were more measurements to counter the routing problem.
-Adding noise is sometimes the only thing that works, sometimes it works
-sometimes it doesn't, if you add enough noise to delay the attack time up to a
-year the message might not be relevant by the time the attack succeeds.
+Adding noise is sometimes the only thing that works, if you add enough noise to
+delay the attack time up to a year the message might not be relevant by the time the attack succeeds.
 
-So, lets talk about two counter measurements, which are preventions. The first
+So, let's talk about two more counter measurements, which are preventions. The first
 one is called RSA blinding. RSA blinding is a prevention counter measure which
-actually works on average time and not worst-case time. we have secret key S and
-want to calculate \(m^s mod n\), and the attacker gives us m and we don't want
-to leak s. We showed that with enough m from the attacker he will successfully
-retrieve s. 
+actually works on average time and not on worst-case time. if we have a secret key $S$ and
+want to calculate \(m^s mod n\), and the attacker gives us $m$ and we don't want
+to leak $s$. We showed that with enough attempts from the attacker he will eventually
+retrieve $s$. 
 
 So, how do we do blinding? First of all, we can do this even before the attacker
 arrives, we generate random $r$ and calculate \(r^v mod n\) and \(r^{-1} mod
-n\). these calculations are not reviling any secrets because v is the public
-key. The attacker gives us m, so we calculate: 
+n\). These calculations are not reviling any secrets because $v$ is the public
+key. The attacker gives us $m$, so we calculate: 
 
 \[X = (r^v * m) mod n\]
 \[Y = X^s = (r^v*m)^s = r^{vs}*m^s = r*m^s mod n \] 
 \[ // v*s mod n = 1 mod n)\]
 
 Now, $Y$ is leaking information because we raise a number to the power of the
-secret key, but $r$ is random number which the attacker doesn't know so he can't
-simulate the execution. How we remove r? We just calculate 
+secret key, but $r$ is a random number which the attacker doesn't know so he can't
+simulate the execution. How we remove $r$? We just calculate 
 
 \[S = Y*r^{-1} = r*m^s*r^{-1} = m^s mod n\]
 
-Why doesn't everybody use it? Answer: because its expensive, 2 modular
+Why doesn't everybody use it? Answer: because it's expensive, 2 modular
 exponentiations instead of 1. Another problem is the random number generation,
 its hard to find random number generator. You can see RSA blinding in openPGP. 
 
-Now lets review another countermeasure. It called square and always multiply
+Now let's review another countermeasure. It called square and always multiply
 (see \Cref{fig:saama}). It is very similar to the square and multiply, just
 instead of only when \(d_i\) is 1 we will always calculate the multiply but the
 assignment will be only when \(d_i\) is 1. The problem with this is not the
 extra computation that came from turning sometimes to always. Speculative
 execution is always looking for instruction to execute, how does it decide if it
-will execute an instruction? If all its dependencies are met. If I say \(a =
-b*c\) and \(e = b*c\) they can run both in the same time. what happens is when
-the instruction brought to the CPU there is actually nobody is waiting for t, so
+will execute an instruction? If all it's dependencies are met. If I say \(a =
+b*c\) and \(e = b*c\) they can run both in the same time. What happens is when
+the instruction brought to the CPU there is actually nobody is waiting for $t$, so
 as soon as it finishes to run the \(s =s *s mod n\) and \(d_i\) is equal to 0 it
-will just return s. Moreover, the compilers are also capable of detecting such
+will just return $s$. Moreover, the compilers are also capable of detecting such
 cases and optimize them by dismissing the else statement. So if we have a very
 simple CPU with no speculative execution no compiler and we wrote it in assembly
-we wont be able to attack it, but we could use power analysis.
+we won't be able to attack it, but we could use power analysis.
 
 \begin{figure}[!ht]
     \centering
@@ -657,11 +660,11 @@ we wont be able to attack it, but we could use power analysis.
     \caption{Square and always multiple algorithm} \label{fig:saama}
 \end{figure}
 
-If we run this algorithm as is, we have two places in memory for s and for t,
-every action we load s then multiply and then edit the memory of s, same goes in
-the multiply section. We load s and m then multiply and then store it in s. It's
-always loading and storing s, but what happens when it goes to the else segment:
-it loads s loads m and then store into something other then s. So the power
+If we run this algorithm as is, we have two places in memory for $s$ and for $t$,
+every action we load $s$ then multiply and then edit the memory of $s$. Same goes in
+the multiply section. We load $s$ and $m$ and then multiply and store it in $s$. It's
+always loading and storing $s$, but what happens when it goes to the else statment:
+it loads $s$ and $m$ and then store this into something other then $s$. So the power
 consumption is different between the store and the load. You can read more in
 the paper (``defeating RSA multiply-always and message binding" by Marc F.
 Witteman et al.~\cite{witteman2011defeating})
@@ -673,7 +676,7 @@ history in the browser. But what happens when we click on a hyper link (blue
 link)? It turns purple after the click. So, there was a nice trick that websites
 used to do, they attached the link to an HTML element and added JavaScript code
 that at the change of the color can now update that you have visited the site.
-The world wide web consortium decide that it was a privacy leak and you are not
+The world wide web consortium decided that it was a privacy leak and you are not
 allowed to read the color of an HTML element anymore. Now we can set the color
 but can't read it. One of the speakers in the black hat 2013 used timing attacks
 to find out if a web site was visited or
