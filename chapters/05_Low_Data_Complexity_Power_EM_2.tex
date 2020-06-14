@@ -171,8 +171,8 @@ one after another, if you want to write a new software for this computer you can
 write it in C or Java, they're cheap and commonly used.
 
 \begin{figure}[htp]
-\hspace*{-0.5in}
-\includegraphics[scale=0.4]{images/Lecture_5/ledger.png}
+\hspace*{0in}
+\includegraphics[scale=0.3]{images/Lecture_5/ledger.png}
 \caption{Bitcoin Wallet}\label{fig:Bitcoin Wallet}
 \end{figure}
 
@@ -203,7 +203,7 @@ book attacking ASIC.
 
 
 \begin{figure}[htp]
-\hspace*{+0.5in}
+\hspace*{0in}
 \includegraphics[scale=0.4]{images/Lecture_5/arduino.png}
 \caption{Arduino}\label{fig:Arduino}
 \end{figure}
@@ -227,8 +227,8 @@ the magic happens, this piece of silicone can actually do logic like multiply,
 add, shift or compare. 
 
 \begin{figure}[htp]
-\hspace*{-0.5in}
-\includegraphics[scale=0.4]{images/Lecture_5/8bit-mc.png}
+\hspace*{0in}
+\includegraphics[scale=0.3]{images/Lecture_5/8bit-mc.png}
 \caption{8-bit microcontroller}\label{fig:8-bit microcontroller}
 \end{figure}
 
@@ -281,8 +281,8 @@ from the phone, so you really have to decrypt the message.
 
 \begin{figure}[htp]
 \centering
-\hspace*{-0.5in}
-\includegraphics[scale=0.4]{images/Lecture_5/RSA-PA.png}
+\hspace*{0in}
+\includegraphics[scale=0.3]{images/Lecture_5/RSA-PA.png}
 \caption{RSA Power Analysis}\label{fig:RSA Power Analysis}
 \end{figure}
 
@@ -333,7 +333,7 @@ microcontroller has a secret key, and it uses an AES encryption. We can ask him
 to encrypt and decrypt, we send the command in the serial line.
 
 \begin{figure}
-\hspace*{0.5in}
+\hspace*{0in}
 \includegraphics[scale=0.5]{images/Lecture_5/AES_setup.png}
 \caption{AES Setup}\label{fig:AES Setup}
 \end{figure}
@@ -991,21 +991,28 @@ solver will fail. what can we do in this case? We try again.
     down a single variance $\sigma$, we keep track of a whole matrix of
     covariances. For example, to model three random variables ($\mathbf{X},
     \mathbf{Y}, \mathbf{Z}$), this matrix would be\\
+    
     \begin{minipage}{\linewidth}
       \centering
-      \includegraphics{images/Lecture_5/cov.png}
-      \end{minipage}
+      \includegraphics[scale=0.6]{images/Lecture_5/cov.png}
+      \end{minipage}\\
+      
+      
     Also, note that this distribution needs to have a mean for each random
     variable:\\
+    
        \begin{minipage}{\linewidth}
       \centering
-      \includegraphics{images/Lecture_5/mu.png}
-      \end{minipage}
+      \includegraphics[scale=0.7]{images/Lecture_5/mu.png}
+      \end{minipage}\\
+      
+      
     The PDF of this distribution is more complicated: The equation for k random
     variables is:\\
+    
      \begin{minipage}{\linewidth}
       \centering
-      \includegraphics{images/Lecture_5/dist.png}
+      \includegraphics[scale=0.7]{images/Lecture_5/dist.png}
       \end{minipage}
 
 \subsection{Creating the Template}
@@ -1073,31 +1080,31 @@ solver will fail. what can we do in this case? We try again.
       calculation will look like:
       \begin{figure}[htp]
       \centering
-      \includegraphics{images/Lecture_5/pc1.png}
+      \includegraphics[scale=0.7]{images/Lecture_5/pc1.png}
       \end{figure}
        
       \item Find the variance $v_i$ of the power at each point of interest. One
       way of calculating this is:
       \begin{figure}[htp]
       \centering
-      \includegraphics{images/Lecture_5/pic2.png}
+      \includegraphics[scale=0.7]{images/Lecture_5/pic2.png}
       \end{figure}
     
       \item Find the covariance $c_{i, i^*}$ between the power at every pair of
       POIs $(i and i^*)$. One way of calculating this is:
       \begin{figure}[htp]
       \centering
-      \includegraphics{images/Lecture_5/pic3.png}
+      \includegraphics[scale=0.7]{images/Lecture_5/pic3.png}
       \end{figure}
       \item Put together the mean and covariance matrices as:
     
       \begin{minipage}{\linewidth}
       \centering
-      \includegraphics{images/Lecture_5/pic5.png}
+      \includegraphics[scale=0.7]{images/Lecture_5/pic5.png}
       \end{minipage}
       \begin{minipage}{\linewidth}
       \centering
-      \includegraphics{images/Lecture_5/pic4.png}
+      \includegraphics[scale=0.7]{images/Lecture_5/pic4.png}
       \end{minipage}
       
     \end{itemize}
@@ -1113,17 +1120,18 @@ solver will fail. what can we do in this case? We try again.
     template to a single trace. Our job is to decide how likely all of our key
     guesses are. We need to do the following:
     \begin{itemize}
-      \item Put our trace values at the POIs into a vector. This vector will be
+      \item Put our trace values at the POIs into a vector. This vector will be:
+      
        \begin{minipage}{\linewidth}
       \centering
-      \includegraphics{images/Lecture_5/pic6.png}
+      \includegraphics[scale=0.7]{images/Lecture_5/pic6.png}
       \end{minipage}
        
       \item Calculate the PDF for every key guess and save these for later. This
       might look like:
-      \begin{minipage}{\linewidth}
+      \begin{minipage}{0cm}
       \centering
-      \includegraphics{images/Lecture_5/pic7.png}
+      \includegraphics[scale=0.7]{images/Lecture_5/pic7.png}
       \end{minipage}
       \item Repeat these two steps for all of the attack traces
     \end{itemize}
@@ -1135,7 +1143,7 @@ solver will fail. what can we do in this case? We try again.
     
     \begin{figure}[htp]
         \centering
-        \includegraphics{images/Lecture_5/pic8.png}
+        \includegraphics[scale=0.7]{images/Lecture_5/pic8.png}
        \end{figure}
     
     \subsection{practical template attacks}
@@ -1150,7 +1158,7 @@ solver will fail. what can we do in this case? We try again.
           operation k, then this average is\\
               \begin{minipage}{\linewidth}
               \centering
-              \includegraphics{images/Lecture_5/pic9.png}
+              \includegraphics[scale=0.7]{images/Lecture_5/pic9.png}
               \end{minipage}
            
           \item After finding all of the means, calculate all of their absolute
@@ -1160,13 +1168,13 @@ solver will fail. what can we do in this case? We try again.
           \\
               \begin{minipage}{\linewidth}
               \centering
-              \includegraphics{images/Lecture_5/pic10.png}
+              \includegraphics[scale=0.7]{images/Lecture_5/pic10.png}
               \end{minipage}
        \end{itemize}
         An example of this sum of differences is:\\
               \begin{minipage}{\linewidth}
               \centering
-              \includegraphics{images/Lecture_5/pic11.png}
+              \includegraphics[scale=0.7]{images/Lecture_5/pic11.png}
               \end{minipage}
         \\
 

@@ -10,7 +10,7 @@ secret operation, AES operation. The device works as follows: we give input to
 the device (plain text) and then it works on the input to produce an output
 (cipher text) using a secret key. We want to recover the key. So, if we collect
 many pairs of plain text and cipher text, what can we do with that? Lots of
-things. In addition to plain text and cipher text, we have a side channel. What
+things. In addition to plain text and cipher text, we have a side channel \cite{SideChannel}. What
 is a side-channel? A side channel is an artifact of the computation and what's
 nice about the channel is that it depends on the intermediate values of the
 computation and not the output of it. We talked about number of side channels
@@ -19,10 +19,10 @@ throughout the course
 \subsection{Timing side channel}\label{c8_prev_lectures_recap_timing_sc:subsec}
 
 First, we used the time it took the computer to check for correct password in
-order to find the password. Later, we used a timing attack to attack RSA.
+order to find the password. Later, we used a timing attack \cite{TimingAttack} to attack RSA \cite{rivest1978method}.
 Actually, we didn't attack RSA, we attacked an implementation of RSA which was
 left to right multiplication exponentiation that uses a special representation
-which is called Montgomery (the Montgomery basis). The Montgomery basis
+which is called Montgomery (the Montgomery basis). The Montgomery basis \cite{Montgomery}
 representation which is very easy to do multiplications in this implementation,
 almost as easy as doing regular multiplications, but there is a step called
 Montgomery reduction which the computer does sometimes. Not a very expensive
@@ -56,7 +56,7 @@ our traces into two sets. In such a way, we can crack the key.
 
 \subsection{Differential Power Analysis (DPA)}\label{c8_prev_lectures_recap_dpa_sc:subsec}
 
-In DPA the output of our device under test (DUT) is the cipher text. AES is a
+In DPA \cite{kocher1999differential, kocher1998introduction} the output of our device under test (DUT) is the cipher text. AES is a
 very structured cipher, it has a fixed structure and it's going to be very rare
 that we will have a different run time. So, usually there is a program running
 on a CPU which has a clock and in each tick execute operation. AES is very
@@ -124,17 +124,17 @@ get the largest difference between the two means.
 
 \subsection{Hamming weight}\label{c8_CPA_hamming_weight:subsec}
 
-The hamming weight of a number is the amount of bits which are 1 in it's binary
+The hamming weight \cite{hamming} of a number is the amount of bits which are 1 in it's binary
 representation. Hamming weight can refer to a hamming weight of state, or to
 hamming distance, which means how many bits change between from one state to the
 next. Lets assume we are looking at the hamming weight of a byte. This hamming
 weight have values between 0 and 8. A number with hamming weight 0 will be 0 and
-a number with hamming weight one will be 8, 2, 4. For a random value it's more
-likely that it will get hamming weights of 4,3,2 than hamming weight of 0,1.
+a number with hamming weight one will be 8, 2, 4. For $m$ independent and uniformly
+distibuted bits, the whole word has an avergae Hamming weight $\mu_h = m/2$.
 
 \subsection{CPA background}\label{c8_CPA_background:subsec}
 
-We need to find a way to know when the traces are different. In DPA we guessed
+We need to find a way to know when the traces are different. In DPA \cite{kocher1999differential, kocher1998introduction} we guessed
 one byte of the key so we have 256 ways of splitting, but still, based on this
 guess we only guess one bit of side-channel. So now we have 256 different ways
 of splitting the cipher text into two groups and if we guessed right the two
@@ -148,7 +148,8 @@ with the amount of bits which are flipping in this time period. This fact was
 completely ignored when we did DPA. We just said the power consumption was
 different. As opposed to DPA, CPA doesn't ignore that fact. 
 
-In CPA, we are going to guess one byte of the key, but we are not going to look
+In CPA \cite{brier2004correlation, coron1962statistics, mayer2000smartly, oswald2003side},
+we are going to guess one byte of the key, but we are not going to look
 at one bit of the state but we are going to look at the hamming weight of the
 state. Assume that if we guessed a byte correctly, the CPU is going to have to
 handle a byte with it's hamming weight. For example, if we  guessed that the
@@ -161,7 +162,7 @@ that when more bits are changing the power consumption raises.
 
 \subsection{CPA on AES motivation}
 
-AES is byte oriented so we have 256 different guesses. Now, we are trying to
+AES \cite{anderson1998serpent} is byte oriented so we have 256 different guesses. Now, we are trying to
 give label to each one of the inputs. We start with a guess and then we give it
 a label. The first step of AES is to take the bytes of the plain text and XOR
 them with the secret (bit wise operation). The next step is to apply the subByte
@@ -174,7 +175,8 @@ even stronger. Next there is Mix columns operation. The mixColumns operation
 uses 32 bits so we will have 232 different guesses to do mixColumns. Since 232
 is a low we will need a lot of traces and we will need to measure the DUT a lot
 of times. Then we classify the measurements. There is going to be a statistical
-meaningful classification for correct guesses.
+meaningful classification for correct guesses. We refer readers to \cite{AESDescription} 
+for a further detailed explanation of AES algorithm.
 
 \begin{figure}[!ht]
     \centering
@@ -268,8 +270,8 @@ We have a DUT, we have a matrix of traces, we know the plain text, we know the
 cipher text, we know the power traces and we know the key. So we have the power
 trace and you want to find where inside the power trace is this bit being
 processed. Our objective now is to find out when is the DUT processing the first
-byte of the key. It could be interesting for us if you want to do fault attack
-or template attack or if you just want to make sure that you know how to do CPA.
+byte of the key. It could be interesting for us if you want to do fault attack \cite{FaultAttack}
+or template attack \cite{TemplateAttack} or if you just want to make sure that you know how to do CPA.
 As we saw earlier, the hamming weight of the subByte output is a good
 hypothesis.
 
@@ -351,7 +353,7 @@ hopefully in one of these rows we will have a peak and we will be happy.
 \subsection{CPA in Matlab examples}\label{c6_Matlab_CPA_example:subsec}
 
 We will show Matlab example which includes CPA, warm-up CPA, and the full CPA as
-seen in this section. We are working on a data set called WS2 which is part of
+seen in this section. We are working on a data set called WS2 \cite{WS2} which is part of
 the DPA toolkit. It has 200 traces, each one of size 30,000. These are power
 traces of the first round of AES on an 8-bit micro-controller which is very low
 clock speed and it's very vulnerable to DPA. In addition, that test setup is a

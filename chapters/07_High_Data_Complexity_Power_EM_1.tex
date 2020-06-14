@@ -11,7 +11,12 @@ consist of hundreds of thousands of points and then we actually wrote a
 classifier or let's say dozen of classifiers and the classifier takes as input
 the power traces and outputs what is the hamming weight of the first byte of the
 state, and what was the hamming weight of the second byte of the state and so
-on\ldots
+on\ldots 
+
+
+\textbf{Firstly, lets understand what hamming weights are.}
+The Hamming weight of a string is the number of symbols that are different from the zero-symbol of the alphabet used. For example the hamming weight of 11101 is 4, as seen in the chart below. It is thus equivalent to the Hamming distance from the all-zero string of the same length.
+The chart below is brought in order to show the hamming weight of different types of strings.
 
 \begin{table}
     \caption{Hamming weights of different bit strings~\cite{hamming}}\label{hammingWeights}
@@ -20,14 +25,22 @@ on\ldots
         \toprule
         String & Hamming Weight \\ 
         \midrule
-        11101 & 4 \\ 
-        11101000 & 4 \\
+        \textbf{111}0\textbf{1} & 4 \\ 
+        \textbf{111}0\textbf{1}000 & 4 \\
         00000000 & 0 \\
-        789012340567 & 10 \\
+        \textbf{789}0\textbf{1234}0\textbf{567} & 10 \\
         \bottomrule
     \end{tabular}
     \end{center}
 \end{table}
+
+The picture below is a nice visualization of how the hamming weight of binary numbers fluctuates when the binary number is growing.
+
+%\begin{figure}[!ht]
+    %\centering
+    %\includegraphics[width=0.8\textwidth]{images/Lecture6/HammingWeightBinary.png}
+    %\caption{Hamming weight for binary numbers (0-256)} \label{fig:HammingWeightBinary }
+%\end{figure}
 
 For AES you have 84 of this classifiers and we didn't actually talked about how
 these classifier are constructed but you can assume they take as input that
@@ -117,13 +130,13 @@ Maybe only one byte is incorrect and we might try to search for the key around
 the guess? Let's do a little bit of combinatorics: let's say I got AES key which
 is 16 bytes long and it's 8 bit implementation and I tried the key and it's
 wrong. Now, I'm trying to see if I change one byte in the key maybe that will
-fix the key. So, how many attempts well I have to perform? Lets try to change
+fix the key. So, how many attempts will I have to perform? Lets try to change
 the byte with index 0 to all possible values, then change at index 1, then 2 and
-so it goes\ldots How many decryptions should we do? We have 256 per position
+so on\ldots How many decryptions should we do? We have 256 per position
 times the 16 bytes of the key. And if that didn't work I didn't find a key,
 maybe I'll try 2 bytes combinations, so how many attempts I'll have to do now?
-It's 16 choose 2 which is more or less 16 squared so it's two to the power of
-$4\times2$. So I chose to byte and then what I do is that I go over all the
+It's 16 choose 2 which is more or less 16 squared which is equal to 2 to the power of 8.
+So I chose to byte and then what I do is that I go over all the
 possible combination of this bytes which is two to the power of 16 so it is two
 to the power of $8+8=16$. It grows up really fast and it's going to be as bad as
 brute force pretty quickly. And what if I have to change tree bytes? it's going
@@ -134,7 +147,7 @@ byte oriented so it's going to be more likely to get the entire byte wrong. So
 if I don't have the key right I am in trouble and I have to search and search
 very very hard. 
 
-\textbf{The solution to this problem is to have a more complex offline phase which prepare us to the online phase.}
+\textbf{The solution to this problem is to have a more complex offline phase which prepare us for the online phase.}
 
 Simple power-analysis will work just fine if it's reasonable to conduct
 thousands of measurement on the same device in order to eliminate noise with
@@ -157,14 +170,11 @@ need to own the device. That may cause some people to think that this attack
 model is irrelevant because it's not practical. In truth, it might be practical
 in a quite wide range of situations.
 
-\subsubsection{Why would we want to get the secret of somebody else?}
+\subsubsection{Why would we want someones secret?}
 
-A good example for it is how TV suppliers calculate your bill. You've a secret
-and you use it to identify yourself to the supplier. Based on that, the supplier
-should decide which TV shows you have access to, and how to charge you in case
-you watch paid TV shows, use VOD and etc\ldots If someone get his hand on your
-password, he can use it to watch whatever TV shows he wants at whatever cost,
-because you're the one to pay the bill.
+A good example of this is how TV suppliers calculate your bill.
+You use your secret to identify yourself to the supplier. The suppliers can then decide which programs you are given access to, and how to charge you for accessing purchasable items (a movie, vod, etc \ldots). 
+Consequently if someone were to obtain your secret somehow they would be able to watch anything at any cost. In the end you would be the one paying for it
 
 \subsection{How complex power analysis actually works}
 
@@ -204,6 +214,24 @@ find it interesting to look on the DPA book (the course book) and read about the
 countermeasures and the ways to overcome them.
 
 \subsection{Using the Vaizata method}
+
+\textbf{Reminder:}
+	
+\begin{itemize}
+\item Make a {simple assumption} about the implementation
+\item Guess a {small part} of the key
+\item Make an {hypothesis} about the effect of the guess on the execution
+\item {Classify the measurements} according to the hypothesis
+\item If we guessed right, the classification will be {statistically meaningful}
+\end{itemize}
+
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[height=0.9\textwidth]{images/Lecture6/vaizata.png}
+    \caption{Vaizata method stages} \label{fig:vaizata}
+\end{figure}
+
 The next thing we're going to do is to use the Vaizata similarly to how we did
 it with timing attacks. When we did timing attack, we made a guess about a bit
 of the key and then we measured how much time it took. Now, we're going to make
@@ -215,12 +243,6 @@ Unlike the timing attack where we knew that we measure the relevant data, when
 we used power analysis, we have a very long power trace where only few points
 relevant to us and all the other points represent data which isn't related to
 the key.
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[height=0.9\textwidth]{images/Lecture6/vaizata.png}
-    \caption{Vaizata method stages} \label{fig:vaizata}
-\end{figure}
 
 Now, we're looking for a stage during the AES algorithm, where a small amount of
 bits of the key, affect large amount of the bits in the state. The intuition
@@ -390,5 +412,37 @@ the right time it's separated from the other keys as shown in \Cref{fig:all}.
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{images/Lecture6/all.png}
-    \caption{distance of means for all key guesses across time} \label{fig:all}
+    \caption{distance of means for all key guesses across time \linebreak[4]} \label{fig:all}
 \end{figure}
+
+\subsubsection{Research Highlights}
+
+    \begin{itemize}
+        \item   This paper \cite{kocher1999differential} by Paul Kocher examines specific methods for analyzing power consumption measurements to find secret keys from tamper resistant devices.
+    
+        The paper presents the Differential Power Analysis subject comprehensively, its background, Simple power analysis, demonstration of DES algorithm attack, attacks on additional encryption algorithms using DPA and counter measures for DPA.
+        It’s also discussed approaches for building cryptosystems that can operate securely in existing hardware that leaks information.
+        \item Another article publish on 2005 \cite{mangard2005successfully} presents an attack on masked AES Hardware implementations.
+        During the last years, several masking schemes for AES have
+        been proposed to secure hardware implementations against DPA attacks.
+        In order to investigate the effectiveness of these countermeasures in practice,
+        the researchers responsible for the article designed and manufactured an ASIC. The chip features an
+        unmasked and two masked AES-128 encryption engines that can be attacked
+        independently.
+        In addition to conventional DPA attacks on the output of registers,
+        they have also mounted attacks on the output of logic gates. Based on
+        simulations and physical measurements they show that the unmasked and
+        masked implementations leak side-channel information due to glitches
+        at the output of logic gates. It turns out that masking the AES S-Boxes does not prevent DPA attacks, if glitches occur in the circuit. However, an attacker usually does not have easy access to the back-annotated
+        netlist of a product.
+        \item This Article posted by Stefan Mangard \cite{mangard2004hardware}
+        maintain that  Many hardware countermeasures against differential power analysis (DPA) attacks have been developed during the last years. Designers of cryptographic devices using such countermeasures to protect their devices have the challenging task to select and implement a suitable combination of countermeasures. Every device has different requirements, and so there is no universal solution to protect devices against DPA  attacks.
+
+        In this article, a statistical approach is pursued to determine the effect of hardware countermeasures on the number of samples needed in DPA attacks. This approach results in a calculation method that enables designers to assess the resistance of their devices against DPA attacks throughout the design process. This way, different combinations of countermeasures can be easily compared and costly design iterations can be avoided.
+        \item This article \cite{herbst2006aes} presents a countermeasure to Power Analysis attack on AES.
+        The article describes an efficient AES software implementation that is well suited for 8-bit smart cards and resistant against power analysis attacks. Our implementation masks the intermediate results and randomizes the sequence of operations at the beginning and the end of the AES execution. Because of the masking, it is secure against simple power analysis attacks, template attacks and first-order DPA attacks. 
+        Due to the combination of masking and randomization, it is resistant against higher-order DPA attacks. Resistant means that many measurements is required for a successful attack. 
+        
+        The implementation shown in the article compares well with other protected and unprotected AES software implementations for smart cards. The practical attacks that we have performed support our theoretical estimates about the security of the countermeasures.
+        This article also includes a practical evaluation of the countermeasures. The results prove the theoretical assessment of the countermeasures to be correct.
+    \end{itemize}

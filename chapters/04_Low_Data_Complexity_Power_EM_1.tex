@@ -31,6 +31,13 @@ electrical resistance of the load is a measure of its opposition to the flow of
 electric current through it. It is measured in Ohms (and denoted by
 \textbf{\textit{R}}).
 
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics{images/basic_electronic_circuit.png}
+	\caption{Basic electronic circuit.} \label{fig:basic_electronic_circuitn}
+\end{figure}
+
 \subsection{Resistors}
 
 As the name implies, a resistor resists the flow of electrical current. The
@@ -278,6 +285,12 @@ electricity. One example can be an amplifier that has audio signal and power
 supply as inputs and it generates a greater audio signal as an output using the
 power supply. 
 
+\begin{figure}[!ht]
+	\centering
+	\includegraphics{images/type_of_electronic_components.png}
+	\caption{Examples of electronic components.} \label{fig:type_of_electronic_components}
+\end{figure}
+
 Another interesting active element for this course is a transistor. In an
 integrated circuits, there are a lot of active devices such as transistors  that
 if we can analyze their behavior we can learn about the data that they are
@@ -437,6 +450,12 @@ store state information.
     \caption{Flipflop.} \label{fig:flipflop}
 \end{figure}
 
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/banch_of_flipflops.png}
+	\caption{Banch of electronic flipflops.} \label{fig:banch_of_flipflops}
+\end{figure}
+
 The circuit can be made to change state by signals applied to one or more
 control inputs and will have one or two outputs. It is the basic storage element
 in sequential logic. Flip-flops and latches are fundamental building blocks of
@@ -547,6 +566,17 @@ For doing this we are going to use hamming distance model. The Hamming distance
 between two vectors is the number of bits we must change to change one into the
 other. Example, what is the distance between the vectors 01101010 and 11011011? 
 
+\begin{displaymath}
+    X=x_{n},x_{n-1},...,x_{1},x_{0}
+\end{displaymath}
+Hamming weight:
+\begin{displaymath}
+    HW(X)=\sum x_{i}
+\end{displaymath}
+Hamming distance: 
+\begin{displaymath}
+    HD(X,Y)=HW(V_{1} \bigoplus V_{2})
+\end{displaymath}
 Answer: They differ in four places, so the Hamming distance d(01101010,11011011)
 = 4.
 
