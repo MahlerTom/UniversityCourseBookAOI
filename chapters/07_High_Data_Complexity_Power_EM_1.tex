@@ -412,5 +412,37 @@ the right time it's separated from the other keys as shown in \Cref{fig:all}.
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{images/Lecture6/all.png}
-    \caption{distance of means for all key guesses across time} \label{fig:all}
+    \caption{distance of means for all key guesses across time \linebreak[4]} \label{fig:all}
 \end{figure}
+
+\subsubsection{Research Highlights}
+
+    \begin{itemize}
+        \item   This paper \cite{kocher1999differential} by Paul Kocher examines specific methods for analyzing power consumption measurements to find secret keys from tamper resistant devices.
+    
+        The paper presents the Differential Power Analysis subject comprehensively, its background, Simple power analysis, demonstration of DES algorithm attack, attacks on additional encryption algorithms using DPA and counter measures for DPA.
+        It’s also discussed approaches for building cryptosystems that can operate securely in existing hardware that leaks information.
+        \item Another article publish on 2005 \cite{mangard2005successfully} presents an attack on masked AES Hardware implementations.
+        During the last years, several masking schemes for AES have
+        been proposed to secure hardware implementations against DPA attacks.
+        In order to investigate the effectiveness of these countermeasures in practice,
+        the researchers responsible for the article designed and manufactured an ASIC. The chip features an
+        unmasked and two masked AES-128 encryption engines that can be attacked
+        independently.
+        In addition to conventional DPA attacks on the output of registers,
+        they have also mounted attacks on the output of logic gates. Based on
+        simulations and physical measurements they show that the unmasked and
+        masked implementations leak side-channel information due to glitches
+        at the output of logic gates. It turns out that masking the AES S-Boxes does not prevent DPA attacks, if glitches occur in the circuit. However, an attacker usually does not have easy access to the back-annotated
+        netlist of a product.
+        \item This Article posted by Stefan Mangard \cite{mangard2004hardware}
+        maintain that  Many hardware countermeasures against differential power analysis (DPA) attacks have been developed during the last years. Designers of cryptographic devices using such countermeasures to protect their devices have the challenging task to select and implement a suitable combination of countermeasures. Every device has different requirements, and so there is no universal solution to protect devices against DPA  attacks.
+
+        In this article, a statistical approach is pursued to determine the effect of hardware countermeasures on the number of samples needed in DPA attacks. This approach results in a calculation method that enables designers to assess the resistance of their devices against DPA attacks throughout the design process. This way, different combinations of countermeasures can be easily compared and costly design iterations can be avoided.
+        \item This article \cite{herbst2006aes} presents a countermeasure to Power Analysis attack on AES.
+        The article describes an efficient AES software implementation that is well suited for 8-bit smart cards and resistant against power analysis attacks. Our implementation masks the intermediate results and randomizes the sequence of operations at the beginning and the end of the AES execution. Because of the masking, it is secure against simple power analysis attacks, template attacks and first-order DPA attacks. 
+        Due to the combination of masking and randomization, it is resistant against higher-order DPA attacks. Resistant means that many measurements is required for a successful attack. 
+        
+        The implementation shown in the article compares well with other protected and unprotected AES software implementations for smart cards. The practical attacks that we have performed support our theoretical estimates about the security of the countermeasures.
+        This article also includes a practical evaluation of the countermeasures. The results prove the theoretical assessment of the countermeasures to be correct.
+    \end{itemize}

@@ -395,3 +395,48 @@ story. We divide them as follows:
 
 Of course, the more limits we put on the attacker, the attack gets more and more
 impressive.
+
+\section{Related Work} \label{sec:RelatedWork}
+The whole topic of Attacks on implimitation has been widly reaserched,
+and side channels attacks have been found on many varius types of implantation.
+Here are a few interesting such types of side channels attacks
+ and examples for actoual attacks on those topics:
+\begin{itemize}
+    \item \textbf{Audio-based attacks} - for example, ultrasonic beacons and acoustic cryptanalysis. 
+    a type of side-channel attack that exploits sounds emitted by computers or other devices.
+    Most of the modern acoustic audio-based attacks focus on the sounds produced by computer keyboards and internal computer components,
+    but historically it has also been applied to impact printers and electromechanical deciphering machines.
+    here are a few examples of real-life acoustic attacks: 
+    \begin{itemize}
+        \item \textbf{1} In 2004, Dmitri Asonov and Rakesh Agrawal of the IBM Almaden Research Center announced that computer keyboards and keypads used on telephones and automated teller machines (ATMs) are vulnerable to attacks based on the sounds produced by different keys.
+         Their attack employed a neural network to recognize the key being pressed.
+         By analyzing recorded sounds, they were able to recover the text of data being entered.
+         These techniques allow an attacker using covert listening devices to obtain passwords, passphrases, personal identification numbers (PINs), and other information entered via keyboards.
+         In 2005, a group of UC Berkeley researchers performed a number of practical experiments demonstrating the validity of this kind of threat.
+        \item \textbf{2} A new technique discovered by a research team at \textbf{Israel's Ben-Gurion University Cybersecurity Research Center} 
+        allows data to be extracted using a computer's speakers and headphones. 
+        Forbes published a report stating that researchers found a way to see information being displayed, by using a microphone, with 96.5 percent accuracy.
+    \end{itemize}
+    \item \textbf{Differential fault analysis} those attacks take multiple traces of two sets of data, then computes the difference of the average of these traces.
+    If the difference is close to zero, then the two sets are not correlated, and if the p-value (typically ≥ 0.05) is higher, correlation can be assumed to be possible.
+    An example of an attack that was achieved by this is cracking the difficult-to-solve 128-bit AES. 
+    Using differential fault analysis it was shown that the key can be broken into 16 bytes, where each byte can be solved individually.
+    Testing each byte requires only 28, or 256 attempts, which means it would only take 16 x 256 or 4,096 attempts to be able to decipher the entire encryption key. 
+    \item \textbf{Data remanence} Data remanence is the residual representation of digital data that remains even after attempts have been made to remove or erase the data.
+    This residue may result from data being left intact by a nominal file deletion operation, by reformatting of storage media that does not remove data previously written to the media,
+    or through physical properties of the storage media that allow previously written data to be recovered.
+    Data remanence may make inadvertent disclosure of sensitive information possible should the storage media be released into an uncontrolled environment (e.g., thrown in the trash or lost)
+    an example of an attack that is using data romance is cold boots wich steals sensitive cryptographic materials like cryptographic keys by Keeping DRAMs at lower room temperature,
+    say -50 degrees C, and making it hard for the Dram to preserve his data properly.
+    more details on this attack can be found here \href{https://resources.infosecinstitute.com/cold-boot-attack/#gref}{cold-boot-attack}.
+    \item \textbf{Optical attacks} these attacks range from the relatively simple (eavesdropping on a monitor via reflections) through to complex (communicating with an infected device via LED blinks). 
+    An article of optical attack utilizing the photonic side-channel against a public-key of common implementations of RSA \href{https://www.eng.tau.ac.il/~yash/ieee-host-2017.pdf}{optical side-channel against a public-key of RSA}.
+\end{itemize}
+
+In addition to those attacks, there are even more side channels attacks research and new weaknesses are discovered every time.
+More of such attacks like Specter, RowHummer, and many more will be described widely in this course.
+  
+    
+
+
+
