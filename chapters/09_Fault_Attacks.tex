@@ -441,3 +441,25 @@ Rowhammer to quickly flip \emph{enough} (typically three) bits on an ECC-RAM
 chip that error correction will not be able to detect it, thus defeating the ECC
 mitigation. The attack relies on the fact that error-correction takes time to
 compute, and this gives the attacker a window of opportunity.
+
+\subsection{Rowhammer-based attacks}
+\subsubsection{RAMBleed}
+We will describe here Rowhammer based attack called RAMbleed which was presented in ~\cite{rambleed_paper}. While Rowhammer breaks data integrity, RAMBleed breaks also data confidentiality by allow the attacker read unauthorized memory areas. RAMBleed attack was implementes against OpenSSH server allowing the attacker read RSA secret private keys. 
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.7\linewidth]{images/chapter_9/rambleed_memory_layout.png}
+	\caption{RAMBleed memory layout}
+	\label{fig:rambleed_memory_layout}
+\end{figure}
+In order to perform this attack, the attacker need to get to spesific memory layout, as describe in \Cref{fig:rambleed_memory_layout}. The attacker own A0, A1 and A2 block. Then attacker force OpenSSH server to put its private RSA key in oranges blocks by exploting linux buddy allocator which works in deterministic way. Then the attacker repeatedly accessing A0 and A2 blocks - this will access orange blocks 
+as well because when DRAM access a part of the row, it access the whole row as well. This will hammer the red block and cause bit flips over there. The attacker can then read the red block- because he own it, and gets the RSA secret key.
+
+The performence from this paper shows accuracy of 82\% when reading OpenSSH host key. Reading the victim’s secret in 0.31 bits/seconds.
+
+Suggested mitigations may be memory encryption, flushing keys from memory, probabilistic memory allocator and Hardware mitigations such as targeted row refresh and increasing refresh intervals.
+
+
+
+
+
