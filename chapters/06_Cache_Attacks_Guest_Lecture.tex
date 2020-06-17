@@ -31,7 +31,7 @@ the device, which is more typically to embedded devices. In our case we are only
 require that the attacker have somewhat remote access to the device, meaning
 that the attacker can run code on the hardware infrastructure of the machine.
 Such scenarios can be found in cloud providers renting computational resources
-to a costumer, Java-Script code running in a browser and others.
+to a customer, Java-Script code running in a browser and others.
 
 \subsection{Example: Cache attack on RSA Square-and-Multiply Exponentiation}
 \label{subsec:CacheattackonRSA}
@@ -79,6 +79,12 @@ the DRAM and the memory bus (memory shared hardware) or the branch prediction
 unit and the arithmetic logic unit (CPU shared hardware), they are not in the
 scope of this chapter.
 
+\begin{figure}
+    \includegraphics[width=\textwidth]{images/chapter_6/shared_hardware.png}
+    \caption{Shared hardware hierarchy}
+    \label{fig:SHWD}
+\end{figure}
+
 \subsection{Today's CPU Complexity}
 \label{subsec:todaycpucomplex}
 From 2012 onwards Intel has released a new family of microprocessors every year.
@@ -112,6 +118,12 @@ that a more expensive technology a needed. For example, SRAM is faster than
 DRAM, which in turn is faster than Disk memory. However, their cost ratio is the
 other way around. \textbf{Bandwidth is Expensive} - A wider bandwidth needs to
 come with additional banks, ports, higher frequency or faster technology. 
+
+\begin{figure}
+    \includegraphics[width=\textwidth]{images/chapter_6/Computer_memory_Hierarchy.png}
+    \caption{Computer Memory hierarchy\cite{wikiComputerMemoryHierarchy}}
+    \label{fig:CMH}
+\end{figure}
 
 In our need to understand the use of caches, we need to examine the different
 memory technologies and why they are used the way they do. \textbf{DRAM} -
