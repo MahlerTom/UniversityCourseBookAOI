@@ -461,5 +461,47 @@ Suggested mitigations may be memory encryption, flushing keys from memory, proba
 
 
 
+\section{Related Work} \label{sec:RelatedWork}
 
+Additional related work on the topic of fault attacks includes:
 
+\begin{itemize}
+
+	\item \textbf{DVFS} - Dynamic Voltage and Frequency Scaling 
+	attacks make use of voltage and frequency combinations
+	which are considered unstable.
+
+	\begin{itemize}
+
+		\item \textbf{CLKScrew} - a paper by 
+		Tang et al that describes a technique that takes advantage of security vulnerabilities
+		caused by the constant strive to improve energy efficiency, more specifically energy management
+		mechanisms used in state-of-the-art mobile SoCs.
+
+		\item \textbf{VoltJockey} - a paper by Qiu et al that describes a hardware fault-based attack on 
+		the TrustZone - a security approach deployed in ARM processors. This attack
+		uses software-controlled voltage manipulation. It is demonstrated on an ARM-based
+		multi-core processor and manages to acquire an AES key protected by TrustZone.
+		
+		\item \textbf{Plundervolt} - a paper by Murdock et al, the first one that describes 
+		the use of voltage scaling for corruption of integrity and confidentiality
+		of Intel SGX enclaved computations. The authors demonstrate full key recovery PoC attacks
+		against RSA-CRT and AES-NI.
+		
+		
+	\end{itemize}
+
+	\item \textbf{Speculative Fault Attacks} - Such attacks make use of the behavior of modern
+	processors and their attempt to predict and speculate the next instructions to be executed
+	for maximum performance. CPUs will try to execute instructions ahead of time.
+
+	\begin{itemize}
+
+		\item \textbf{Spectre - Exploting Speculative Execution} - a paper by Kocher et al that describes
+		a speculative fault attack that involves inducing a victim to speculatively perform operations
+		that would not occur during correct program execution and which leak the victim's confidential
+		information via a side-channel to the adversary.
+		
+	\end{itemize}
+
+\end{itemize}
