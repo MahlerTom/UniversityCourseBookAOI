@@ -681,18 +681,25 @@ allowed to read the color of an HTML element anymore. Now we can set the color
 but can't read it. One of the speakers in the black hat 2013 used timing attacks
 to find out if a web site was visited or
 not\footnote{\url{https://www.youtube.com/watch?v=KcOQfYlyIqw}}. He also
-demonstrated how he can also use timing attack to read the user's stream.
+demonstrated how he can also use timing attack to read the user's stream. 
+\section{Research highlights} \label{sec:RelatedWork}
+\begin{itemize}
+    \item \textbf{Photonic Side Channel Attacks Against RSA} - This paper describes an attack utilizing the
+    photonic side channel against a public-key crypto-system. They
+    evaluated three common implementations of RSA modular exponentiation, all using the Karatsuba multiplication method.
+    It was discovered that the key length had marginal impact on resilience to the attack.
+    They noticed that the most dominant parameter impacting the attacker’s effort is the minimal block size at which the Karatsuba method reverts to naive multiplication.
+    They also discovered that Montgomery’s Ladder was actually the most susceptible to the attack.
+    \href{https://www.eng.tau.ac.il/~yash/ieee-host-2017.pdf}{Photonic Side Channel Attacks Against RSA}.
 
-\section{Related Work} \label{sec:RelatedWork}
+    \item  \textbf{Summarize of Drones’ Cryptanalysis -} 
+    \\ \textbf{Smashing Cryptography with a Flicker Paper}
+    This paper \cite{nassi2019drones} addresses the question how we can tell whether a passing drone is being used by its operator for a legitimate purpose (e.g., delivering pizza) or an illegitimate purpose (e.g., taking a peek at a person showering in his/her own house).\\
+    \\Over the years, many methods have been suggested to detect the presence of a drone in a specific location, however since populated areas are no longer off limits for drone flights, the previously suggested methods for detecting a privacy invasion attack are irrelevant.\\ 
+    \\In this paper, By applying a periodic physical stimulus on a target/victim being video streamed by a drone,  a new method that can detect whether a specific POI (point of interest) is being video streamed by a drone is presented. 
+    Based on this method, an algorithm for detecting a privacy invasion attack is presented.\\ 
+    The paper analyse the performance of the algorithm using four commercial drones. \\
+    \\It show how the method that been suggested can be used to determine whether a detected FPV (first-person view) channel is being used to video stream a POI by a drone, and locate a spying drone in space.\\
+    \\The evaluation on algorithm that presented in the paper shows that a privacy invasion attack can be detected by the system in about 2-3 seconds.
 
-\textbf{Summarize of Drones’ Cryptanalysis -} 
-\\ \textbf{Smashing Cryptography with a Flicker Paper}
-
-This paper \cite{nassi2019drones} addresses the question how we can tell whether a passing drone is being used by its operator for a legitimate purpose (e.g., delivering pizza) or an illegitimate purpose (e.g., taking a peek at a person showering in his/her own house).\\
-\\Over the years, many methods have been suggested to detect the presence of a drone in a specific location, however since populated areas are no longer off limits for drone flights, the previously suggested methods for detecting a privacy invasion attack are irrelevant.\\ 
-\\In this paper, By applying a periodic physical stimulus on a target/victim being video streamed by a drone,  a new method that can detect whether a specific POI (point of interest) is being video streamed by a drone is presented. 
-Based on this method, an algorithm for detecting a privacy invasion attack is presented.\\ 
-The paper analyse the performance of the algorithm using four commercial drones. \\
-\\It show how the method that been suggested can be used to determine whether a detected FPV (first-person view) channel is being used to video stream a POI by a drone, and locate a spying drone in space.\\
-\\The evaluation on algorithm that presented in the paper shows that a privacy invasion attack can be detected by the system in about 2-3 seconds.
-
+\end{itemize}
