@@ -1,3 +1,4 @@
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
 \chapter{Fault Attacks}\label{cha:c9_ninthchapter}
 
 \begin{centering}
@@ -50,7 +51,7 @@ described in \Cref{fig:fault_attacks_schematic}.
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.7\linewidth]{images/chapter_9/fault_attacks_schematic.png}
-	\caption{A schematic diagram of fault attacks and leakage types.}\label{fig:fault_attacks_schematic}
+	\caption{A schematic diagram of fault attacks and leakage types}\label{fig:fault_attacks_schematic}
 \end{figure}
 
 Like with passive attacks, some of those outputs can be acquired at different
@@ -173,7 +174,7 @@ entirety of the device's memory.
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.7\linewidth]{images/chapter_9/bulb.png}
-	\caption{A light bulb flipping memory bits filled with safe Java structures.}\label{fig:memory_lightbulb}
+	\caption{A light bulb flipping memory bits filled with safe Java structures}\label{fig:memory_lightbulb}
 \end{figure}
 
 \subsubsection{Optical, Electromagnetic}\label{subsubsec:optical_electromagnetic}
@@ -280,13 +281,12 @@ What could be targeted by a fault attack?
 \section{Fault attack on RSA-CRT}\label{sec:fault_attack_on_rsa_crt}
 
 \subsection{RSA decryption}\label{subsec:rsa_decryption}
-\(N = p\cdot q\) \(M = C^d \pmod{n} = M^{ed} \pmod{n} = M^1 \pmod{n}\)
+\(n = p\cdot q\), \(M &\equiv C^d  &\equiv M^{ed \Mod{\phi(n)}} &\equiv M^1 &\equiv M \Mod{n}\)
 
 RSA decryption is hard!
 
 Let's speed it up using CRT (the Chinese Remainder Theorem): Multiplication
-operations are \(O(|n|^2)\). If we can do operations \(\pmod{p}\) and then
-\(\pmod{q}\) instead of \(\pmod{n}\), we will reduce computation time by half.
+operations are \(O(|n|^2)\). If we can do operations$\Mod{p}$ and then$\Mod{q}$ instead of$\Mod{n}$, we will reduce computation time by half.
 
 \paragraph{Explanation:}
 
@@ -306,17 +306,17 @@ So if we could multiply by \(p\) and \(q\) instead of by \(n\), we would cut
 	\includegraphics[width=0.5\linewidth]{images/chapter_9/soldiers.jpeg}
 	\caption{Chinese Remainder Theorem (Source: \url{https://russinoff.com/papers/crt.html})}\label{fig:chinese_remainder}
 \end{figure}
-The idea is that if we know both \(x \pmod{p}\) and \(x \pmod{q}\) then we can
-easily calculate \(x \pmod{n}\).
+The idea is that if we know both $x\Mod{p}$ and $x\Mod{q}$ then we can
+easily calculate $x\Mod{n}$.
 
-So, given a message \(M\) calculate \(M_p\) and \(M_q\): \(M_p = C^d
-\pmod{n}\pmod{p} = C^d \pmod{p}\) \(M_q = C^d \pmod{n}\pmod{q} = C^d \pmod{q}\)
+So, given a message \(M\), calculate \(M_p\) and \(M_q\): \(M_p &\equiv C^d
+\Mod{n} &\equiv C^d \Mod{p}\), \(M_q &\equiv C^d \Mod{n} &\equiv C^d \Mod{q}\)
 
 To combine the values, we do:
 \[M^* = CRT(M_p, M_q) = \]
-\[M_p \cdot q \cdot (q^{-1} \pmod p) + M_q \cdot p \cdot (p^{-1} \pmod q)\]
+\[M_p \cdot q \cdot (q^{-1} \Mod p) + M_q \cdot p \cdot (p^{-1} \Mod q)\]
 
-It is easily provable that \(M^* \pmod{p} = M_q\) and \(M^* \pmod{q} = M_p\), so
+It is easily provable that \(M^* \Mod{p} = M_q\) and \(M^* \Mod{q} = M_p\), so
 by the Chinese Remainder Theorem, this value \emph{must} be equal to \(M\).
 
 \subsubsection{The Boneh, DeMillo \& Lipton Fault Attack on RSA-CRT~\cite{boneh}}\label{subsubsec:the_boneh_demillo_lipton_fault_attack_on_rsa_crt}
@@ -327,32 +327,32 @@ attacker knows that the decryption box is decrypting using CRT\@. Finally, let
 us assume that the attacker can inject a fault (any fault) in the decryption
 process.
 
-The attacker first gets \(M = M_p\cdot q\cdot (q^{-1} \pmod{p}) + M_q\cdot
-p\cdot (p^{-1} \pmod{q})\) through the regular decryption process.
+The attacker first gets \(M = M_p\cdot q\cdot (q^{-1} \Mod{p}) + M_q\cdot
+p\cdot (p^{-1} \Mod{q})\) through the regular decryption process.
 
 Then, the attacker primes the device to re-calculate the message from the same
 cipher, this time injecting a \emph{fault} during the calculation of \(M_p\),
 resulting in the device erroneously producing \(M'_p\) instead: \(M'_p \neq C^d
-\pmod{p}\) The device will then proceed to combine \(M'_p\) with the correct
+\Mod{p}\) The device will then proceed to combine \(M'_p\) with the correct
 result of \(M_q\), resulting in:
-\[M' =  M'_p \cdot q \cdot (q^{-1} \pmod{p}) + M_q \cdot p \cdot (p^{-1}
-\pmod{q})\]
+\[M' =  M'_p \cdot q \cdot (q^{-1} \Mod{p}) + M_q \cdot p \cdot (p^{-1}
+\Mod{q})\]
 
 Now the attacker can calculate the value of \(M - M'\):
-\[[M_p \cdot q \cdot (q^{-1} \pmod{p}) + M_q \cdot p \cdot (p^{-1} \pmod{q})]-\]
-\[[M'_p \cdot q \cdot (q^{-1} \pmod{p}) + M_q \cdot p \cdot (p^{-1}
-\pmod{q})]=\]
-\[(M_p - M'_p) \cdot q \cdot (q^{-1} \pmod{p})\]
+\[[M_p \cdot q \cdot (q^{-1} \Mod{p}) + M_q \cdot p \cdot (p^{-1} \Mod{q})]-\]
+\[[M'_p \cdot q \cdot (q^{-1} \Mod{p}) + M_q \cdot p \cdot (p^{-1}
+\Mod{q})]=\]
+\[(M_p - M'_p) \cdot q \cdot (q^{-1} \Mod{p})\]
 
 Finally, calculating the \(\gcd \) of \(n\) and \(M - M'\) yields:
 \[\gcd(n, M - M') = \gcd(p \cdot q, (M_p - M'_p) \cdot q \cdot (q^{-1}
-\pmod{p})) = q\]
+\Mod{p})) = q\]
 
 \paragraph{Why does this work?} The greatest common divisor of \(n\) and
 anything can be only \(p\), \(q\), \(n\) or \(1\). On the other hand, \(M_p\)
 and \(M'_p\) can never be multiples of \(p\), otherwise both would equal 0. So,
 by that reasoning, \(\gcd(p \cdot q, (M_p - M'_p) \cdot q \cdot (q^{-1}
-\pmod{p}))\) \underline{must} equal \(q\), and thus we have cracked the cipher
+\Mod{p}))\) \underline{must} equal \(q\), and thus we have cracked the cipher
 using a single fault attack.
 
 A later paper co-written by Arjen Lenstra~\cite{lenstra} further improved upon
@@ -374,7 +374,7 @@ In the final section, we will describe the Rowhammer attack.
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.5\linewidth]{images/chapter_9/DRAM.jpg}
-	\caption{High Level Illustration of DRAM Organization (Source: Wikipedia:Row Hammer)}\label{fig:dram_svg}
+	\caption{High Level Illustration of DRAM Organization (Source: Wikipedia: Row hammer)}\label{fig:dram_svg}
 \end{figure}
 
 \subsection{Double-sided Rowhammer}\label{subsec:double_sided_rowhammer}
@@ -431,7 +431,7 @@ hammer on it until a bit in the key flips, making it much easier to factor.
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.5\linewidth]{images/chapter_9/flip_feng_shui.PNG}
-	\caption{The attacker maps the same page as the victim, then utilizes rowhammer to change the victim's memory without causing page duplication.}
+	\caption{The attacker maps the same page as the victim, then utilizes Rowhammer to change the victim's memory without causing page duplication}
 	\label{fig:flip_feng_shui}
 \end{figure}
 
