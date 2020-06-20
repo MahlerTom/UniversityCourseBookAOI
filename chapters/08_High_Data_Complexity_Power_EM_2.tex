@@ -477,3 +477,144 @@ real power consumption of the DUT vs. the hypothesis. The blue line is the power
 consumption of the DUT at the correct time. The Y-axis is traced. The red line
 is the hypothesis that we tested. These two lines look correlated even to the naked
 eye, and it is a negative correlation.
+
+\subsection{Guest Lecture - Stjepan Picek}
+We begin with an overview on the paper by Batina et al. \cite{batina2019csi}, which was presented at USENIX and co-authored by our guest lecturer.
+
+\subsubsection{Introduction}
+Machine learning has become quite mainstream in many industries of various domains, including security.
+Organizations invest significantly in their artificial intelligence products, namely machine learning models which may even be the core intellectual property of a company.
+The main research question of this study is the safety of machine learning applications and their susceptibility to physical attacks.
+In this paper, the security of such models is studied from the point of view of a side-channel attacker, who seeks to reverse-engineer machine learning models and obtain information on it.
+Using relatively simple side-channel analysis, it is shown that entire architectures of neural networks are leaked, including activation functions, number of layers and neurons, output classes and even weights.
+Motivation for such attack can vary from wanting to build a surrogate model for an adversarial attack \cite{papernot2016transferability}, to privacy leakage of data in cases of sensitive medical or security applications.
+Previous works investigated the leakage of sensitive information from machine learning models on individual data records or the entire training set.
+More studies focused on reverse-engineering convolutional neural networks via timing and memory leakage, or exploiting line buffers in a convolution operation.
+In this work, the focus is on commonly used neural network architectures, multilayer perceptron and convolutional neural networks, for their popularity and consisting of diverse types of layers.
+Briefly, a neural network is composed of a number of layers, and each layer includes several neurons and parameters (weights), which process certain information and finally make a prediction according to some task.
+
+\subsubsection{Threat Model}
+The threat model in this paper includes the main goal of recovering the neural network architecture using only side-channel information.
+There are no further assumptions on the data that is being processed, only that the target model does not include any side-channel countermeasures.
+The attacker in consideration is passive, meaning she can only listen and acquire measurements of the normal operations of the device, without interfering at all.
+No information on the model is assumed, but the attacker is able to query it using random inputs.
+More capabilities include measuring side-channel information leaked from the implementation of the target architecture (Atmel ATmega328P and ARM Cortex-M3).
+
+\subsubsection{Side-channel Analysis (SCA)}
+DPA is a more advanced analysis, which uses statistical techniques to recover secret information from physical signatures.
+The attack tests for statistically-significant dependencies between actual physical measurements (i.e., of power or electromagnetics) and hypothetical physical signatures (i.e., predictions on intermediate data).
+The hypothetical signature is based on a leakage model and key hypothesis. A more detailed illustration can be found in Figure~\ref{fig:chapter8_dpa}.
+The statistical analysis performed can be either difference of means or Pearson correlation, which will make it a differential analysis or correlation analysis, respectively.
+The authors of this work used Pearson correlation, and therefore perform a correlation power analysis (CPA).
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/chapter8/dpa.JPG}
+    \caption{An illustration of the analysis process.}
+    \label{fig:chapter8_dpa}
+\end{figure}
+
+\subsubsection{Experimental Setup}
+The experiment was conducted using electromagnetics 
+To gain a cleaner signal, the target microcontroller needed to be mechanically decapsulated, as shown in Figure~\ref{fig:chapter8_mc} along with the electromagnetic probe in Figure~\ref{fig:chapter8_probe} and the complete setup in Figure~\ref{fig:chapter8_complete}.
+The exploited leakage model of the target device is the Hamming Weight (HW) model:
+$$HW(x) = \sum{x_i}$$
+A microcontroller loads sensitive data to a data bus in order to perform indicated instructions.
+Note that the actual training phase is executed offline, and the final model is implemented in the C language and compiled on the microcontroller.
+As discussed earlier, the goal is to obtain information on the neural network-based model, namely its layers, neurons, activation functions and weights.
+The attack is therefore decomposed to four sub-goals, according to the type of target information.
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/chapter8/exp_a.JPG}
+    \caption{8-bit microcontroller decomposed.}
+    \label{fig:chapter8_mc}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/chapter8/exp-b.JPG}
+    \caption{Probe.}
+    \label{fig:chapter8_probe}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/chapter8/exp-c.JPG}
+    \caption{Complete experimental setup and tools.}
+    \label{fig:chapter8_complete}
+\end{figure}
+
+\subsubsection{Reverse-Engineering Activation Functions}
+Recall that an activation function of some node is a function $f: \mathbb{R} \rightarrow \mathbb{R}$, as in:
+$$f(x)=Activation(\sum(Weights * inputs) + bias)$$
+There are many popular activation functions, with the most common ones being Sigmoid, Softmax, and ReLU.
+The timing behavior of the various functions was observed directly on the electromagnetic (EM) trace, with a total of 2000 EM measurements captured.
+By plotting the measurements, the difference in timings between the function can be easily observed (Figures~\ref{fig:activ-relu} \ref{fig:activ-sigmoid} \ref{fig:activ-tanh} \ref{fig:activ-softmax}), as well as statistically analyzed using maximum, minimum and mean values.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/chapter8/activ-relu-a.JPG}
+    \caption{ReLU}
+    \label{fig:activ-relu}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/chapter8/activ-sigmoid-b.JPG}
+    \caption{Sigmoid}
+    \label{fig:activ-sigmoid}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/chapter8/activ-tanh-c.JPG}
+    \caption{tanh}
+    \label{fig:activ-tanh}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/chapter8/activ-softmax-d.JPG}
+    \caption{Softmax}
+    \label{fig:activ-softmax}
+\end{figure}
+
+\subsubsection{Reverse-Engineering Weights}
+In this section, the CPA, i.e., Pearson correlation is used to extract parameters, or the weights of a layer.
+CPA targets the multiplication operation $m=x*w$ where $x$ is a known input and $w$ a secret parameter.
+Using the HW model, the adversary correlates the activity of the predicted output $m$ for all hypothesis of the weight.
+Thus, the attack computes $p(t, w)$ for all hypothesis of the weight $w$, where $p$ is the Pearson correlation coefficient and $t$ is the side-channel measurement.
+The correct value of the weight will result in a higher correlation, standing out from all other wrong hypothesis $w^*$, given we capture enough measurements.
+We first need to understand the way the compiler is handling floating-point operations in our target device.
+By analyzing the generated assembly, it can be confirmed that the device uses IEEE 754 compatible representation, with 32-bit consisting of: 1 sign bit, 8 biased exponent bits, and 23 mantissa bits, from $b_31$ to $b_0$ respectively.
+The target device is an 8-bit microcontroller, so the 32-bit floating-point is stored in 4 registers.
+Recall that we target the resulting multiplication of a known input and unknown weights, where for every input we assume different probabilities for weight values.
+We then perform the multiplication accordingly and estimate the binary representation of the output, where the 23-bit mantissa is recovered first, and then the sign and exponent can be recovered separately.
+Note that you need to recover the weight for every neuron separately, which may require a substantial amount of effort, while it is still feasible.
+
+\subsubsection{Reverse-Engineering Layers and Neurons}
+Simple observations of Figures~\ref{fig:layer-a},\ref{fig:layer-b},\ref{fig:layer-c} would show repeating patterns in each graph, which actually reveal the number of neurons.
+As for the number of layers, or where the computation of each layer begins or ends (the red lines in the figures), we use CPA.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/chapter8/layer-a.JPG}
+    \caption{One hidden layer with 6 neurons.}
+    \label{fig:layer-a}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/chapter8/layer-b.JPG}
+    \caption{Two hidden layers with 5 and 6 neurons respectively.}
+    \label{fig:layer-b}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/chapter8/layer-c.JPG}
+    \caption{Three hidden layers (6, 5, 5).}
+    \label{fig:layer-c}
+\end{figure}
