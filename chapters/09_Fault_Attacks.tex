@@ -281,7 +281,7 @@ What could be targeted by a fault attack?
 \section{Fault attack on RSA-CRT}\label{sec:fault_attack_on_rsa_crt}
 
 \subsection{RSA decryption}\label{subsec:rsa_decryption}
-\(n = p\cdot q\), \(M &\equiv C^d  &\equiv M^{ed \Mod{\phi(n)}} &\equiv M^1 &\equiv M \Mod{n}\)
+\(n = p\cdot q\), \(M \equiv C^d  \equiv M^{ed \pmod{\phi(n)}} \equiv M^1 \equiv M \pmod{n}\)
 
 RSA decryption is hard!
 
@@ -309,8 +309,8 @@ So if we could multiply by \(p\) and \(q\) instead of by \(n\), we would cut
 The idea is that if we know both $x\Mod{p}$ and $x\Mod{q}$ then we can
 easily calculate $x\Mod{n}$.
 
-So, given a message \(M\), calculate \(M_p\) and \(M_q\): \(M_p &\equiv C^d
-\Mod{n} &\equiv C^d \Mod{p}\), \(M_q &\equiv C^d \Mod{n} &\equiv C^d \Mod{q}\)
+So, given a message \(M\), calculate \(M_p\) and \(M_q\): \(M_p \equiv C^d
+\pmod{n} \equiv C^d \pmod{p}\), \(M_q \equiv C^d \pmod{n} \equiv C^d \pmod{q}\)
 
 To combine the values, we do:
 \[M^* = CRT(M_p, M_q) = \]
