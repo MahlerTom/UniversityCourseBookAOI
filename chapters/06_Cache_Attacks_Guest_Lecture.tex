@@ -7,12 +7,12 @@ April 30, 2019 — Ben Gurion University, Israel
 \section{Background \& Primitives} %arbel
 \label{sec:BackgroundnPrimitives}
 
-Micro-architectural side-channel attacks refers to a side-channel attack that
+Micro-architectural side-channel attacks refer to a side-channel attack that
 exploit information leakage from the hardware infrastructure itself. The attacks
-can be found in a large scope on devices - servers, workstations, laptops,
+can be found in a large scope of devices - servers, workstations, laptops,
 smart-phones, etc.
 
-Normally, we assume a safe software infrastructure. Meaning that no software
+Normally, we assume a safe software infrastructure, meaning that no software
 bugs, such as buffer overflow, is present. Nevertheless, such assumption does
 not imply safe execution, due to the fact that the information leaks because of
 the implementation, which is often driven by complex optimizations and design.
@@ -25,13 +25,12 @@ is common with other side-channel attacks, but also other sensitive information
 such as keystrokes and mouse movements.  
 
 In terms of sources of leakage, we saw in previous chapters sources such as
-power consumption or electromagnetic leaks. However such sources are harder to
-come across by an attacker because they require physical proximity and access to
-the device, which is more typically to embedded devices. In our case we are only
-require that the attacker have somewhat remote access to the device, meaning
+power consumption or electromagnetic leaks. However it's harder for an attacker to come across such sources because they require physical proximity and access to
+the device, which are more typical to embedded devices. In this case the
+requirement is that the attacker will have somewhat remote access to the device, meaning
 that the attacker can run code on the hardware infrastructure of the machine.
 Such scenarios can be found in cloud providers renting computational resources
-to a customer, Java-Script code running in a browser and others.
+to a costumer, Java-Script code running in a browser and others.
 
 \subsection{Example: Cache attack on RSA Square-and-Multiply Exponentiation}
 \label{subsec:CacheattackonRSA}
@@ -39,8 +38,8 @@ to a customer, Java-Script code running in a browser and others.
 \begin{algorithm}
     \SetKwInOut{Input}{Input} \SetKwInOut{Output}{Output} \Input{base $b$,
     exponent $e$, modulus $n$} \Output{$b^e$ mod $n$} $X \leftarrow 1$ \For{$i
-    \leftarrow bitlen(e)$ \textbf{downto} $0$} {$X \leftarrow multiply(X,X)$
-    \If{$e_i = 1$} {$X \leftarrow multiply(X,b)$}} \textbf{return} X
+    \leftarrow bitlen(e)$ \textbf{downto} $0$} {$X \leftarrow multiply(X,X)$\newline
+    \If{$e_i == 1$} {$X \leftarrow multiply(X,b)$}} \textbf{return} X
     \caption{Square-and-multiply exponentiation}
     \label{algo:SaM}
 \end{algorithm}
@@ -51,7 +50,7 @@ on the value of the bit $e_i$ of the private key. Now consider a scenario in
 which an attacker has information on the changes regarding the buffer holding
 the multiplier $b$. Such information can be considered as a query to the buffer
 and receiving as a result the latency of the query. If the buffer is in use, the
-query will be longer then if the buffer is unused.
+query will be longer than if the buffer is unused.
 
 \begin{figure}
     \centering
@@ -60,41 +59,34 @@ query will be longer then if the buffer is unused.
     \label{fig:PPSQ}
 \end{figure}
 
-In \Cref{fig:PPSQ} the resulting graph of the querying can be seen, in which the
+In \Cref{fig:PPSQ}, the graph of the querying result, the
 actual bits of the exponent can be clearly detected.
 
 \subsection{Attack Model}
 \label{subsec:attackmodel}
 We assume that the attacker has no physical access to the device. Moreover, the
-attacker can only execute unprivileged code on the same machine as victim. Such
+attacker can only execute unprivileged code on the same machine as the victim. Such
 scenarios in which this happens can be found, for example, when the victim
-install some malicious program on his machine/smartphone. Another examples can
-be found in could computing where an attacker has a victual machine on the same
+installs some malicious program on his machine/smartphone. Other examples can
+be found in cloud computing where an attacker has a virtual machine on the same
 physical machine as the victim, or in a web environment in which the attacker
 runs unprivileged JavaScript code.
 
 In the scope of this chapter we will focus on shared hardware in the form of
-data/instruction cache. While other shared hardware components can also include
+data/instructions that are stored in the cache. While other shared hardware components can also include
 the DRAM and the memory bus (memory shared hardware) or the branch prediction
 unit and the arithmetic logic unit (CPU shared hardware), they are not in the
 scope of this chapter.
 
-\begin{figure}
-    \includegraphics[width=\textwidth]{images/chapter_6/shared_hardware.png}
-    \caption{Shared hardware hierarchy}
-    \label{fig:SHWD}
-\end{figure}
-
 \subsection{Today's CPU Complexity}
 \label{subsec:todaycpucomplex}
-From 2012 onwards Intel has released a new family of microprocessors every year.
-Each comes with its own new microarchitectural schemes with new Characteristics.
-To gain performance upgrade in each new installment, that has on average 5\%
-increase in performance depending on the feature, very small optimizations, such
-as caches and branch prediction units are added. Such optimizations are the main
-reason for a side-channel information leakage to exist. Unfortunately, said
-optimization often come with no documentation since this is Intel intellectual
-property. Such lack in documentation makes it harder for an attacker to perform
+From 2012 Intel has released a new family of microprocessors every year.
+Each comes with its own new microarchitectural schemes with new characteristics.
+To gain performance upgrade in each new installment (on average 5\%
+increase in performance depending on the feature), minor optimizations, such
+as caches and branch prediction units are added. Such optimizations are the main reason that side-channel information leakage exists. Unfortunately, these
+optimizations often come with no documentation since this is Intel intellectual
+property. Lack of documentation can make it harder for an attacker to perform
 said side-channel attacks.
 
 To emphasize today's CPU complexity, it is said that ``Intel x86 documentation
@@ -107,32 +99,26 @@ transistors can be found.
 
 \subsection{Background on Caches}
 \label{subsec:backgroundoncaches}
-In designing a cache side-channel attack, a proper understanding of how caches
-work, in great detail, is required. First, we need to acknowledge that the
+When designing a cache side-channel attack, a proper understanding of how caches
+work, in detail, is required. First, we need to acknowledge that the
 requirements for an 'ideal memory' oppose each other. Such requirements are zero
 latency, infinite capacity, zero cost and infinite bandwidth. The trade-offs are
 interconnect: \textbf{Bigger is Slower} - Bigger memory often comes with higher
-latency, due to the fact the it would take longer to determine the location to
+latency, due to the fact that it would take longer to determine the location to
 retrieve.  \textbf{Faster is Expensive} - A reduction in latency often means
-that a more expensive technology a needed. For example, SRAM is faster than
+that a more expensive technology is needed. For example, SRAM is faster than
 DRAM, which in turn is faster than Disk memory. However, their cost ratio is the
 other way around. \textbf{Bandwidth is Expensive} - A wider bandwidth needs to
 come with additional banks, ports, higher frequency or faster technology. 
 
-\begin{figure}
-    \includegraphics[width=\textwidth]{images/chapter_6/Computer_memory_Hierarchy.png}
-    \caption{Computer Memory hierarchy\cite{wikiComputerMemoryHierarchy}}
-    \label{fig:CMH}
-\end{figure}
-
-In our need to understand the use of caches, we need to examine the different
-memory technologies and why they are used the way they do. \textbf{DRAM} -
+In our need to understand the use of cache, we need to examine the different
+memory technologies and why they are used in the way they are used. \textbf{DRAM} -
 Dynamic Random Access Memory is the technology that is often used as the main
 memory (or RAM), while \textbf{SRAM} - Static Random Access Memory is the
-technology used in caches. The DRAM latency is higher than the SRAM latency, but
+technology used in cache memory. The DRAM latency is higher than the SRAM latency, but
 is cheaper to make. The main difference in cost arises from the fact that DRAM
-consist only of one transistor and one capacitor per cell, while the SRAM
-consist of six transistors per cell. Said difference also mean that DRAM is more
+consists only of one transistor and one capacitor per cell, while the SRAM
+consists of six transistors per cell. These differences also mean that the DRAM is more
 dense. Finally, the DRAM cell layout and technology requires to periodically
 refresh each cell.
 
@@ -156,7 +142,7 @@ the different levels of the CPU cache, main memory or disk memory.
 
 \subsection{Caching Basics}
 \label{subsec:cachingbasics}
-The two main idea of caching is to exploit temporal and spatial locality.
+The two main ideas of caching are to exploit temporal and spatial locality.
 \textbf{Temporal Locality} is the notion that a program tends to reference the
 same memory location many times within a small window of time (for example,
 loops). The anticipation of such thinking is that recently accessed data will be
@@ -187,22 +173,22 @@ cache. And when data is referenced, two outcomes can come of such action - a
 cache hit or a cache miss. A \textbf{Cache Hit} occurs when a line is referenced
 and is in the cache. The cached data will be retrieved instead of accessing main
 memory.  A \textbf{Cache Miss} occurs when a line is referenced and is not in
-the cache. The data will be fetched from main memory, passing though the cache,
-possibly eviction other data to ensure enough storage.
+the cache. The data will be fetched from main memory, passing through the cache,
+possibly evict other line to ensure enough storage.
 
 When designing a cache, we are faced with a number of design decisions to
-handle. \textbf{Placement}  - Essentially the place in which we will place or
+handle. \textbf{Placement}  - Essentially the location in which we will place or
 find a block in the cache. \textbf{Replacement} - We need often to remove data
 from the cache to make room for newer data. Which begs the question of what data
 to evict. \textbf{Granularity of Management} - The basic units of storage in
 different levels. Do we store the same amount of blocks across different levels
 or do we uniformly store the same size of blocks. \textbf{Write Policy} - When a
-write is being made, we need to decide whether to preform the write operation in
-all levels or passing the write data to a lower level only upon eviction from
+write operation is being made, we need to decide whether to preform the write operation in
+all levels or pass the write data to a lower level only upon eviction from
 that level. \textbf{Instruction/Data} - When a program is executing, the
 instructions that are in need to be executed are required to be fetched from
-memory as well. The designer needs to decide whether to treat instruction and
-data memory as two separate  types or as one of the same.
+memory as well. The designer needs to decide whether to treat instructions and
+data memory as two separate  types or as the same.
 
 
 \subsection{Set-Associative Caches}
@@ -215,7 +201,7 @@ way will store a cache line worth of data. The division of the memory into
 different cache sets will be a direct mapping from the memory address. Namely,
 each address will be associated with a cache set according to a group of bits in
 the address which will represent the cache set index. The specific way in which
-the line will is to be fetch will be determine according to the cache
+the line is fetched will be determine according to the cache
 replacement policy, since the cache set is expected to be full.  An abstraction
 can be seen in \Cref{fig:SetWay}
 
@@ -248,7 +234,7 @@ there is no need to translate the addresses in order to know the mapping of the
 addresses into the cache, which is faster. On the other hand, such
 implementation causes aliasing issues as same virtual address maps to several
 different physical addresses. This aliasing is due to the tag not being unique,
-and will force a flush action to the entire cache on context swiching.
+and will force a flush action to the entire cache on context switching.
 \textbf{VIPT} - Virtually-Indexed, Physically-Tagged. Meaning that there will be
 a need for TLB translation for the tag, but can be looked up in parallel. Such
 mapping can be quiet fast. Moreover, if the set index bits are derived from the
@@ -274,22 +260,31 @@ Intel commonly applies a LRU policy or a pseudo-LRU policy (since pure LRU is
 complex to implement). Which determines that the oldest cache line to be
 referenced will be evicted, As if each cache line is attached with a time-stamp
 that is updated on access. An example can be thought of by having $n$ way cache
-set and $n+1$ different lines of memory that are mapped into said cache set and
+set and $n+1$ different lines of memory that are mapped into the same cache set and
 are accessed in order. The first $1,\dots,n$ lines will fill the cache ways,
 while the $n+1$ access will evict the first memory line from the set, since all
 the set ways are full.  
 
-A potential issue arises with LRU policy when a program need to access
+A potential issue arises with LRU policy when a program needs to access
 cyclically $n+1$ memory lines (``program working set") that are mapped to the
-same $n$ way cache set. This is referenced as a 'set thrasing' and will result
+same $n$ way cache set. This is referenced as a 'set thrashing' and will result
 in $0\%$ hit rate. If we compare LRU policy to a random policy, depending on the
 workload, some studies have shown that LRU and random replacement policies have
 the same hit rate on average.
 
-When implementing a cache side-channel attack, we will normally will want to
+Recent studies have tried to predict intel's CPU eviction policy for the LLC. The researchers suggest the following policy;
+Each cache set has an array in the same size of ways, that holds 3 bits per cell (a number between 0 to 3).
+When a new line is loaded into a L3 cache set, the suitable cell in the array is updated to the value 3.
+The array values are referred as the "age" of each line in the set.
+Each time a line in the cache is being accessed, the CPU searches for it in L1, if it doesn't find it there it will search for it in L2, if both of them will result as miss, the CPU will search in L3.
+In case the line is found for the first time in L3 cache, it will decrease the age of this line by 1.
+When a new line (not in the cache) is accessed, and an eviction needs to be made, the CPU checks the age array (in the suitable cache set), and evicts the first line that it's age is 3, if no line has the age 3, it evicts the first highest age that was found.
+Moreover, the researchers suggest that the processor has another policy, which enters the lines with the age of 2.
+
+When implementing a cache side-channel attack, we will normally want to
 evict some special memory location from the cache. Considering a non-LRU
 replacement policy will mean that evicting a memory line from the cache will not
-necessarily be practical, since there is no guaranty that if the attacker access
+necessarily be practical, since there is no guaranty that if the attacker accesses
 memory locations in a specific pattern we will evict the whole set from the
 cache. 
 \subsection{Caches on Intel CPUs}
@@ -304,7 +299,7 @@ cache.
 In \Cref{fig:IntelCPU} we can see an abstraction of an Intel CPU architecture,
 on which every core has its own dedicated L1 instruction and data cache, in
 addition to a slightly bigger L2. All cores are connected via an interconnected
-bus to the last level cache (LLC/L3). The LLC often is sliced intro the number
+bus to the last level cache (LLC/L3). The LLC is often sliced into the number
 of cores, having a dedicated slice to each core, while having all cores being
 able to access all slices. The common practice is that the different levels of
 caches are inclusive, meaning that a lower level cache is a super-set of the
@@ -315,11 +310,11 @@ cache usage, among other things, using the following command: \texttt{prefetch}
 - A suggestion to the CPU that some memory line will be accessed soon, can
 trigger fetching that line into the cache by the CPU. \texttt{clflush} - Cache
 line flush, instructs the CPU to flush a memory line from all levels of the
-cache. The two instructions are based on virtual addressed.
+cache. The two instructions are based on virtual address.
 
 The different latencies of the different cache levels, as well as the timing
-difference between a cache miss and a cache hit, as can be seen in
-\Cref{fig:cache_hits_misses_hist}, are the main primitives of most cache
+difference between a cache miss and a cache hit (as can be seen in
+\Cref{fig:cache_hits_misses_hist}), are the main primitives of most cache
 side-channel attacks that will be discussed by the end of this chapter.  
 
 \section{Cache Attacks Techniques} %ben
@@ -347,7 +342,7 @@ We will focus on side-channel attacks.
 \label{subsec:cachesidechanneltiming}
 Every timing attack works by the following steps:
 \begin{enumerate}
-    \item Learn timing of different \textit{corner cases}.
+    \item Learning timing of different \textit{corner cases}.
     \item Recognizing these corner cases by timing only.
 \end{enumerate}
 Here, our corner cases are \textit{hits} and \textit{misses}.
@@ -378,7 +373,7 @@ to distinguish the two cases.
 
 \noindent Having the two histograms, as in \Cref{fig:cache_hits_misses_hist}, we
 determine the threshold to be as high as possible such that there will be no
-cache miss below. 
+cache misses below. 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{images/chapter_6/cache_hits_misses_hist.JPG}
@@ -388,18 +383,18 @@ cache miss below.
 
 \subsubsection{How to Measure Time Accurately}
 \label{subsubsec:howtomeasuretimeaccuractely}
-Consider the fact that the time intervals of our cases is (relatively) very
+Consider the fact that the time intervals of our cases are (relatively) very
 short timings, we ask how to measure time accurately. For such short timings, it
 is common to use the Time Stamp Counter (TSC) via the unprivileged
 \texttt{rdtsc} instruction as following:
 $$[...] \rightarrow \texttt{rstsc} \rightarrow \mbox{function()} \rightarrow
 \texttt{rstsc} \rightarrow [...]$$ \noindent By using this instruction, due to
-out-of-execution, the actual execution order could be different, resulting with
+out-of-order execution, the actual execution order could be different, resulting with
 wrong measurements. The solution is to use the pseudo-serializing instruction
 \texttt{rdtscp} or to insert a serializing instruction like \texttt{cpuid} or
-use to fence instructions like \texttt{mfence}~\cite{benchmark2010}.
+use fence instructions like \texttt{mfence}~\cite{benchmark2010}.
 
-We will now introduce two cache attack (main) techniques:
+We will now introduce two main cache attack  techniques:
 Flush+Reload~\cite{Gullasch:2011:CGB:2006077.2006784,
 Osvik:2006:CAC:2117739.2117741, Yarom2014} and
 Prime+Probe~\cite{Percival2009,Osvik:2006:CAC:2117739.2117741,Liu:2015:LCS:2867539.2867673}.
@@ -409,7 +404,7 @@ channels and side-channel attacks.
 \label{subsec:flushreload}
 The attack is made of four basic steps and it goes as following:
 \begin{enumerate}
-    \item \textbf{Map. } The attacker maps a shared library (Illustration in
+    \item \textbf{Map.} The attacker maps a shared library (Illustration in
     \Cref{fig:fr_sharedlib}), by doing that he will have a shared cache line
     with the victim.
     \item \textbf{Flush.} The attacker \textit{flushes} the shared cache line,
@@ -425,7 +420,7 @@ The attack is made of four basic steps and it goes as following:
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{images/chapter_6/fr_sharedlib.JPG}
-    \caption{Attacker maps shared library (shared memory, in cache), shared cache line marked in red}
+    \caption{Attacker maps shared library (shared memory, in cache), the shared cache line is marked in red}
     \label{fig:fr_sharedlib}
 \end{figure}
 
@@ -460,6 +455,7 @@ itself seriously is using memory deduplication, e.g., Amazon EC2.
 A Flush+Reload variant which not require using the clflush instruction.
 Instead of using the clflush instruction, Evicts+Reload~\cite{Gruss2015}, is accessing physically congruent addresses in
 a large array which is placed in large pages by the operating system. In order to compute physically congruent addresses we need to determine the lowest 18 bits of the physical address to attack, which can then be used to evict specific cache sets.
+
 
 \subsection{Prime+Probe}
 \label{subsec:primeprobe}
