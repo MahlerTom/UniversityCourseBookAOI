@@ -1229,3 +1229,32 @@ solver will fail. what can we do in this case? We try again.
     the attacker is amplified. Using this approach, if n is the number of
     iterations, the error probability of template classification is reduced by
     the factor √n. 
+
+    \section{Related work} \label{sec:RelatedWork}
+    \begin{itemize}
+    \item \textbf{Power analysis attacks on the AES} - This paper describes an attack attack on the AES algorithm using the Difference of Means technique was carried out on a Field-Programmable Gate Array (FPGA) board.
+     The work of Coron et al. described the idea of using the Weight Power Model and experimentation was conducted on a smart card chip. Brier et al. expanded the work on CPA by proposing the use of a Hamming distance power model in place of Hamming weight while results were presented from data gathered from attacking an 8-bit chip against AES.
+     Alioto et al. proposed a novel CPA attack named Leakage Power Attack which is derived from the theory behind the Hamming Weight Power Model and results were conducted against a MC74ACT273N chip.
+     Lastly, Mestiri et al. describes an attack on a SASEBO-GII board against the AES algorithm with the goal of comparing the Hamming distance model against another derivative of the CPA called the Switching Distance model
+    \href{https://doi.org/10.1080/23742917.2016.1231523}{power analysis (DPA) and correlation power analysis (CPA)}.
+
+    \item  \textbf{Differential Power Analysis in AES: A Crypto Anatomy} 
+    The  initial  papers  on  DPA  are  abstract,  and  recent  papers  propose countermeasures  rather  than  describe  the  attack  methodology  itself.
+    None  of  the  previous  papers considered the pipeline effects in a processor, and almost all current processors contain pipelines. 
+    And most  of  the papers  do  not clearly  describe  the method  to  locate the  necessary power  magnitudes (corresponding to  the actual instructions which  are executed during  the SBOX lookup) from a long power profile.  
+    This journal describes the attack in a step by step manner, so that effective countermeasures can be proposed by a larger number of researchers. 
+    Even the recent papers in DPA approach tend to assume that the reader understands the anatomy of DPA well.
+    Yet, a number of researchers have asked us about how it is done, and this is an effort to  make the steps clear. 
+    We also look at the effect the pipeline has on the attack, and methods to identify which instructions are most vulnerable to attack.
+
+    \item  \textbf{Power Analysis Based Side Channel Attack} 
+    Work related to circuit level hardware countermeasures are very few. 
+    Sprunk in his invention uses a clock that outputs a stream of random clock pulses. 
+    When the clock is unpredictable, the moment at which a certain instruction would run is also unpredictable. 
+    Therefore the obtained power traces would be misaligned. The misalignment of power traces makes it necessary
+    to collect and analyse large number of power traces which makes the attack more time consuming. 
+    But many communication protocols such as USB and RS232 need a stable clock and
+    therefore usage of an unpredictable clock is a disadvantage is such situations
+    \href{https://arxiv.org/pdf/1801.00932.pdf}{Power analysis and Testbeds}.
+
+    \end{itemize}
