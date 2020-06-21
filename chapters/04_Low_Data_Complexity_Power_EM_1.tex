@@ -1,42 +1,43 @@
 \chapter{Power/EM I} \label{c4_forthchapter:cha}
 
-\section{Electronic Circuits}
+In this chapter, we're going to learn about:
+\begin{itemize}
+    \item Electric Engineering basics
+    \item When \& Where in an electronic circuit is power consumed
+    \item How can we measure power \& EM consumption?
+\end{itemize}
+
+\section{Electronic Circuits 101}
 
 \subsection{A basic electronic circuit}
 
-The most basic electronic circuit consist of a power supply (i.e. a battery)
-that generates an electric potential that aim to move to the ground. And an
-electrical load (any component consuming electric power) connected to the power
-supply (Vdd) on one side and to the ``ground" (the reference point from which
-voltages are measured) on the other side. As the electric potential goes through
-the load, it (the load) does some kind of a work. We can consider electric
-current to behave like water, in this example the water wants to go from the
-mountains (Vdd) to the sea level (Ground) and there are rivers and obstacles
-that tries to prevent it to do so. When the load has small resistance then more
-of the current will “flow” through it, and when the load has bigger resistance
-then the “flow” is smaller.
-
-There are two different ways in which we can wire things together in an electric
-circuit, called series and parallel. When things are wired in series, things are
-wired one after another, such that electricity has to pass through one load,
-then the next load, then the next, and so on. When things are wired in parallel,
-they are wired side by side, such that electricity passes through all of them at
-the same time, from one common point to another common point. The difference in
-the electric potential between the power supply and the ground creates an
-electric current which flows through the load toward the ground. The difference
-in electric potential between two points is measured in Volts (usually denoted
-by \textbf{\textit{V}}). The amount of current flowing through the circuit at a
-given time is measured in Amperes (denoted by \textbf{\textit{A}}). The
-electrical resistance of the load is a measure of its opposition to the flow of
-electric current through it. It is measured in Ohms (and denoted by
-\textbf{\textit{R}}).
-
+The most basic electronic circuit (Figure \ref{fig:basic_electronic_circuitn}) consists of a power supply (Vdd)
+and some sort of electrical load (a component consuming electric power)
+connected to the power supply on the one hand and to the ``ground" (the reference point from which electric potential or voltage is measured) on the other hand. As the electric current - a targeted flow of free electrons -
+flows through the load, the load does some kind of a ``work''. We can think of electric
+current as behaving like water - going from the hill (Vdd) to the valey (Ground) with rivers and obstacles (Loads/Resistors) trying to prevent it from flowing. The higher the resistance of the load, the less current will be able to flow through it.
 
 \begin{figure}[!ht]
 	\centering
 	\includegraphics{images/basic_electronic_circuit.png}
 	\caption{Basic electronic circuit.} \label{fig:basic_electronic_circuitn}
 \end{figure}
+
+
+There are two different ways to wire different loads on an electric circuit - "in series" and "in parallel":
+\begin{itemize}
+    \item \textbf{In series} - electricity has to pass through one load to reach the other.
+    \item \textbf{In parallel} - the loads are conected side by side and the electric current passes through them in parallel.
+\end{itemize}
+
+The electric potential difference between the power supply and the ground creates an
+electric current which flows through the load toward the ground. The difference
+in electric potential between two points is measured in Volts (usually denoted
+by \textbf{\textit{V}}). The magnitude of the current flowing through the circuit at a
+given time is measured in Amperes (denoted by \textbf{\textit{A}}). The
+electrical resistance of the load is a measure of its opposition to the flow of
+electric current through it. It is measured in Ohms (and denoted by
+\textbf{\textit{R}}).
 
 \subsection{Resistors}
 
@@ -64,15 +65,14 @@ in a circuit: The voltage is equal to the current multiplied by the resistance
 of the load. 
 
 \begin{displaymath}\label{eq:ohm}
-    V=I*R
+    V=I \cdot R
 \end{displaymath}
 
 Since in most of the circuits we are using, the voltage is fixed (defined by the
 characteristics of the power supply), a change in the resistance of the circuit
-will cause a change in the current in the opposite direction. This means we can
-measure the current over time in order to calculate the resistance. A useful
-analogy for the relations between V, I and R is to imagine a fountain on a high
-mountain, where the water flow down through a river to the sea. The difference
+will cause an inverse change in the current. A useful
+analogy for the relations between V, I and R is to imagine a fountain springing from a high
+mountain with water flowing down through a river to the sea. The difference
 in height between the fountain and the sea is the Voltage, the width of the
 river can be thought of as the resistance, and the flow of the water is the
 current.
@@ -80,28 +80,23 @@ current.
 \subsection{Power}
 
 Power is the rate at which work is done by the circuit and is measured in Watts.
-Electricity bills are measured by K Watts hour, i.e. 1 KWH is 1 kilo watts used
-over an hour, and this is the energy that we used and we need to pay for. $Power
-= Work / Time$
+Electricity bills are measured in units of Kilo-Watt x hour, i.e. 1 KWH is 1,000 watts used
+for an hour, and this is the energy that we used and we need to pay for. 
 
 \begin{displaymath}\label{eq:power_consumption}
-    \textrm{Power consumption:} P=I*V
+    Power = \frac{Work}{Time}
 \end{displaymath}
 
-For example we can take a look on a phone; the battery can be measure in
-Milliamper hour, i.e. if the battery is 3000mil Amper Hour so if the current is
-1 Amper then we can use it for 3 hours. If we want the battery to run out
-quickly, we can use services like streaming, flashlight and more. That means we
-have greater current that caused by leveraging the load of the phone and the
-battery will run our much faster than before. The phone also, will get hot. If a
-device is getting hot then it sometimes uses its fans (noise), and so we can
-detect it for cyber usage.
+As an example we can consider a smartphone: the battery's capacity is measured in milli-Ampere hour (mAh).
+So, if a battery has 3000 mAh of capacity, and the phone's basline power consumption is 1A  then we can use it
+for 3 hours without recharging. Of course, if we overload the phone by watching videos on youtube (requires cpu/gpu for decoding, wifi/mobile for downloading content, etc.)
+turning the flashlight on and so forth - then the power consumption would be higher and the battery will run out quicker. 
 
-Electricity can be used to do various kinds of work:
+Different types of work can be done using electricity
 \begin{itemize}
     \item Electromagnetic work (light a bulb, transmit a Wi-Fi signal)
     \item Thermal work (heating)
-    \item Mechanical work (spin a motor, vibrate a speaker)
+    \item Mechanical work (spin a motor, vibrate a speaker's diaphragm to play sounds)
     \item Chemical work (charging a battery)
     \item Computational work (store or load from memory, compute a value)
 \end{itemize}
@@ -109,22 +104,21 @@ Electricity can be used to do various kinds of work:
 \subsection{Power Consumption}
 
 When the current leaves the circuit to the ground then we consume it as power,
-but sometimes we need to be careful as there are cases where the current is no
-leaving the circuit, like battery charging. In order to measure the power we
-will connect our measuring device between the load and the ground. The power
+but sometimes we need to be careful as there are cases where the current is not really
+leaving the circuit, like battery charging. In order to measure the power consumption we
+will connect our measurement device between the load and the ground. The power
 consumption of a device is the work it does divided by time. It is measured in
-Watts (\textbf{\textit{W}}). The power consumption can be calculated as current
-(\textbf{\textit{I}}) multiplied by Voltage (\textbf{\textit{V}}).
+Watts (\textbf{\textit{W}}). The power consumption can also be calculated as current
+(\textbf{\textit{I}}) multiplied by Voltage (\textbf{\textit{V}}): $P = I \cdot V$
 
 \subsection{Current and Voltage dividers}
-
 Before we take a look at two simple electronic circuits, we need to introduce
 two additional terms: A \textbf{short (closed) circuit} is a piece of wire with
-almost no resistance at all. The circuit is in a closed state and there is
-current in the circuit. In other words, it works as normal. An \textbf{open
+(almost) zero resistance. The circuit is in a closed state and there is
+electric current flowing through the circuit, simply stated - it "works" as normal. An \textbf{open
 circuit} is a circuit which doesn't allow any current to pass through it. The
-circuit is in an open state and there is no current in the circuit; that's to
-say. It doesn't work.
+circuit is in an open state and there is no current in the circuit. That's to
+say - it doesn't ``work''.
 
 \begin{figure}[!ht]
     \centering
@@ -134,10 +128,9 @@ say. It doesn't work.
 
 \subsubsection{Connecting in serial}
 
-If we connect a short circuit between the load and the ground (See Figure
-\ref{fig:circuit1}), it will have no influence on it: the current will not
-change as from the power supply point of view – nothing has been change, we just
-cut a cable and put another one instead. The voltage drop will be very very low.
+If we connect a short circuit between the load and the ground (Figure
+\ref{fig:circuit1}), it will have no influence on it since we basically just
+cut a cable and put another one instead.
 
 \begin{figure}[!ht]
     \centering
@@ -147,7 +140,7 @@ cut a cable and put another one instead. The voltage drop will be very very low.
 
 If we connect an open circuit after the load (See Figure \ref{fig:circuit2}), it
 will increase the resistance to a very high value, causing the current to become
-zero effectively. If the current is zero then the voltage is also zero (Ohm's
+effectively zero. And if the current is zero - the voltage is also zero (Ohm's
 Law).
 
 \begin{figure}[!ht]
@@ -159,7 +152,7 @@ Law).
 \subsubsection{Connecting in parallel}
 
 If we connect an open circuit in parallel to the load (See Figure
-\ref{fig:circuit3}), the current will flow only through the load path, so the
+\ref{fig:circuit3}), the current will flow only through the load's path, so the
 current on the open circuit will be 0. However, the voltage drop between both
 points of the open circuit will be the same as the drop between the load sides.
 
@@ -172,7 +165,7 @@ points of the open circuit will be the same as the drop between the load sides.
 If we connect a short circuit in parallel to the load (See Figure
 \ref{fig:circuit4}), the current will ``prefer" flowing through it rather than
 through the load, so the current through the load will be equal to zero, while
-the current through the short circuit will be very high - by Ohm's law.
+the current through the short circuit will be very high - by Ohm's law, since the voltage stays the same as before.
 
 \begin{figure}[!ht]
     \centering
@@ -180,110 +173,102 @@ the current through the short circuit will be very high - by Ohm's law.
     \caption{A short circuit in parallel to the load.} \label{fig:circuit4}
 \end{figure}
 
-Since the cable is not a perfect conductor, some of the energy will be consumes
-in the form of thermal work, so the cable will heat, and possibly melt and start
-a fire.
+Since the cable is not a perfect conductor, some of the energy will be consumed
+in the form of thermal work, so the cable will heat up.
 
 \section{Measuring Power Consumption}
 
-Next, as an attackers, we want to measure the power consumption of this load,
-and to do so, we are going to use Ampermeter device.
+As an attacker, we want to measure the power consumption of the load in order to deduce interesting insights about it.
+For this, we are going to use an Amperemeter.
 
-\subsection{Ampermeter}
+\subsection{Amperemeter}
 
-An Ampermeter (from \textbf{Am}pere \textbf{Meter}) is a device capable of
-measuring the amount of electric current going through it. It has very low
-resistance, so it doesn't interrupt the system connected to it.
+An Amperemeter is a device capable of measuring the amount of electric current going through it. It has a very low resistance, so it doesn't affect the circuit it connects to - since it is basically equivalent to an extra piece of conducting wire.
 
 \begin{figure}[!ht]
     \centering
     \input{tikz-images/ampermeter.tikz}
-    \caption{Ampermeter Symbol in Circuit Diagrams.} \label{fig:ampermeter}
+    \caption{Amperemeter Symbol in Circuit Diagrams.} \label{fig:ampermeter}
 \end{figure}
 
-\subsubsection{Using Ampermeter to measure power consumption}
+\subsubsection{Using an Amperemeter to measure power consumption}
 
-We need to ``cut" the wire connected to the load and connect both sides to the
-Ampermeter.(See \Cref{fig:circuit5})
+To use an Amperemeter - we ``cut" the wire connected to the load and connect both sides to the
+Amperemeter.(See \Cref{fig:circuit5})
 
-Doing so will cause all current flowing through the load to pass through the
-Ampermeter as well, so we will be able to read the current at any given time.
-The resistance of the Ampermeter is very low so it will not affect the voltage
-that going through the load that will have the same voltage drop as before. 
+Doing so causes all current flowing through the load to pass through the
+Amperemeter as well, so we are able to read the current at any given time.
+The resistance of the Amperemeter is very low so it doesn't affect the circuit's voltage.
 
 \begin{figure}[!ht]
     \centering
     \input{tikz-images/circuit5.tikz}
-    \caption{an Ampermeter connected in serial.} \label{fig:circuit5}
+    \caption{an Amperemeter connected in serial.} \label{fig:circuit5}
 \end{figure}
 
-Now we will measure the current going through the ampermeter and next we will
-convert the current in order to find the power consumption of the load.
-
-In case we know the voltage (i.e. a 5V battery, a 220V power socket), we can
-compute the power consumption: $P=I*V$.
-
-The problem: sometimes, we don't want (or simply can't) cut the circuit after
-the load in order to connect an Ampermeter, and this is a way that the architect
-of the device are trying to protect it. So, let's see if we can use the
-ampermeter without cutting anything, and let's connect it in parallel to the
-load. (See \Cref{fig:circuit6})
+To measure the power consumption, we measure the current ($I$) and since the voltage ($V$) 
+hasn't changed, we can compute the power consumption as $P=I \cdot V$.
+One major shortcoming of this method is that sometimes we don't want (or can't) 
+cut the circuit to connect an Amperemeter. A potential alternative would be to connect the Amperemeter in parallel (See \Cref{fig:circuit6})
 
 \begin{figure}[!ht]
     \centering
     \input{tikz-images/circuit6.tikz}
-    \caption{An ampermeter connected in parallel to the load} \label{fig:circuit6}
+    \caption{An Amperemeter connected in parallel to the load} \label{fig:circuit6}
 \end{figure}
 
-Connecting the ampermeter this way will burn the ampermeter as it has no
-resistance and so, all of the current will flow through it. So, instead of
-ampermeter we can use a voltmeter as follows (See \Cref{fig:circuit7}):
+However, connecting the Amperemeter in parallel would actually burn the Amperemeter as it has no resistance and so, all of the current will flow through it. So, instead of an
+Amperemeter we can use a Voltmeter as in  \Cref{fig:circuit7}.
 
 \subsection{Voltmeter}
 
 \begin{figure}[!ht]
     \centering
     \input{tikz-images/circuit7.tikz}
-    \caption{a voltmeter connected in parallel to the load} \label{fig:circuit7}
+    \caption{a Voltmeter connected in parallel to the load} \label{fig:circuit7}
 \end{figure}
 
-The voltmeter resistance is very very high so the current will not go through
-it. The voltmeter is measuring the voltage drop between one side of the load and
-the other side of it. If we want to measure the current using the voltmeter we
-are taking a load with a very small resistance and connect it as follows (See
-\Cref{fig:circuit8}):
+The Voltmeter's resistance is very very high so the current will not go through
+it. The Voltmeter is measuring the voltage drop between one side of the load and
+the other side of it. To measure the current using a Voltmeter we
+take a load with a very small resistance and connect it as in \Cref{fig:circuit8}.
 
 \begin{figure}[!ht]
     \centering
     \input{tikz-images/circuit8.tikz}
-    \caption{Circuit 8.} \label{fig:circuit8}
+    \caption{Voltmeter connected in parallel} \label{fig:circuit8}
 \end{figure}
 
-This way, because of the current divider, by connecting a Voltmeter in parallel
-with a very small and accurate resistor, we can measure the electric current
+By connecting a Voltmeter in parallel with a very small and accurate resistor, we can measure the electric current
 using Ohm's law: $I=V/R$
  
-Summary: we learned what is Power Consumption and how we can measure it. A very
-important fact is that \textbf{Power Consumption varies with time!}. If we can
-find a relationship between the secret information we want to extract and the
-power consumption, we can recover this information by measuring the power
-consumption over time.
+\subsection{Power consumption - what's next?}
+We saw what power consumption means and how we can measure it. It is very important to
+note that for every interesting enough circuit - \textbf{the power consumption varies with time!} 
+Our goal, as an attacker, is to find a relationship between the secret information we want to extract and the
+power consumption. Then, we can exploit this relationship by measuring the device's/circuit's power consumption 
+over time and using this information to extract secret info.
 
 \subsection{Types of electronic components}
 
-In general there are two types of elements in the circuit, the first one are
-Passive devices like a resistors (a passive two-terminal electrical component
-that implements electrical resistance as a circuit element), inductors (is a
-passive two-terminal electrical component that stores energy in a magnetic field
-when electric current flows through it), capacitors and diodes. And there are
-Active devices like transistors (a semiconductor device used to amplify or
-switch electronic signals and electrical power), amplifiers (an electronic
-device that can increase the power of a signal (a time-varying voltage or
-current)) and ICs. From our perspective, the Active devices are much more
-interesting for us (attackers) as they are using electricity in order to control
-electricity. One example can be an amplifier that has audio signal and power
-supply as inputs and it generates a greater audio signal as an output using the
-power supply. 
+Generally speaking, there are two types of components in an electric circuit:
+\begin{itemize}
+    \item \textbf{Passive devices}: 
+    \begin{itemize}
+        \item Resistor
+        \item Inductor
+        \item Capacitor
+        \item Diode
+    \end{itemize}
+    \item \textbf{Active devices}:
+    \begin{itemize}
+        \item Transistor
+        \item Amplifier
+        \item Integrated circuit (IC)
+    \end{itemize}
+\end{itemize}
+For us, active devices are much more interesting as their power consumption characteristics change
+as a function of the state of the circuit.
 
 \begin{figure}[!ht]
 	\centering
@@ -291,14 +276,64 @@ power supply.
 	\caption{Examples of electronic components.} \label{fig:type_of_electronic_components}
 \end{figure}
 
-Another interesting active element for this course is a transistor. In an
-integrated circuits, there are a lot of active devices such as transistors  that
-if we can analyze their behavior we can learn about the data that they are
-processing. So when we look at the final consumption of these active elements,
-we can figure out some kind of secrets.
+Specifically, of outmost interest for us is the transistor. 
+In integrated circuits, there are lots transistors. Analyzing their power consumption behaiour can
+shed a lot of light on the data they're processing,
+There are various kinds of transistors and we will concentrate on understanding a
+specific type - namely the ``Field-Effect Transistor'' (FET).
 
-There are many kind of transistors and we will concentrate on understanding a
-certain type called Field-Effect Transistor.
+\subsection{Field-Effect Transistor}
+
+The Field-Effect Transistor (FET) is an electronic device which uses an electric
+field to control the flow of current. FETs are 3-terminalled devices, having a
+source, gate, and drain terminals. FETs control the flow of current by the
+application of a voltage to the gate terminal, which in turn alters the
+conductivity between the drain and source terminals. In order to understand FETs,
+we first need to gain some understanding of semiconductors.
+
+\subsection{Semiconductors}
+
+We know that some materials, like copper or gold are good conductors, and others - like plastic or glass are very bad conductors or insulators. 
+
+A \textbf{semi}conductor is a substance, usually a solid chemical element or compound,
+that can conduct electricity under some conditions but not others, making it a
+good medium for the control of electrical current. Its conductance varies
+depending on the current or voltage applied to a control electrode, or on the
+intensity of irradiation by infrared (IR), visible light, ultraviolet (UV), or X
+rays.
+
+Generally, an atom is built from three sub-particles:
+\begin{itemize}
+    \item Neutrons - irrelevant for this discussion as they carry no electric charge
+    \item Protons - heavy, positively charged particles forming the nucleus of the atom (together with the neutrons).
+    \item Electrons - light and negatively charged particles orbiting the atom's nucleus in predefined orbits (this is basically Bohr's model of the atom which isn't quite accurate from the point of view of quantum mechanics, but is a good approximation in our context and in chemistry)
+\end{itemize}
+
+The \textbf{Silicon} atom has four electrons in its outer orbit (also known as \textit{valence electrons}).
+In Silicon crystals, all of those outer orbit electrons are involved in the covalent bonds between the Silicon atoms.
+This implies that pure Silicon is a pretty bad conductor, 
+since conductance relies on the flow of free electros,
+which are very hard to find in Silicon crystals as all outer-orbit electrons are busy forming covalent bonds and aren't free to move around between atoms.
+
+We can change the behavior of the silicon and turn it into a conductor by doping it - i.e. mixing a small amount of an impurity into the silicon crystal.
+
+There are two types of such useful impurities we can introduce:
+\begin{itemize}
+    \item N-type – where phosphorus or arsenic is added to the silicon in small
+    quantities. They both have five outer orbit electrons, so one of them is out of
+    place when they get into the silicon lattice. While having nothing to bond
+    to, the fifth electron is free to move around. As electrons have a negative
+    charge, this kind of impurity is called N-type (N = Negative).
+    \item P-type - where boron or gallium is added to the silicon. They both
+    have only three outer electrons. So, when we mix them into the silicon
+    lattice, there will be ``holes" in the lattice where a silicon electron has
+    nothing to bond to. The hole is looking for an electron from a neighbor atom
+    and when that happens the hole is ``moving". As the absence of an electron
+    creates the effect of a positive charge, this kind of impurity is called
+    P-type (P = Positive).
+\end{itemize}
+
+\subsection{How does the Field-Effect Transistor work? }
 
 \begin{figure}[!ht]
 	\centering
@@ -306,98 +341,42 @@ certain type called Field-Effect Transistor.
 	\caption{Field-Effect Transistor.} \label{fig:field_effect_transistor}
 \end{figure}
 
-\subsection{Field-Effect Transistor}
+In the Field-Effect Transistor there are two ``n+" areas with N-type doping and a ``p" area with P-type doping (see \Cref{fig:field_effect_transistor}). The
+``n+" areas contain a lot of free electrons and the ``p" area contains a lot of
+``holes". Initially, the free electrons from the ``n+" areas are moving into the holes in the ``p'' area and the transistor as a whole is not conducting  any current form the Source to the Drain (i.e. is an open circuit) as there are no free electrons that can move around. When an electrical field is applied to the Gate it gets charged with lots of free electrons. These electrons in the Gate can't move to the Silicon itself as there is an insulating oxide layer between them, but the repulsive force between the negatively charged electrons pushes the electrons in the part of the ``p"" area between the ``n+" areas to the bottom creating a ``channel" allowing the flow of electrons from Source to the Drain through the holes left by the electrons the were pushed away - thus turning the transistor into a conductor (i.e. closed/short circuit).
 
-The field-effect transistor (FET) is an electronic device which uses an electric
-field to control the flow of current. FETs are 3-terminalled devices, having a
-source, gate, and drain terminal. FETs control the flow of current by the
-application of a voltage to the gate terminal, which in turn alters the
-conductivity between the drain and source terminals. In order to understand FET
-first we need to dive into the basics of semiconductors.
+\subsection{Buliding an Amplifier using a FET}
+We can easily construct an Amplifier using a FET by connecting the input signal to the FET's Gate terminal and the power supply to the Source terminal. Then, the Drain terminal's output current will be an amplification of the input signal going into the Gate.
 
-\subsection{Semiconductors}
+\subsection{CMOS}
+Complementary Metal Oxide Semiconductor (CMOS) is a method for creating logical gates. Its core concept is based on using a ``pull up network'' (Vdd) denoting a logical 1 and a ``pull down network'' (Vss) denoting a logical 0. Then, a set of connections and transistors create a closed circuit of either the pull up or the pull down network with the output terminal ``Q'', depending on the value of the input terminal(s). It is very important to design the circuit in such a way that for every input, exactly one of the networks will be close-circuited to the output, since if none of them is close-circuited the output will be undefined and if both of them are close-circuited to the output they will short circuit each other, potentially causing damage to the circuit.
 
-A semiconductor is a substance, usually a solid chemical element or compound,
-that can conduct electricity under some conditions but not others, making it a
-good medium for the control of electrical current. Its conductance varies
-depending on the current or voltage applied to a control electrode, or on the
-intensity of irradiation by infrared (IR), visible light, ultraviolet (UV), or X
-rays. In general, transistors are made of semiconducting materials such as
-silicon. There are a conductor like copper or gold and there are insulators like
-plastic or glass.
+Now, let's see a few examples for implementing logical gates using CMOS.
 
-Silicon atom has three parts: neutrons (not relevant for our use), protons with
-the positive charge (heavy) and electrons that have the negative charge and they
-are small and dynamic. Silicon atom has four electrons in its outer orbital and
-when we have a crystal silicon those 4 electrons are set in place very nicely.
-It means that pure silicon is a very bad conductor as  conducting means that the
-electrons can move around and in this case they are very comfortable where they
-are.
-
-Metals can be good conductors of electricity as they have ``free electrons" that
-can move easily from atom to atom, the electricity involves the flow of
-electrons. As all of the outer electrons in Silicon crystal are involved in
-perfect covalent bonds, they cannot move around. So, silicon crystal is nearly
-insulator and very little electricity will flow through it. We can change the
-behavior of  the silicon and turn it into a conductor by doping it. In doping,
-we mix a small amount of an impurity into the silicon crystal.
-
-There are two types of impurities:
-\begin{itemize}
-    \item N-type – where phosphorus or arsenic is added to the silicon in small
-    quantities. They both have  five outer electrons, so one of them is out of
-    place when they get into the silicon lattice. While having nothing to bond
-    to, the fifth electron is free to move around. As electrons have a negative
-    charge, this kind of impurity called N-type.
-    \item P-type - where boron or gallium is added to the silicon. They both
-    have only three outer electrons. So, when we mixed them into the silicon
-    lattice, there will be ``holes" in the lattice where a silicon electron has
-    nothing to bond to. The hole is looking for an electron from a neighbor atom
-    and when that's happens the hole is ``moving". As the absence of an electron
-    creates the effect of a positive charge, this kind of impurity called
-    P-type.
-\end{itemize}
-
-\subsection{ How does Field-Effect Transistor work? }
-
-In the Field-Effect Transistor there are (as shown in
-\Cref{fig:field_effect_transistor}) n+ areas (N-type) and P area (P-type). The
-n+ area contains a lot of free electrons and the P area contains a lot of
-'holes'. When no electricity is connected to the gate, the free electrons from
-the N+ are moving to the holes so there are no free electrons within the
-semiconductor itself. That means electrons can't move from the source to the
-drain i.e. open circuit. When electricity is connected to the gate it charge a
-lot of free electrons to it. The free electrons in the gate can't move to the
-silicon itself as there is an oxide layer between them, but is pushes the
-electrons in the silicon down to the body in a way there are holes between the
-source and the drain. That way electrons can move from the source to the drain
-freely and we have close circuit. 
+\subsection{NOT Gate CMOS}
 
 \begin{figure}[!ht]
     \centering
     \input{tikz-images/not.tikz}
-    \caption{NOT Gate.} \label{fig:not}
+    \caption{Logical NOT Gate} \label{fig:not}
 \end{figure}
 
-\subsection{ NOT Gate CMOS}
 
 \begin{figure}[!ht]
     \centering
     \input{tikz-images/circuit9.tikz}
-    \caption{Circuit 9.} \label{fig:circuit9}
+    \caption{CMOS NOT gate} \label{fig:circuit9}
 \end{figure}
 
-How does CMOS work? When the voltage of input A is low A = 0, the upper
-transistor's channel is closed and we have a connection between Vdd(1) and Q, so
-Q = 1, this is a Pull Up Network. And when the voltage of input A is high, then
-the lower transistor's channel is closed and we have a connection between Vss(0)
-and Q, so Q = 0, this is a Pull Down Network. A question is raised – when does
-this circuit consume power? There is almost no power consume as there is no
-connection between Vdd and Vss at any time. Although when CMOS is switching
-between states, there is a minor power usage and we will see how we can use it
-for our purpose.
+When the voltage of input A is low (A=0), the upper
+transistor's channel is closed (since this is a PMOS transistor that closes the circuit when it gets a 0 input signal) and we have a connection between Vdd(1) and Q, so
+Q = 1. When the voltage of input A is high (A=1),
+the lower transistor's circuit is closed (since it is an NMOS transistor) and we have a connection between Vss(0)
+and Q, so Q = 0. It is trivial to see that we've implemented a logical NOT operation with A being the input and Q being the output.
 
-Following is the NOT table:
+\subsection{When does a CMOS circuit consume power?}
+
+There is an interesting question though – when does this circuit consume power? As mentioned previously, power is consumed when eletric current from the power source (Vdd) reaches the ground (Vss). In our case there is never a connection between Vdd and Vss so it appears power is never consumed, thus defying the energy conservation principcal. The answer to this is that a bit of power is actually consumed when transistors switch between their two possible outputs - i.e. connections with either Vss or Vss. We will see later on, how these minor power consumptions can be used for our purposes.
 
 \begin{table}
     \centering
@@ -409,19 +388,17 @@ Following is the NOT table:
     \end{tabular}
 \end{table} 
 
-\subsection{ AND Gate CMOS}
+\subsection{AND Gate CMOS}
 
-Next we will see how to build a bit more complicated gate using 4 transistors.
-Following is the AND gate diagram:
+\Cref{fig:and} is a logical AND gate.
 
 \begin{figure}[!ht]
     \centering
     \input{tikz-images/and.tikz}
-    \caption{AND Gate.} \label{fig:and}
+    \caption{AND Gate} \label{fig:and}
 \end{figure}
 
-We will implement the gate using 4 transistors to support the following AND
-table:
+We will create a CMOS AND gate using 4 transistors:
 
 \begin{table}[!ht]
     \centering
@@ -435,25 +412,21 @@ table:
 
 First we want to build the Pull Up Network, so for input A and B, for A=B=1 then
 the output Q is 1. Then we will build the Pull Down Network to support the other
-combination from the table to deliver 0 as the output Q. Sometimes we don't want
-to have combination using the circuits, but we want to store information in it,
-next we will talk about another type of circuits called storage circuit or
-Sequential Circuit.
+combinations of inputs from the truth table to deliver 0 as the output Q.
 
-\subsection{ Storage/Sequential Circuit }
-
-A latch or flip-flop is a circuit that has two stable states and can be used to
-store state information. 
+\subsection{Storage circuits}
+Now, let's see how we can use CMOS circuits to store data - i.e. create memory components.
+A flip-flop is a circuit, comprised of two latches that has two stable states and can be used to store a single bit of data.
 \begin{figure}[!ht]
     \centering
     \input{tikz-images/flipflop.tikz}
-    \caption{Flipflop.} \label{fig:flipflop}
+    \caption{Flipflop} \label{fig:flipflop}
 \end{figure}
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=0.5\textwidth]{images/banch_of_flipflops.png}
-	\caption{Banch of electronic flipflops.} \label{fig:banch_of_flipflops}
+	\includegraphics[width=1.0\textwidth]{images/banch_of_flipflops.png}
+	\caption{A series of flip-flops} \label{fig:banch_of_flipflops}
 \end{figure}
 
 The circuit can be made to change state by signals applied to one or more
@@ -462,7 +435,7 @@ in sequential logic. Flip-flops and latches are fundamental building blocks of
 digital electronics systems used in computers, communications, and many other
 types of systems.
 
-A flip-flop is a device which stores a single bit (binary digit) of data; one of
+A flip-flop is a device which stores a single bit of data; one of
 its two states represents a ``one" and the other represents a ``zero". Such data
 storage can be used for storage of state, and such a circuit is described as
 sequential logic in electronics. When used in a finite-state machine, the output
@@ -474,152 +447,117 @@ signal.
 Flip-flops can be either level-triggered (asynchronous, transparent or opaque)
 or edge-triggered (synchronous, or clocked). The term flip-flop has historically
 referred generically to both level-triggered and edge-triggered circuits that
-store a single bit of data using gates. We will refer Flip-Flop as
-edge-triggered i.e. clocked synchronized.
+store a single bit of data using gates. We will refer to Flip-Flop as
+edge-triggered i.e. clock-synchronized.
 
-Flip-flop has to legs – data and clock, for each storage element in the circuit
-the data changes at the clock signal and so we have an amplified signal that we
-can monitor as attackers and try to learn the secret behind it.
+It is both interesting and important to note that for each storage element in a circuit
+the data/output changes at the same time orchestrated by the clock signal and so we have a combined, amplified signal that we, as attackers, can monitor to extract secret information.
 
- \subsection { Core I7 chip }
- 
-Following is the core I7 chip image:
+ \subsection {Core i7 chip}
+ To demonstrate how combinations of CMOS gates scale up to form real-world chips, \Cref{fig:i7} is an image of a modern Intel core i7 CPU, which is fundamentally a CMOS chip.
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics{images/i7.png}
-	\caption{Intel i7.} \label{fig:i7}
+	\includegraphics[width=1.0\textwidth]{images/i7.png}
+	\caption{Intel i7 CPU} \label{fig:i7}
 \end{figure}
 
-We can see ordered items that are the storage elements, there are 24 items that
-are the GPUs and they have a little memory next to the (upper left). The CPU
-core has also a cash memory in it.
+We can see a multitude of different components, most notably:
+\begin{itemize}
+    \item The integrated GPU containing multiple repeating patterns denoting the GPU processing units
+    \item The identically looking 4 CPU cores with the repeating yellow patterns of CPU cache memory
+\end{itemize}
 
-\subsection { Power Consumption is Variable }
-
-Next we will see how to get secrets from the power consumption.
+\subsection {Power Consumption Variability}
 
 \begin{figure}[!ht]
     \centering
-    \input{tikz-images/Not_Gate.tikz}
+    \includegraphics[width=1.0\linewidth]{images/chapter4/not-gate-with-power-consumption-plot.png}
     \caption{Not gate connected to an oscilloscope.} \label{fig:Not gate connected to an oscilloscope}
 \end{figure}
 
-This is the NOT gate as before connected with an ampere meter so we can measure
-the power consumption, also there are two capacitors (C1 \& C2). The capacitors
-are connected because the characteristics of the circuit which make it to act
-like capacitors. They are not transferring current but they will have an effect
-on the math we are going to do next.
+In \Cref{fig:Not gate connected to an oscilloscope} we have a CMOS NOT gate, like the one we saw before, with an Amperemeter connected to it to measure the power consumption, and a plot of both the gate's output (q) and power consumption as would've been captured by an oscilloscope connected to the Amperemeter.
+C1 and C2 are capacitors that are required due to low-level electrical characteristics which we won't describe in deail.
 
-Next we are taking a square wave, which looks like this:
+In the plot we see a few interesting phenomena:
+\begin{itemize}
+    \item The power consumption is zero when the output (Q) is constant.
+    \item There is a spike in power consumption each time the output (Q) changes.
+    \item The power consumption spike goes higher when Q changes from 0 to 1 compared to when Q changes from 1 to 0.
+\end{itemize}
 
-And we have to feed it into the NOT gates, the output is going to be the
-opposite of the square wave, and we want to measure the power consumption using
-an oscilloscope. The x axis of the oscilloscope is time and the y axis in this
-case it's a voltage of the power. It's a current moving across the ampere meter.
-What we can see here is that when the circuit is stable, there was not much
-power consumption, but when the system is switching, when there is a high power
-consumption, because there is a glitch when one transistor is opening and the
-other one is closing. Also, we can see that the lines in the oscilloscope are
-not having the same size as the capacitors are actually charging and discharging
-without we want it. We can learn from this if there was one or zero and what is
-the rate of switching, and we can store this information.
-
-The power consumption is the sum of the statistic and the dynamic power
-consumption: 
+More generally, power consumption is the sum of the static and the dynamic power
+consumption which changes with time: 
 
 \begin{displaymath}
-    P(t)=P_{stat}(t) + P_{dyn}(t)
+    P(t)=P_{stat} + P_{dyn}(t)
 \end{displaymath}
 
-We don't care about the statistic power consumption as it is just defined by the
-kind of silicone that we are using, the size of the features decided to be in
-the transistors, the temperature, the technology, etc. But really interesting
-for us is the dynamic power consumption that depends on the o'clock rate and the
-circuit activity input data.
+As an attacker, we don't really care about the static power consumption that depends on the device's supply voltage, transistor manufacturing technology, etc.
+The dynamic power consumption, on the other hand, depends on the clock rate, the circuit activity and input data. It can reveal a lot about the data flowing through the circuit, which could be very beneficial.
 
-Because the power consumption is a function of the circuit activity, we can try
-to measure the power consumption and send the results to the equations and to
-get the circuit activity, in a way we can find out all the secrets.
+Theoretically, we can accurately measure the full power consumption of the device on the one hand and compute a full power consmuption simulation on the other hand and then try to extract the interesting data by comparing the results and solving the resulting equations to find the data manipulated during the measurement.
+However, making this accurate computation isn't feasible and we'll, instead, compromise for an approximate model of the device's power consmuption that will allow us to achive practical results subject to a set of assumptions we'll make about the device.
 
-In order to calculate the power consumption this way we need a lots of data
-about the circuit and about the environment and about the temperature etc. And
-this is too much work for us as an engineers. There is a much simplified way of
-measuring the power consumption of a device, assuming it's a CMOS device we can
-measure how many bits changes every clock.
-
-So, our assumptions are the followings:
-\begin{inparaenum}
+\subsection {Hamming distance model}
+We'll assume the following about the device we wish to attack:
+\begin{itemize}
     \item This is a CMOS device.
-    \item When it's static the static power is very low, and when it switches,
-    there is a very high power consumption.
-    \item This is synchronous circuit, which means it has a lot of flip flops
+    \item When it's static in terms of the outputs of its transistors - the static power is very low, and when it switches, there is a relatively high power consumption.
+    \item This is synchronous circuit, which means it has a lot of transistors
     that all change at the same time.
     \item The power consumption is proportional to the amount of changes and the
-    outputs of these flip flops.
-\end{inparaenum}
+    outputs of these transistors.
+\end{itemize}
 
+Count the number of changes in the output bits of the device's transistors brings us to the so called ``Hamming distance model''. 
 
-\subsection { hamming distance model }
+The \textit{Hamming distance} between two vectors is the number of differing bits between the vectors. 
+For example, the Hamming distance between the vectors 01101010 and 11011011 is 4, since they differ in exactly 4 indices, namely: 0,2,3,7.
 
-For doing this we are going to use hamming distance model. The Hamming distance
-between two vectors is the number of bits we must change to change one into the
-other. Example, what is the distance between the vectors 01101010 and 11011011? 
-
+Formally, assuming we have a vector:
 \begin{displaymath}
     X=x_{n},x_{n-1},...,x_{1},x_{0}
 \end{displaymath}
-Hamming weight:
+
+We'll first define the ``Hamming weight'' operator:
 \begin{displaymath}
     HW(X)=\sum x_{i}
 \end{displaymath}
-Hamming distance: 
+
+Then, we'll define the ``Hamming distance'': 
 \begin{displaymath}
     HD(X,Y)=HW(V_{1} \bigoplus V_{2})
 \end{displaymath}
-Answer: They differ in four places, so the Hamming distance d(01101010,11011011)
-= 4.
 
-When talking about CMOS devices we are estimating our power consumption as
-amount of bits (transitions) that change from one to zero or from zero to one,
-this is our hamming distance. By monitoring the changes as explained we can find
-the power consumption.
+For CMOS devices, we'll approximate the power consumption as proportional to the amount of bit transitions from one to zero or from zero to one - i.e. the hamming distance between the state vectors (the set of all CMOS transistor outputs) of the device across a time interval.
 
-But, this is not enough. By connecting the oscilloscope to our device we are
-trying to measure a physical device with another physical equipment, and what
-they are measuring is subject to measurement errors like switching noise,
-thermal noise and measurement noises.
+\subsection{Power Consumption Noise}
 
-Switching noise means that there are other kinds of activity which are going on
-in the circuit in addition. Measurement noise means that our desk setup is not
-always accurate, or we might be connected not properly, or we might not be
-measuring the precise correct moment of time etc. Thermal noise - we are
-measuring electrical activity, as electrons are very crazy particles and they
-like to disappear and reappear in a nearby location. So the higher is the
-temperature, the more likely they are to vanish and disappear. And when the
-electrons are moving, they generate radiation and they affect our measurements.
+This is all good in a ``perfectly spherical'' world, but in the real world we still need to account for noise. There are a number different types of noise that affect our power consumption measurements:
+\begin{itemize}
+    \item \textbf{Switching noise} - computations or some other power consumption occuring in the device except for the computation we want to monitor, that also affect the power consumption. This can be either correlated (i.e. happens every time our target computation is performed) or uncorreleated (i.e. happens in random relative to our target computation and so can be easily reduced by repeating the measurement a few times).
+    \item \textbf{Measurement noise} - caused by mild inaccuracies in our measurement equipment and setup.
+    \item \textbf{Thermal noise} - noise caused by electrons jumping arround, appearing, disappearing and creating radiation along the way. This noise is higher when the temperature of the device/circuit is higher.
+\end{itemize}
 
-So now when we are measuring the power, we get the static power, the dynamic
-power and we get the noise:
-
+To summarize, the actual measured power consumption can be modeled as:
 \begin{displaymath}
-    P_{meas}(t)=P_{stat}(t) + P_{dyn}(t) + N(t)
+    P_{meas}(t)=P_{stat} + P_{dyn}(t) + N(t)
 \end{displaymath}
+(N(t) - Noise)
 
-In order to avoid the noise we can measure it again and again and then the noise
-might be canceling itself. What happens sometimes is that the noise, especially
-the switching noise, is sometimes correlated with the activity of the circuits.
-Another thing we can do is controlling the noise somehow like running our
-experiment inside a freezer, or an isolated environment where there's no
-electric noise around. We can also, open the dives and try to kill the sources
-of noise.
+A number of approaches exist to minimize the amount of noise, depending on its nature:
+\begin{itemize}
+    \item Repeat the measurement to average out uncorrelated noise.
+    \item Control the amount of thermal noise by running the experiment in very low temperatures.
+    \item Prevent radiation originating noise by putting the device in a Faraday cage.
+    \item Modify the device in a way that either increases the signal or decreases the nosie. For example - remove a noise generating module.
+\end{itemize}
 
-That's one very nice thing we can do is instead of measuring power consumption,
-we can measure electromagnetic radiation. And this has two advantages, first of
-all, it's less invasive and second of all, it can be focused and, and reduce the
-switching noise.
+Another thing we can do is move from measuring power consumption to measuring electromagnetic radiation.
 
-\subsection { From Power to Electromagnetic }
+\subsection {From Power to EM}
 
 \begin{figure}[!ht]
     \centering
@@ -627,14 +565,45 @@ switching noise.
     \caption{electromagnetic emission.} \label{fig:electromagnetic emission}
 \end{figure}
 
-Electric fields are created by differences in voltage: the higher the voltage,
-the stronger will be the resultant field. We can use the right hand rule in
-order to remember the direction of the electromagnetic field direction when we
-know the current direction. We can measure the magnetic field, but one
-disadvantage is that it is very localize, so we need to get access to the
-device. We can connect an antenna to the device and then we can measure the
-electromagnetic wave using a receiver. There is a very nice paper called
-screaming channels where you can read more about this kind of attacks.
+A fundamental law of physics states that moving charged particles create magnetic fields. Specifically, a directed electric current creates a magnetic field with magnitude and orientation descibred by the Biot-Savart law. The direction of the magnetic field can be found using the ``left hand rule'' (\Cref{fig:electromagnetic emission}). This is very good news for us, as this means that instead of measuring the power consumption, we can simply measure the magnetic field and from it deduce the magnitude of the electric current that is its source.
+One disadvantage of this method is that it is very localized, so we need to get VERY close to the device or alternatively point a very sensitive directional antenna to it to make measurements.
+
+\subsection{Measurement setups}
+We'll now take a look at a few examples of attacker setups.
+
+\subsubsection{Power measurement setup}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1.0\linewidth]{images/chapter4/power_measurement_setup.png}
+    \caption{Power measurement setup} \label{fig:power_measurement_setup}
+\end{figure}
+
+In \Cref{fig:power_measurement_setup} we have:
+\begin{itemize}
+    \item A Pico scope - a small oscilloscope that measures voltage over time.
+    \item A Voltmeter probe that is connected to the battery of the phone under test using a bunch of small resistors connected in parallel - this is a way to measure the current, as we explained above.
+\end{itemize}
+
+\subsubsection{EM measurement setup}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1.0\linewidth]{images/chapter4/em_measurement_setup.png}
+    \caption{EM measurement setup} \label{fig:em_measurement_setup}
+\end{figure}
+
+In \Cref{fig:em_measurement_setup} we want to measure the EM field of a micro controller chip. We place the whole setup on a computer-controlled XYZ stage that allow placing the board very close to the Magnetic field probe with very high (micron level) precision - this is crucial since electromagnetic emanations can only be recorded from a very close distance. Another important thing to note is the pair of gray cables connected to I/O pins on the board, used for triggering the beginning and end of the measurement - this is very beneficial because it allows us to accuretly measure the EM field for a very short time interval during which the computations we'd like to track occur. A short time interval allows us recording with a higher resolution, gaining more valuable info that will help analyse the signal to extract the secret data we want.
+
+\subsubsection{Generic attack setup schematic}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1.0\linewidth]{images/chapter4/attacker_setup_schematic.png}
+    \caption{Generic attack setup schematic} \label{fig:attack_setup_schematic}
+\end{figure}
+
+\Cref{fig:attack_setup_schematic} describes a generic power-analysis attack setup schematic.
+We have the Device Under Test (DUT) connected to a very clean power supply (preferably a battery that gives a much cleaner supply of power than a standard AC/DC power supply). The ``Stimulus Generator'' is either a piece of software or hardware that allows us to automatically trigger the device's operation(s) we want to monitor. Then, we have the measurement front-end which is either a ``Baseband Front End'' i.e. a detour in the wiring conneced to a current/voltage proble or an ``RF Front End'' and a Wideband receiver for measuring the Electormagnetic field with good accuracy. The ``Deep Memory Scope'' is basically our oscilloscope that is capable of capturing lots of data very fast and transfer the digitized data to the ``Capture Workstation'' which is a very strong server or workstation that can handle the burden of thoroughly analysing the data to get the results we need.
+This is quite a costly setup with cost in the range of hundreds of thousands of dollars, but once we have it in our lab - we can perform some very cool attacks!
 
 \subsection { Research Highlights }
 
