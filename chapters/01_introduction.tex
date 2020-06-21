@@ -134,7 +134,14 @@ tenders. This is an evidence to that in those years, the Russians know about the
 the story above, we can see it was broken. So, what was broken? \textbf{The
 implementation}.
 
-Here are a couple of other machines which will break using attacks on their
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/ch1_Intro/modern_systems.png}
+    \caption{\textbf{Modern Systems}. A few modern systems that are vulnerable to implementation attacks.}
+    \label{fig:Modern Systems}
+\end{figure}
+
+Here are a couple of \textbf{Modern Systems} which will break using attacks on their
 implementation:
 
 \begin{itemize}
@@ -154,7 +161,10 @@ implementation:
     this computer that are stored values. Attackers could attack this card to
     take the train for free. There are a lot of ways to attack the implantation
     of that card~\cite{garcia2008dismantling, courtois2008algebraic}.
-    \item \textbf{Car Keys}~\cite{relayAttack}
+    \item \textbf{Car Keys}~: Car hacking has become more commonplace in recent years, due to the increased integration with electronic systems that include the car’s own lock system.
+    With keyless entry systems, it uses wireless or radio signals to unlock the car.
+    These signals can in turn be intercepted and used to break into the car and even start it.
+    One such technique is called SARA or Signal Amplification Relay Attack. \cite{relayAttack}
     \item \textbf{FPGA}~\cite{fpga}: a piece of hardware which is a very
     versatile, meaning we can find it many kinds of hardware – routers, audio
     equipment, spaceships, etc. the FPGA has a firmware installed inside, and if
@@ -255,7 +265,7 @@ calculations or other problem-solving operations. An example of an algorithm is
 GCD/Extended GCD. An algorithm is secure when it is implementing the CIA triad
 mentioned above. A \textbf{Protocol} is when you need to get something done, for
 example, AES -  the input is a 128-bit key and a 16-bytes plaintext (in case of
-more than 16-bytes we should use padding), and the output is a ciphertext.
+different amount of bytes we can use block cipher like CBC), and the output is a ciphertext.
 
 \begin{figure}
     \centering
