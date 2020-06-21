@@ -16,3 +16,5 @@ output.dvi
 tikz-cache/output-figure?.md5
 main/main.idx
 .DS_Store
+
+**/.vscode/**
