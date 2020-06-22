@@ -474,16 +474,18 @@ Additional related work on the topic of fault attacks includes:
 	\begin{itemize}
 
 		\item \textbf{CLKScrew} - a paper by 
-		Tang et al that describes a technique that takes advantage of security vulnerabilities
+		Tang et al. \cite{tang2017clkscrew} that describes a technique that takes advantage of security vulnerabilities
 		caused by the constant strive to improve energy efficiency, more specifically energy management
 		mechanisms used in state-of-the-art mobile SoCs.
+		The attack is based on overclocking CPU frequency to inject faults into the victim process and breach the isolated Trusted Execution Environment (TEE).
 
-		\item \textbf{VoltJockey} - a paper by Qiu et al that describes a hardware fault-based attack on 
-		the TrustZone - a security approach deployed in ARM processors. This attack
-		uses software-controlled voltage manipulation. It is demonstrated on an ARM-based
-		multi-core processor and manages to acquire an AES key protected by TrustZone.
+		\item \textbf{VoltJockey} - a paper by Qiu et al. \cite{qiu2019voltjockey} that describes a hardware fault-based attack on 
+		the TrustZone - a TEE security approach deployed in ARM processors.
+		This attack, as opposed to the frequency manipulation in CLKscrew,
+		uses software-controlled voltage manipulation.
+		It is demonstrated on an ARM-based multi-core processor and manages to achieve several malicious goals: (1) acquire an AES key by cryptanalysis, (2) induce misbehavior in RSA decryption method to fake signatures and load unauthorized applications into TrustZone.
 		
-		\item \textbf{Plundervolt} - a paper by Murdock et al, the first one that describes 
+		\item \textbf{Plundervolt} - a paper by Murdock et al. \cite{murdock2020plundervolt}, the first one that describes 
 		the use of voltage scaling for corruption of integrity and confidentiality
 		of Intel SGX enclaved computations. The authors demonstrate full key recovery PoC attacks
 		against RSA-CRT and AES-NI.
