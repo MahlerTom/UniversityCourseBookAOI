@@ -1257,4 +1257,13 @@ solver will fail. what can we do in this case? We try again.
     therefore usage of an unpredictable clock is a disadvantage is such situations
     \href{https://arxiv.org/pdf/1801.00932.pdf}{Power analysis and Testbeds}.
 
+    \item   \textbf{One trace is all it takes: Machine Learning-based Side-channel Attack on EdDSA}\cite{cryptoeprint:2019:358} \\
+    The paper proposes a Convolutional Neural Network based profiling attack on the implementation of the Ed25519 Digital Signature Algorithm in the WolfSSL library on a 32 bit STM32F4 microcontroller.
+    The attack focuses on the optimized implementation of Elliptic Curve scalar multiplication by Bernstein et al\cite{Bernstein2012} that splits the computation to work on a single nibble of the ephemeral key at a time and uses a lookup table with all possible partial multiplication results.
+    The lookup table access is vulnerable to side channel data leakage via power analysis, similarly to the way an SBOX lookup is exploited for side channel attacks on AES.
+    The authors evaluate the standard template attack method as well as SVM and RandomForest based attack and finally - a CNN based attack that uses a CNN architecture similar to the well-known VGG model used for computer vision tasks, modified to work with 1D instead of 2D convolutions and fine tuned for SCA in terms of the number of layers and layer sizes. To evaluate the attacks, the authors construct a dataset mapping power traces to the respective ephemeral key nibbles processed when the power trace was recorded. Around 5K profiling (training) traces and 1K attack (test) traces are recorded and used for the evaluation.
+    The results show that the CNN based method has a 100\% accuracy of identifying the correct ephemeral key nibble given a trace from the attack set, whereas the SVM and Random Forest methods show a slighly lower accuracy and the template attack lags behind them all. As a consequence, the CNN based method is able to iteratively recover the entire 256bit ephemeral key using just a single guess of each of its 64 nibbles and the private scalar can be computed from the ephemeral key and the respective signed message using a straightforward mathematical formula, thus giving an attack the ability to forge message signatures.
+    Another important result is that as few as 500 training traces are sufficient to reach the 100\% accuracy with the CNN based attack.
+
+
     \end{itemize}
