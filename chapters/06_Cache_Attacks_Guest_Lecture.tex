@@ -440,22 +440,19 @@ it needs a shared memory. Illustration of the attack flow in \Cref{fig:fr_flow}.
 
 \subsubsection{Shared Memory}
 \label{subsubsec:sharedmemory}
-Common method to achieve a shared memory is by a feature called
+A common method to achieve a shared memory is by a feature called
 \textit{page-deduplication}. When two different independent processes are
 loading the same system library, some of their memory pages will be identical,
 when the operating system (in a cloud scenario - the hypervisor) identify
 separate identical physical memory pages, if page-deduplication is enabled, it
 will merge the physical pages in order to save physical memory, and two
 different virtual memory pages, one of each process, will be mapped into the
-same physical memory page. As of today, no cloud service company that takes
-itself seriously is using memory deduplication, e.g., Amazon EC2.
+same physical memory page. As of today, no serious cloud service company is using memory deduplication, e.g., Amazon EC2.
 
 \subsubsection{Evicts+Reload}
 \label{subsubsec:evictreload}
-A Flush+Reload variant which not require using the clflush instruction.
-Instead of using the clflush instruction, Evicts+Reload~\cite{Gruss2015}, is accessing physically congruent addresses in
-a large array which is placed in large pages by the operating system. In order to compute physically congruent addresses we need to determine the lowest 18 bits of the physical address to attack, which can then be used to evict specific cache sets.
-
+\cite{Gruss2015} demonstrated a substitution attack for Flush+Reload that does not require using a clflush instruction.
+This attack access physically congruent addresses in a large array, which is placed in large pages by the operating system. In order to compute physically congruent addresses, we need to determine the lowest 18 bits of the physical address to attack, which can then be used to evict specific cache sets.
 
 \subsection{Prime+Probe}
 \label{subsec:primeprobe}
@@ -468,10 +465,10 @@ the three following steps:
     \item \textbf{Prime.} The attacker primes the cache by reading memory lines
     from its own exclusive memory (no shared memory).
     \item \textbf{Victim.} The attacker lets the victim evict (or not evict)
-    lines while running, depending on the victim's behaviour.
+    lines while running, depending on the victim's behavior.
     \item \textbf{Probe.} The attacker probes data in a similar way of the prime
-    step but with measurement of how much time it takes to load the lines (Hit /
-    Miss), for each cache set, the attacker determine if the cache set has been
+    step but with the measurement of how much time it takes to load the lines (Hit /
+    Miss), for each cache set, the attacker determines if the cache set has been
     accessed.
 \end{enumerate}
 
@@ -482,7 +479,7 @@ the three following steps:
     \label{fig:pp_flow}
 \end{figure}
 
-\noindent In compare to Flush+Reload, this attack technique is less restrictive:
+\noindent In comparison to Flush+Reload, this attack technique is less restrictive:
 it does not require \texttt{clflush}, does not assume shared memory and possible
 from JavaScript. On the other hand, the granularity is coarser: 1 set.
 Illustration of the attack flow in \Cref{fig:pp_flow}.
@@ -494,38 +491,14 @@ memory, so the following questions arise:
     \item How do we do that without any privilege?
     \item In which order do we need to access them?
 \end{itemize}
-For doing that, we need an \textit{eviction set}: addresses in the same set, in
-the same slice and an \textit{eviction strategy}.
+To achieve that, we need an \textit{eviction set}: addresses in the same set, in the same slice and an \textit{eviction strategy}.
 
 \subsubsection{Eviction Set}
 \label{subsubsec:evictionset}
 \footnote{From now on, most of the details are correct for a common Intel CPU architecture.}
-We want to target the L3 for cross-core attacks and we need addresses that have
-the same set index. Consider the following cache settings, L3 for a 2-core CPU:
-4096 sets, 64B-lines, 12 or 16 ways. Since each memory address indicates one
-memory byte, the 6 least significant bits of the physical address indicate the
-line offset. For the sake of simplicity, we assume that the cache is not sliced,
-since there are $4096=2^{12}$ cache sets, the next 12 bits indicate the cache
-set. The L3 is physically indexed, so we need to choose addresses with fixed
-physical address bits. Unfortunately, address translation from virtual to
-physical is privileged. One of the properties of a virtual address is that a
-page offset stays the same from virtual to physical address, thus, some of the
-least significant bits of the virtual address can be used as a sneak peak to the
-physical address. A typical page size is 4KB, which means just 12 bits of page
-offset, i.e, 6 bits of line offset and 6 least significant bits of the cache set
-out of 12. To overcome this limitation, we can use a special type of enlarged
-pages called \textit{Huge Pages} which are 2MB size each, that is - 21 bits of
-page offset. This way the set index bits are included in the 21 LSB of the
-address.
+We want to target the L3 for cross-core attacks and we need addresses that have the same set index. Consider the following cache settings, L3 for a 2-core CPU: 4096 sets, 64B-lines, 12 or 16 ways. Since each memory address indicates one memory byte, the 6 least significant bits of the physical address indicates the line offset. For simplicity, we assume that the cache is not sliced, since there are $4096=2^{12}$ cache sets, and the next 12 bits indicate the cache set. The L3 is physically indexed, so we need to choose addresses with fixed physical address bits. Unfortunately, address translation from virtual to physical is privileged. One of the virtual addresses' properties is that a page offset stays the same from virtual to physical address. Thus, some of the least significant bits of the virtual address can be used as a sneak peek to the physical address. Typical page size is 4KB, which means just 12 bits of page offset, i.e., 6 bits of line offset and 6 least significant bits of the cache set out of 12. To overcome this limitation, we can use a special type of enlarged pages called \textit{Huge Pages}, which are 2MB size each, that is - 21 bits of page offset. This way, the set index bits are included in the 21 LSB of the address. 
 
-We now have another issue, in practice, the L3 is divided in slices, as many
-slices as cores. We usually have 2048 sets per slice, that is, actually 11 bits
-for the set index. We cannot infer the slice number directly from the address,
-neither from the virtual or the physical. The slice number of each memory line
-is determined by a hash function which takes all the address bits as input,
-including physical page number bits (outside the known bits from page offset).
-Illustration of which bits of the address indicates what for both typical pages
-and huge pages is shown in \Cref{fig:slicedcache}.
+We now have another issue; in practice, the L3 is divided into slices, as many slices as cores. We usually have 2048 sets per slice, that is, actually 11 bits for the set index. We cannot infer the slice number directly from the address, neither from the virtual or the physical. The slice number of each memory line is determined by a hash function, which takes all the address bits as input, including physical page number bits (outside the known bits from page offset). The Illustration below shows the address bit indication for both typical pages and huge pages.
 
 \begin{figure}[!ht]
     \centering
@@ -534,10 +507,8 @@ and huge pages is shown in \Cref{fig:slicedcache}.
     \label{fig:slicedcache}
 \end{figure}
 
-In addition, the mentioned hash function is undocumented, it designed for
-performance. But, it does not mean that it is impossible to target the same set
-in the same slice. Previous work~\cite{EURECOM+4671} showed that the hash
-function can be reverse engineered, for example in \Cref{fig:hashfunc}.
+Also, the mentioned hash function is undocumented; it designed for
+performance. But, it does not mean that it is impossible to target the same set in the same slice. Previous work~\cite{EURECOM+4671} showed that the hash function could be reverse engineered, for example, in \Cref{fig:hashfunc}.
 
 \begin{figure}[!ht]
     \centering
@@ -575,7 +546,7 @@ with $n$ addresses for a $n$-way cache. If the replacement policy is LRU, it
 access addresses from eviction set 1 by 1. If the replacement policy is not LRU,
 the eviction rate is lesser than $100\%$, e.g. $75\%$ on Haswell. For non-LRU
 caches, we can use some heuristics, as in \Cref{fig:haswellstrategy}, that will
-result with a higher eviction rate.
+result in a higher eviction rate.
 
 \begin{figure}[!ht]
     \centering
@@ -597,13 +568,12 @@ To sum it up, in practice, for Prime+Probe on recent processors we need:
 \subsection{Hardware vs. implementations}
 \label{subsec:Hardwarevsimplementations}
 
-To perform a cache side-channel attack on some software you need two things:
-First, shared and vulnerable hardware. Note that there will be no side channel
+To perform a cache side-channel attack on some software, you need two things:
+First, shared and vulnerable hardware. Note that there will be no side-channel
 if every memory access takes the same time or if you cannot share the hardware
 component. Second, a vulnerable implementation. Note that a vulnerable
-implementation doesn't mean that the algorithm is vulnerable. For example, we
-can take specific implementation of AES and RSA, this doesn't mean that AES and
-RSA are broken. Not all implementations are created equal.
+implementation does not mean that the algorithm is vulnerable. For example, we
+can take the specific implementation of AES and RSA, this does not imply that AES and RSA are defective. Not all implementations are created equal.
 
 To sum up, hardware will most likely stay vulnerable, so patch implementations
 when you can. And remember, constant time is not enough - because an attacker
@@ -612,14 +582,14 @@ can modify the internal state of the micro-architecture.
 \section{Step by Step Attack Demo} %yaniv
 \label{sec:stepbystepattack}
 
-The target of the attack in this demonstration, is to get the timestamp of the
+The target of the attack in this demonstration is to get the timestamp of the
 keystrokes pressed by a user in a gedit program. We only target the timestamps
-and not the keystrokes themselves, as we are not able to fully recover the
+and not the keystrokes themselves, as we cannot fully recover the
 pressed keys.
 
 The demonstration is performed on a non-virtualized Linux environment. A
 requirement to perform the attack is having an Intel CPU, as we need the
-inclusive property of L3 cache. The code for performing the attack can be cloned
+inclusive property of the L3 cache. The code for performing the attack can be cloned
 from the git repository~\cite{GitClementine}. It is based on the Flush+Reload
 cache attack that we mentioned in \cref{subsec:flushreload} presented
 in~\cite{Yarom2014} and~\cite{Gruss2015}.
